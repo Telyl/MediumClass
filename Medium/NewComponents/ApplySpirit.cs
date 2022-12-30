@@ -309,6 +309,8 @@ namespace MediumClass.NewComponents
 				}
 			}
 
+
+			// No one else around will have the medium class, so I'm going to brute force it.
 			UnitEntityData medium = base.Owner;
 			foreach (UnitEntityData unitEntityData in GameHelper.GetTargetsAround(base.Owner.Position, FeetExtension.Feet(1000), false, true))
 			{
