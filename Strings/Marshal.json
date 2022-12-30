@@ -1,0 +1,38 @@
+[
+  {
+    "Key": "Marshal.Name",
+    "ProcessTemplates": false,
+    "enGB": "Marshal"
+  },
+  {
+    "Key": "Marshal.Description",
+    "enGB": "A marshal spirit is a towering presence and an inspiration to others.\nSpirit Bonus: When you channel a marshal, your spirit bonus applies on Charisma checks and Charisma-based skill checks, as well as on spirit surge rolls. This allows the bonus to apply twice to the total result if you use a spirit surge on a Charisma check or on a Charisma-based skill check.\nSeance Boon: Choose a seance boon from any of the other legends to benefit from. When using the shared seance class feature, each participant can choose a different boon.\nInfluence Penalty: The time you spend concentrating on your allies prevents you from attending to other important matters. You take a penalty equal to your spirit bonus on Wisdom checks and Wisdom-based skill checks."
+  },
+  {
+    "Key": "MarshalSpiritBonus.Name",
+    "ProcessTemplates": false,
+    "enGB": "Spirit Bonus - Marshal"
+  },
+  {
+    "Key": "MarshalSpiritBonus.Description",
+    "enGB": "When you channel a marshal, your spirit bonus applies on Charisma checks and Charisma-based skill checks, as well as on spirit surge rolls. This allows the bonus to apply twice to the total result if you use a spirit surge on a Charisma check or on a Charisma-based skill check."
+  },
+  {
+    "Key": "MarshalSeanceBoon.Name",
+    "ProcessTemplates": false,
+    "enGB": "Seance Boon - Marshal"
+  },
+  {
+    "Key": "MarshalSeanceBoon.Description",
+    "enGB": "Choose a seance boon from any of the other legends to benefit from. When using the shared seance class feature, each participant can choose a different boon. "
+  },
+  {
+    "Key": "MarshalInspiringCall.Name",
+    "ProcessTemplates": false,
+    "enGB": "Inspiring Call - Marshal"
+  },
+  {
+    "Key": "MarshalInspiringCall.Description",
+    "enGB": "As a standard action, you can grant all allies who can see and hear you a competence bonus equal to your spirit bonus on either saving throws or attack and damage rolls. You choose which bonus to grant each time you use inspiring call. This ability lasts for 1 round. If you have the decisive strike greater spirit power, you can use inspiring call as a move action. If you have the legendary marshal supreme spirit power, you can use inspiring call as a swift action."
+  }
+]

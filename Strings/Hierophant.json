@@ -1,0 +1,47 @@
+[
+  {
+    "Key": "Hierophant.Name",
+    "ProcessTemplates": false,
+    "enGB": "Hierophant"
+  },
+  {
+    "Key": "Hierophant.Description",
+    "enGB": "A hierophant spirit is a being of true and pure faith.\nSpirit Bonus: When you channel a hierophant, your spirit bonus applies on Wisdom checks, Wisdom-based skill checks, and Will saves.\nSeance Boon: Your healing spells and abilities heal an additional 2 points of damage to each target.\nInfluence Penalty: Whether the spirit hopes to offer a chance for redemption or to sacrifice foes later on a dark altar, You must strike for nonlethal damage in combat whenever possible. You take a penalty equal to your spirit bonus on all Charisma checks and Charisma-based skill checks."
+  },
+  {
+    "Key": "HierophantSpiritBonus.Name",
+    "ProcessTemplates": false,
+    "enGB": "Spirit Bonus - Hierophant"
+  },
+  {
+    "Key": "HierophantSpiritBonus.Description",
+    "enGB": "When you channel a hierophant, your spirit bonus applies on Wisdom checks, Wisdom-based skill checks, and Will saves."
+  },
+  {
+    "Key": "HierophantSeanceBoon.Name",
+    "ProcessTemplates": false,
+    "enGB": "Seance Boon - Hierophant"
+  },
+  {
+    "Key": "HierophantSeanceBoon.Description",
+    "enGB": "Your healing spells and abilities heal an additional 2 points of damage to each target. This does not affect healing conferred by magic items, nor does it add to fast healing or similar effects."
+  },
+  {
+    "Key": "HierophantEnergyFont.Name",
+    "ProcessTemplates": false,
+    "enGB": "Energy Font - Hierophant"
+  },
+  {
+    "Key": "HierophantEnergyFont.Description",
+    "enGB": "You can channel energy a number of times per day equal to 1 + your Charisma modifier. Add cure and inflict spells of each level you can cast from the cleric list to your medium spell list and spells known. These spells count as divine, as in the divine surge spirit power."
+  },
+  {
+    "Key": "HierophantOverflowingGrace.Name",
+    "ProcessTemplates": false,
+    "enGB": "Overflowing Grace - Hierophant"
+  },
+  {
+    "Key": "HierophantOverflowingGrace.Description",
+    "enGB": "When you heal a creature to full hit points or a creature already at full hit points with your positive or negative energy, that creature gains a +1 sacred bonus on attack rolls, skill checks, ability checks, and saving throws for 1 round. The bonus is sacred if you use positive energy and profane if you use negative energy. If you destroy or kill one or more creatures with positive or negative energy, you gain a +1 bonus of the same type on attack rolls, skill checks, ability checks, and saving throws for 1 round."
+  }
+]

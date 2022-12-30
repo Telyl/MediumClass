@@ -1,0 +1,47 @@
+[
+  {
+    "Key": "Guardian.Name",
+    "ProcessTemplates": false,
+    "enGB": "Guardian"
+  },
+  {
+    "Key": "Guardian.Description",
+    "enGB": "A guardian spirit is an exemplar of protection and defense.\nSpirit Bonus: When you channel a guardian, your spirit bonus applies to AC and on Constitution checks, Fortitude saves, and Reflex saves.\nSeance Boon: You gain a +1 bonus to CMD.\nInfluence Penalty: You are incredibly cautious and guarded in all things, and your caution sometimes gets in the way. When attacking, you always fight defensively, and when casting a spell, you always cast defensively. Because of your focus on defense, you take a penalty on damage rolls equal to your spirit bonus."
+  },
+  {
+    "Key": "GuardianSpiritBonus.Name",
+    "ProcessTemplates": false,
+    "enGB": "Spirit Bonus - Guardian"
+  },
+  {
+    "Key": "GuardianSpiritBonus.Description",
+    "enGB": "When you channel a guardian, your spirit bonus applies to AC and on Constitution checks, Fortitude saves, and Reflex saves."
+  },
+  {
+    "Key": "GuardianSeanceBoon.Name",
+    "ProcessTemplates": false,
+    "enGB": "Seance Boon - Guardian"
+  },
+  {
+    "Key": "GuardianSeanceBoon.Description",
+    "enGB": "You gain a +1 bonus to CMD."
+  },
+  {
+    "Key": "GuardianAbsorbBlow.Name",
+    "ProcessTemplates": false,
+    "enGB": "Absorb Blow - Guardian"
+  },
+  {
+    "Key": "GuardianAbsorbBlow.Description",
+    "enGB": "You gain DR/? and resistance to acid, cold, electricity, fire, and sonic equal to 1/2 your medium level. Add bestow grace to your medium spells known as a 2nd-level spell."
+  },
+  {
+    "Key": "LegendaryGuardian.Name",
+    "ProcessTemplates": false,
+    "enGB": "Legendary Guardian"
+  },
+  {
+    "Key": "LegendaryGuardian.Description",
+    "enGB": "As a swift action during combat, you can ignore the effects of the next attack on you. This can be done a number of times per day equal to 1 + your charisma modifier."
+  }
+]

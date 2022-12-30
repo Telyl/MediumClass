@@ -1,0 +1,38 @@
+[
+  {
+    "Key": "Archmage.Name",
+    "ProcessTemplates": false,
+    "enGB": "Archmage"
+  },
+  {
+    "Key": "Archmage.Description",
+    "enGB": "An archmage spirit is a font of knowledge and arcane power.\nSpirit Bonus: When you channel an archmage, your spirit bonus applies on concentration checks, Intelligence checks, and Intelligence-based skill checks.\nSeance Boon: Your damaging spells deal an additional 2 points of damage of the same type that they would normally deal to each target.\nInfluence Penalty: Your body begins to respond as if you were a frail, aged scholar. You take a penalty equal to your spirit bonus on Strength checks, Strength-based skill checks, Constitution checks, attack rolls, and non-spell damage rolls."
+  },
+  {
+    "Key": "ArchmageSpiritBonus.Name",
+    "ProcessTemplates": false,
+    "enGB": "Spirit Bonus - Archmage"
+  },
+  {
+    "Key": "ArchmageSpiritBonus.Description",
+    "enGB": "When you channel an archmage, your spirit bonus applies on concentration checks, Intelligence checks, and Intelligence-based skill checks."
+  },
+  {
+    "Key": "ArchmageSeanceBoon.Name",
+    "ProcessTemplates": false,
+    "enGB": "Seance Boon - Archmage"
+  },
+  {
+    "Key": "ArchmageSeanceBoon.Description",
+    "enGB": "Your damaging spells deal an additional 2 points of damage of the same type that they would normally deal to each target."
+  },
+  {
+    "Key": "ArchmageIntermediate.Name",
+    "ProcessTemplates": false,
+    "enGB": "Arcane Surge"
+  },
+  {
+    "Key": "ArchmageIntermediate.Description",
+    "enGB": "You can allow the archmage spirit to gain 1 point of influence over you in order to cast one of your medium spells known without expending a spell slot. When you do so, the caster level and DC of the spell increase by 1."
+  }
+]

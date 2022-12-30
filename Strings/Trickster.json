@@ -1,0 +1,175 @@
+[
+  {
+    "Key": "Trickster.Name",
+    "ProcessTemplates": false,
+    "enGB": "Trickster"
+  },
+  {
+    "Key": "Trickster.Description",
+    "enGB": "A trickster spirit is a savvy and manipulative master of skills.\nSpirit Bonus: When you channel a trickster, your spirit bonus applies on Dexterity checks, skill checks, and Reflex saves.\nSeance Boon: Choose one skill when you gain this seance boon. You gain a +1 bonus on skill checks using that skill, and that skill counts as a class skill for you.\nInfluence Penalty: TBD"
+  },
+  {
+    "Key": "TricksterSpiritBonus.Name",
+    "ProcessTemplates": false,
+    "enGB": "Spirit Bonus - Trickster"
+  },
+  {
+    "Key": "TricksterSpiritBonus.Description",
+    "enGB": "When you channel a trickster, your spirit bonus applies on Dexterity checks, skill checks, and Reflex saves."
+  },
+  {
+    "Key": "TricksterSeanceBoon.Name",
+    "ProcessTemplates": false,
+    "enGB": "Seance Boon - Trickster"
+  },
+  {
+    "Key": "TricksterSeanceBoon.Description",
+    "enGB": "Choose one skill when you gain this seance boon. You gain a +1 bonus on skill checks using that skill, and that skill counts as a class skill for you."
+  },
+  {
+    "Key": "TricksterTransferMagic.Name",
+    "ProcessTemplates": false,
+    "enGB": "Transfer Magic - Trickster"
+  },
+  {
+    "Key": "TricksterTransferMagic.Description",
+    "enGB": "You can allow the trickster to gain 1 point of influence over you to make a melee touch attack against another creature as a standard action. If the attack succeeds, you randomly steal one of the harmless spells of the highest spell level active on that creature, ending the effect for the original creature and gaining all remaining duration for yourself. This ability does not work on personal range or instantaneous- or permanent-duration spells."
+  },
+  {
+    "Key": "TrickstersEdge.Name",
+    "ProcessTemplates": false,
+    "enGB": "Trickster's Edge"
+  },
+  {
+    "Key": "TrickstersEdge.Description",
+    "enGB": "Choose any one skill. This skill counts as a class skill for you, and you are treated as if you had an additional number of ranks in that skill equal to your medium level (to a maximum of your character level)."
+  },
+  {
+    "Key": "TrickstersEdgeAthletics.Name",
+    "ProcessTemplates": false,
+    "enGB": "Trickster's Edge - Athletics"
+  },
+  {
+    "Key": "TrickstersEdgeThievery.Name",
+    "ProcessTemplates": false,
+    "enGB": "Trickster's Edge - Thievery"
+  },
+  {
+    "Key": "TrickstersEdgeMobility.Name",
+    "ProcessTemplates": false,
+    "enGB": "Trickster's Edge - Mobility"
+  },
+  {
+    "Key": "TrickstersEdgeStealth.Name",
+    "ProcessTemplates": false,
+    "enGB": "Trickster's Edge - Stealth"
+  },
+  {
+    "Key": "TrickstersEdgeNature.Name",
+    "ProcessTemplates": false,
+    "enGB": "Trickster's Edge - Lore Nature"
+  },
+  {
+    "Key": "TrickstersEdgeReligion.Name",
+    "ProcessTemplates": false,
+    "enGB": "Trickster's Edge - Lore Religion"
+  },
+  {
+    "Key": "TrickstersEdgeArcana.Name",
+    "ProcessTemplates": false,
+    "enGB": "Trickster's Edge - Knowledge Arcana"
+  },
+  {
+    "Key": "TrickstersEdgeWorld.Name",
+    "ProcessTemplates": false,
+    "enGB": "Trickster's Edge - Knowledge World"
+  },
+  {
+    "Key": "TrickstersEdgePerception.Name",
+    "ProcessTemplates": false,
+    "enGB": "Trickster's Edge - Perception"
+  },
+  {
+    "Key": "TrickstersEdgePersuasion.Name",
+    "ProcessTemplates": false,
+    "enGB": "Trickster's Edge - Persuasion"
+  },
+  {
+    "Key": "TrickstersEdgeUMD.Name",
+    "ProcessTemplates": false,
+    "enGB": "Trickster's Edge - Use Magic Device"
+  },
+  {
+    "Key": "TricksterLegendaryTrickster.Name",
+    "ProcessTemplates": false,
+    "enGB": "Legendary Trickster"
+  },
+  {
+    "Key": "TricksterLegendaryTrickster.Description",
+    "enGB": "Once per day, instead of rolling for a skill check, you can choose your d20 result. Additionally, you gain the ability to change form at will as if using greater polymorph."
+  },
+  {
+    "Key": "SurpriseStrike.Name",
+    "ProcessTemplates": false,
+    "enGB": "Surprise Strike - Trickster"
+  },
+  {
+    "Key": "SurpriseStrike.Description",
+    "enGB": "When you attack an opponent thatÅfs denied its Dexterity bonus to AC, you deal 1d6 points of extra precision damage for every 3 medium levels. Your target counts as flat-footed against the first attack you make against that target in a day, regardless of abilities like uncanny dodge. After your first attack, that target is immune to being made flat-footed by your surprise strike for 24 hours."
+  },
+  {
+    "Key": "TricksterSeanceBoonAthletics.Name",
+    "ProcessTemplates": false,
+    "enGB": "Seance Boon - Athletics"
+  },
+  {
+    "Key": "TricksterSeanceBoonMobility.Name",
+    "ProcessTemplates": false,
+    "enGB": "Seance Boon - Mobility"
+  },
+  {
+    "Key": "TricksterSeanceBoonStealth.Name",
+    "ProcessTemplates": false,
+    "enGB": "Seance Boon - Stealth"
+  },
+  {
+    "Key": "TricksterSeanceBoonThievery.Name",
+    "ProcessTemplates": false,
+    "enGB": "Seance Boon - Thievery"
+  },
+  {
+    "Key": "TricksterSeanceBoonArcana.Name",
+    "ProcessTemplates": false,
+    "enGB": "Seance Boon - Arcana"
+  },
+  {
+    "Key": "TricksterSeanceBoonWorld.Name",
+    "ProcessTemplates": false,
+    "enGB": "Seance Boon - World"
+  },
+  {
+    "Key": "TricksterSeanceBoonNature.Name",
+    "ProcessTemplates": false,
+    "enGB": "Seance Boon - Nature"
+  },
+  {
+    "Key": "TricksterSeanceBoonReligion.Name",
+    "ProcessTemplates": false,
+    "enGB": "Seance Boon - Religion"
+  },
+  {
+    "Key": "TricksterSeanceBoonPerception.Name",
+    "ProcessTemplates": false,
+    "enGB": "Seance Boon - Perception"
+  },
+  {
+    "Key": "TricksterSeanceBoonPersuasion.Name",
+    "ProcessTemplates": false,
+    "enGB": "Seance Boon - Persuasion"
+  },
+  {
+    "Key": "TricksterSeanceBoonUMD.Name",
+    "ProcessTemplates": false,
+    "enGB": "Seance Boon - UMD"
+  }
+]
