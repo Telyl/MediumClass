@@ -29,8 +29,7 @@ namespace MediumClass.Medium.NewComponents.AbilitySpecific
     [TypeId("e6f1c2c497fb477f8cb36c913036dad3")]
     public class CheckInfluence : UnitFactComponentDelegate,
         IInitiatorRulebookHandler<RuleCastSpell>,
-        IRulebookHandler<RuleCastSpell>, IInitiatorRulebookHandler<RuleCanApplyBuff>,
-        IRulebookHandler<RuleCanApplyBuff>,
+        IRulebookHandler<RuleCastSpell>,
         ISubscriber,
         IInitiatorRulebookSubscriber
     {
@@ -93,9 +92,39 @@ namespace MediumClass.Medium.NewComponents.AbilitySpecific
 
         public void OnEventAboutToTrigger(RuleCastSpell evt)
         {
+
         }
         public void OnEventDidTrigger(RuleCastSpell evt)
         {
+            try
+            {
+                UnitEntityData caster = base.Owner;
+                bool isMemorizedSpell = false;
+                if (caster.Descriptor.HasFact(ArchmageSpirit))
+                {
+                    if (evt.Context.Ability.Blueprint.IsSpell)
+                    {
+                        Spellbook spellbook = caster.DemandSpellbook(BlueprintTool.Get<BlueprintCharacterClass>(Guids.Archmage));
+                        var memorizedspells = spellbook.GetAllMemorizedSpells();
+                        foreach (SpellSlot ss in memorizedspells)
+                        {
+                            if (evt.Context.Ability.Blueprint == ss.Spell.Blueprint)
+                            {
+                                isMemorizedSpell = true;
+                            }
+                        }
+
+                        if (!isMemorizedSpell)
+                        {
+                            Logger.Log("I shouldn't be here more than once...");
+                            base.Owner.Resources.Spend(BlueprintTool.Get<BlueprintAbilityResource>(Guids.MediumInfluenceResource), 1);
+                        }
+                        Logger.Log($"{evt.Context.Ability.ConvertedFrom }");
+                    }
+                }
+            }
+            catch { }
+
             try
             {
                 UnitEntityData caster = base.Owner;
@@ -108,7 +137,7 @@ namespace MediumClass.Medium.NewComponents.AbilitySpecific
                     if (requiredResource == influenceResource)
                     {
                         Logger.Log("I am required resource!");
-                        if ((resource_amount - 1) == 2)
+                        if ((resource_amount - 1) <= 2)
                         {
                             Logger.Log("We'll have to add that fact of -2 initiative and some nasties.");
 
@@ -125,15 +154,9 @@ namespace MediumClass.Medium.NewComponents.AbilitySpecific
                 }
             }
             catch { }
+            
         }
 
-        public void OnEventAboutToTrigger(RuleCanApplyBuff evt)
-        {
-        }
-
-        public void OnEventDidTrigger(RuleCanApplyBuff evt)
-        {
-        }
     }
 }
 

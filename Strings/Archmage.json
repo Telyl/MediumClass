@@ -34,5 +34,14 @@
   {
     "Key": "ArchmageIntermediate.Description",
     "enGB": "You can allow the archmage spirit to gain 1 point of influence over you in order to cast one of your medium spells known without expending a spell slot. When you do so, the caster level and DC of the spell increase by 1."
+  },
+  {
+    "Key": "ArchmageGreater.Name",
+    "ProcessTemplates": false,
+    "enGB": "Wild Arcana"
+  },
+  {
+    "Key": "ArchmageGreater.Description",
+    "enGB": "You can allow the archmage spirit to gain 1 point of influence over you in order to cast any sorcerer/wizard spell of a level you can cast. You must expend a spell slot of the appropriate level."
   }
 ]

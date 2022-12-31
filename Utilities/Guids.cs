@@ -23,6 +23,9 @@ namespace MediumClass.Utilities
         internal const string ArchmageIntermediate = "f019b7c9-4b35-472f-b842-1352e7908f48";
         internal const string ArchmageIntermediateAbility = "27996019-2a52-450c-b33f-42d18f6d8922";
         internal const string ArchmageIntermediateBuff = "2da103fe-6f2d-4a1c-b16c-cd5a3b651bd5";
+        internal const string ArchmageGreater = "b8c01230-86f2-495c-af02-7a20ad8904c3";
+        internal const string ArchmageGreaterAbility = "44bac13f-c406-4f3b-b77c-e0525f8845fc";
+        internal const string ArchmageGreaterBuff = "59e631e8-0c2f-4efa-8329-f5015ae95815";
         #endregion
 
         #region Champion

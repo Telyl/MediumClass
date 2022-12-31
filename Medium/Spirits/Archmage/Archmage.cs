@@ -28,6 +28,7 @@ namespace MediumClass.Medium.Spirits.Archmage
             SpiritBonus.ConfigureEnabled();
             SeanceBoon.ConfigureEnabled();
             ArcaneSurge.ConfigureEnabled();
+            WildArcana.ConfigureEnabled();
             BlueprintSpellbook Spellbook = ArchmageSpellbook();
             BlueprintProgression Progression = ArchmageProgression();
 
@@ -75,7 +76,7 @@ namespace MediumClass.Medium.Spirits.Archmage
                 .AddEntry(4, Guids.ArchmageSpiritBonus)
                 .AddEntry(6, Guids.ArchmageIntermediate)
                 .AddEntry(8, Guids.ArchmageSpiritBonus)
-                .AddEntry(11)
+                .AddEntry(11, Guids.ArchmageGreater)
                 .AddEntry(12, Guids.ArchmageSpiritBonus)
                 .AddEntry(17)
                 .AddEntry(20, Guids.ArchmageSpiritBonus);
@@ -84,7 +85,7 @@ namespace MediumClass.Medium.Spirits.Archmage
                 .SetAllowNonContextActions(false)
                 .SetHideInUI(false)
                 .SetHideInCharacterSheetAndLevelUp(false)
-                .SetHideNotAvailibleInUI(false)
+                .SetHideNotAvailibleInUI(true)
                 .SetRanks(1)
                 .SetReapplyOnLevelUp(false)
                 .SetIsClassFeature(false)

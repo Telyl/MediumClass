@@ -1,4 +1,5 @@
-﻿using Kingmaker.PubSubSystem;
+﻿using Kingmaker.Blueprints.JsonSystem;
+using Kingmaker.PubSubSystem;
 using Kingmaker.RuleSystem.Rules.Abilities;
 using Kingmaker.UnitLogic;
 using Kingmaker.UnitLogic.Abilities;
@@ -12,6 +13,7 @@ using static UnityModManagerNet.UnityModManager.ModEntry;
 
 namespace MediumClass.Medium.NewComponents
 {
+    [TypeId("996f6104335842e08262f14bd153298e")]
     public class AddResourcelessSpell : UnitFactComponentDelegate, IInitiatorRulebookHandler<RuleCastSpell>, IRulebookHandler<RuleCastSpell>, ISubscriber, IInitiatorRulebookSubscriber
     {
         private static readonly ModLogger Logger = Logging.GetLogger(nameof(AddResourcelessSpell));
