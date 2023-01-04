@@ -29,7 +29,6 @@ namespace MediumClass.Medium.NewComponents.AbilitySpecific
 			}
 		}
 
-		// Token: 0x0600DFB9 RID: 57273 RVA: 0x003965A7 File Offset: 0x003947A7
 		public void OnEventAboutToTrigger(RuleAttackWithWeapon evt)
 		{
 			if(evt.Target.HasFact(CooldownSurpriseStrike)) { return; }

@@ -30,6 +30,7 @@ namespace MediumClass.Medium.Spirits.Hierophant
 
         public static void ConfigureEnabled()
         {
+            Logger.Log("Generating Hierophant Overflowing Grace");
             BlueprintBuff overflowingbuff = BuffConfigurator.New(FeatName + "SacredBuff", Guids.HierophantOverflowingGraceSacred)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)

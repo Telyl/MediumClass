@@ -10,6 +10,7 @@ using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
+using MediumClass.Medium.NewActions;
 using MediumClass.Medium.NewComponents;
 using MediumClass.Utilities;
 using MediumClass.Utils;
@@ -61,7 +62,7 @@ namespace MediumClass.Medium.Spirits.Archmage
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIcon(AbilityRefs.EcclesitheurgeBondAbility.Reference.Get().Icon)
-                .AddAbilityEffectRunAction(actions: ActionsBuilder.New().ApplyBuffPermanent(buff))
+                .AddAbilityEffectRunAction(actions: ActionsBuilder.New().Add<ContextActionSpiritInfluence>().ApplyBuffPermanent(buff))
                 .AddAbilityResourceLogic(amount: 1, isSpendResource: true, requiredResource: Guids.MediumInfluenceResource)
                 .SetActionType(Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Free)
                 .Configure();

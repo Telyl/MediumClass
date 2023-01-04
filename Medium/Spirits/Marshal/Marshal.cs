@@ -25,6 +25,9 @@ namespace MediumClass.Medium.Spirits.Marshal
             SpiritBonus.ConfigureEnabled();
             SeanceBoon.ConfigureEnabled();
             InspiringCall.ConfigureEnabled();
+            MarshalsOrders.ConfigureEnabled();
+            DecisiveStrike.ConfigureEnabled();
+            LegendaryMarshal.ConfigureEnabled();
             BlueprintProgression Progression = MarshalProgression();
 
             CharacterClassConfigurator.For(Guids.Marshal)
@@ -71,14 +74,15 @@ namespace MediumClass.Medium.Spirits.Marshal
                     FeatureRefs.ShieldsProficiency.Reference.Get(),
                     FeatureRefs.TowerShieldProficiency.Reference.Get(),
                     Guids.MarshalSeanceBoon,
-                    Guids.MarshalSpiritBonus)
+                    Guids.MarshalSpiritBonus,
+                    Guids.MarshalMarshalsOrders)
                 .AddEntry(4, Guids.MarshalSpiritBonus)
                 .AddEntry(6, Guids.MarshalInspiringCallStandard)
                 .AddEntry(8, Guids.MarshalSpiritBonus)
-                .AddEntry(11, Guids.MarshalInspiringCallMove)
+                .AddEntry(11, Guids.MarshalInspiringCallMove, Guids.MarshalDecisiveStrikeFeature)
                 .AddEntry(12, Guids.MarshalSpiritBonus)
                 .AddEntry(16, Guids.MarshalSpiritBonus)
-                .AddEntry(17, Guids.MarshalInspiringCallSwift)
+                .AddEntry(17, Guids.MarshalInspiringCallSwift, Guids.MarshalLegendaryMarshal)
                 .AddEntry(20, Guids.MarshalSpiritBonus);
 
             return ProgressionConfigurator.New(ClassName +"Progression", Guids.MarshalProgression)

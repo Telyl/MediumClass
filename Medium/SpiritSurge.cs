@@ -18,7 +18,9 @@ using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Mechanics.Actions;
 using Kingmaker.UnitLogic.Mechanics.Components;
+using MediumClass.Medium.NewActions;
 using MediumClass.Medium.NewComponents;
+using MediumClass.Medium.NewComponents.AbilitySpecific;
 using MediumClass.Utilities;
 using System;
 using System.Collections.Generic;
@@ -51,12 +53,7 @@ namespace MediumClass.Medium
 
             var buff = BuffConfigurator.New(FeatName + "Buff", Guids.SpiritSurgeBuff)
             .SetIcon(AbilityRefs.EldritchFontGreaterSurgeAbility.Reference.Get().Icon)
-            .AddComponent<AddSpiritSurgeArchmage>()
-            .AddComponent<AddSpiritSurgeChampion>()
-            .AddComponent<AddSpiritSurgeGuardian>()
-            .AddComponent<AddSpiritSurgeHierophant>()
-            .AddComponent<AddSpiritSurgeMarshal>()
-            .AddComponent<AddSpiritSurgeTrickster>()
+            .AddComponent<MediumSpiritSurgeComponent>()
             .AddContextRankConfig(
                     ContextRankConfigs.FeatureRank(Guids.SpiritSurge, max: 20, min: 1))
             .Configure();
@@ -65,22 +62,18 @@ namespace MediumClass.Medium
                 .SetIcon(AbilityRefs.EldritchFontGreaterSurgeAbility.Reference.Get().Icon)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
+                .AddComponent<AbilityRequirementHasSpirit>()
+                .AddComponent<AbilityRequirementNotMarshalsOrder>()
+                .SetActionType(Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Free)
                 .AddAbilityResourceLogic(amount: 1, requiredResource: Guids.MediumInfluenceResource, isSpendResource: true, costIsCustom: false)
                 .AddAbilityEffectRunAction(
                     actions: ActionsBuilder.New()
-                        .ApplyBuff(buff, ContextDuration.Variable(ContextValues.Rank(), rate: DurationRate.Minutes),
+                        .Add<ContextActionSpiritInfluence>()
+                        .ApplyBuff(buff, ContextDuration.Fixed(1, DurationRate.Minutes),
                                     asChild: false, isFromSpell: false, isNotDispelable: true))
                 .Configure();
 
             FeatureConfigurator.For(feat)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .SetHideInUI(false)
-                .SetHideNotAvailibleInUI(false)
-                .SetIsClassFeature(true)
-                .SetReapplyOnLevelUp(false)
-                .SetRanks(10)
-                .SetAllowNonContextActions(false)
                 .AddFacts(new() { ability })
                 .AddContextRankConfig(new ContextRankConfig
                 {

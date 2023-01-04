@@ -5,27 +5,24 @@ Additional features for Pathfinder: Wrath of the Righteous
 * Icons!!
 * Medium
 	* [Weaker Spirit Channeling](https://www.d20pfsrd.com/alternative-rule-systems/occult-adventures/occult-classes/Medium/#TOC-Spirit-Su-)
-	* [Taboo](https://www.d20pfsrd.com/alternative-rule-systems/occult-adventures/occult-classes/Medium/#TOC-Taboo-Ex-)
+	* [Taboo - Stretch Goal](https://www.d20pfsrd.com/alternative-rule-systems/occult-adventures/occult-classes/Medium/#TOC-Taboo-Ex-)
 * Archmage
-	* [Wild Arcana (Greater, Su)](https://www.d20pfsrd.com/alternative-rule-systems/occult-adventures/occult-classes/medium/spirits/spirits-paizo-inc/#Archmage)
 	* [Legendary Archmage (Supreme, Su)](https://www.d20pfsrd.com/alternative-rule-systems/occult-adventures/occult-classes/medium/spirits/spirits-paizo-inc/#Archmage)
 * Champion
 	* [Legendary Champion (Supreme, Su)](https://www.d20pfsrd.com/alternative-rule-systems/occult-adventures/occult-classes/medium/spirits/spirits-paizo-inc/#Champion)
 * Guardian
-	* [Sudden Block (Greater, Su)](https://www.d20pfsrd.com/alternative-rule-systems/occult-adventures/occult-classes/medium/spirits/spirits-paizo-inc/#Guardian)
 	* [Legendary Guardian (Supreme, Su)](https://www.d20pfsrd.com/alternative-rule-systems/occult-adventures/occult-classes/medium/spirits/spirits-paizo-inc/#Guardian)
 * Hierophant
-	* [Legendary Hierophant (Supreme, Su)](https://www.d20pfsrd.com/alternative-rule-systems/occult-adventures/occult-classes/medium/spirits/spirits-paizo-inc/#Hierophant)
+	* COMPLETE
 * Marshal
-	* [MarshalÅfs Order (Lesser, Su)](https://www.d20pfsrd.com/alternative-rule-systems/occult-adventures/occult-classes/medium/spirits/spirits-paizo-inc/#Marshal)
-	* [Decisive Strike  (Greater, Su)](https://www.d20pfsrd.com/alternative-rule-systems/occult-adventures/occult-classes/medium/spirits/spirits-paizo-inc/#Marshal)
-	* [Legendary Marshal (Supreme, Su)](https://www.d20pfsrd.com/alternative-rule-systems/occult-adventures/occult-classes/medium/spirits/spirits-paizo-inc/#Marshal)
+	* COMPLETE
 * Trickster
 	* COMPLETE
 
 Requires the following mods to function:
 ```
 ModMenu-1.3.0 - https://github.com/WittleWolfie/ModMenu
+TableTopTweaks-Core
 ```
 
 

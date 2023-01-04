@@ -34,57 +34,13 @@ namespace MediumClass.Medium
         public static void ConfigureEnabled()
         {
 
-            var magedebuff = BuffConfigurator.New(FeatName + "Archmage", Guids.MediumInfluenceArchmage).Configure();
-            BuffConfigurator.For(magedebuff)
+            var debuff = BuffConfigurator.New(FeatName + "Debuff", Guids.MediumInfluenceDebuff).Configure();
+            BuffConfigurator.For(debuff)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .AddRestTrigger(action: ActionsBuilder.New().RemoveBuff(magedebuff))
+                .AddRestTrigger(action: ActionsBuilder.New().RemoveBuff(debuff))
                 .SetIcon(BuffRefs.Asmodeus_Debuff.Reference.Get().Icon)
-                .AddComponent<ContextSpiritInfluence>()
-                .Configure();
-
-            var champdebuff = BuffConfigurator.New(FeatName + "Champion", Guids.MediumInfluenceChampion).Configure();
-            BuffConfigurator.For(champdebuff)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .AddRestTrigger(action: ActionsBuilder.New().RemoveBuff(champdebuff))
-                .SetIcon(BuffRefs.Asmodeus_Debuff.Reference.Get().Icon)
-                .AddComponent<ContextSpiritInfluence>()
-                .Configure();
-
-            var guarddebuff = BuffConfigurator.New(FeatName + "Guardian", Guids.MediumInfluenceGuardian).Configure();
-            BuffConfigurator.For(guarddebuff)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .AddRestTrigger(action: ActionsBuilder.New().RemoveBuff(guarddebuff))
-                .SetIcon(BuffRefs.FightDefensivelyBuff.Reference.Get().Icon)
-                .AddFacts(new() { BuffRefs.FightDefensivelyBuff.Reference.Get() })
-                .Configure();
-            var clericdebuff = BuffConfigurator.New(FeatName + "Hierophant", Guids.MediumInfluenceHierophant).Configure();
-            BuffConfigurator.For(clericdebuff)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .AddRestTrigger(action: ActionsBuilder.New().RemoveBuff(clericdebuff))
-                .SetIcon(BuffRefs.Asmodeus_Debuff.Reference.Get().Icon)
-                .AddComponent<ContextSpiritInfluence>()
-                .Configure();
-
-            var barddebuff = BuffConfigurator.New(FeatName + "Marshal", Guids.MediumInfluenceMarshal).Configure();
-            BuffConfigurator.For(barddebuff)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .AddRestTrigger(action: ActionsBuilder.New().RemoveBuff(barddebuff))
-                .SetIcon(BuffRefs.Asmodeus_Debuff.Reference.Get().Icon)
-                .AddComponent<ContextSpiritInfluence>()
-                .Configure();
-
-            var roguedebuff = BuffConfigurator.New(FeatName + "Trickster", Guids.MediumInfluenceTrickster).Configure();
-            BuffConfigurator.For(roguedebuff)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .AddRestTrigger(action: ActionsBuilder.New().RemoveBuff(roguedebuff))
-                .SetIcon(BuffRefs.Asmodeus_Debuff.Reference.Get().Icon)
-                .AddComponent<ContextSpiritInfluence>()
+                .AddComponent<MediumInfluencePenaltyComponent>()
                 .Configure();
 
             var resource = AbilityResourceConfigurator.New(FeatName + "Resource", Guids.MediumInfluenceResource)

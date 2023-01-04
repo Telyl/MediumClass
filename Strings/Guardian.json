@@ -43,5 +43,15 @@
   {
     "Key": "LegendaryGuardian.Description",
     "enGB": "As a swift action during combat, you can ignore the effects of the next attack on you. This can be done a number of times per day equal to 1 + your charisma modifier."
+  },
+  {
+    "Key": "GuardianGreater.Name",
+    "ProcessTemplates": false,
+    "enGB": "Guardian Smite"
+  },
+  {
+    "Key": "GuardianGreater.Description",
+    "enGB": "You can allow the guardian to gain 1 point of influence over you as a swift action to smite evil as per the paladin class."
   }
+
 ]

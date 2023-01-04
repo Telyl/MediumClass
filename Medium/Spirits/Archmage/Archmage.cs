@@ -78,6 +78,7 @@ namespace MediumClass.Medium.Spirits.Archmage
                 .AddEntry(8, Guids.ArchmageSpiritBonus)
                 .AddEntry(11, Guids.ArchmageGreater)
                 .AddEntry(12, Guids.ArchmageSpiritBonus)
+                .AddEntry(16, Guids.ArchmageSpiritBonus)
                 .AddEntry(17)
                 .AddEntry(20, Guids.ArchmageSpiritBonus);
 
@@ -115,10 +116,10 @@ namespace MediumClass.Medium.Spirits.Archmage
                     new SpellsLevelEntry{ Count = new int[] { 0, 1, 1, 1, 1, 1 } },//14
                     new SpellsLevelEntry{ Count = new int[] { 0, 1, 1, 1, 1, 1 } },//15
                     new SpellsLevelEntry{ Count = new int[] { 0, 1, 1, 1, 1, 1, 1 } },//16
-                    new SpellsLevelEntry{ Count = new int[] { 0, 2, 2, 2, 1, 1, 1 } },//17
-                    new SpellsLevelEntry{ Count = new int[] { 0, 3, 3, 3, 2, 2, 2 } },//18
-                    new SpellsLevelEntry{ Count = new int[] { 0, 4, 4, 4, 3, 3, 3 } },//19
-                    new SpellsLevelEntry{ Count = new int[] { 0, 4, 4, 4, 4, 4, 4 } },//20
+                    new SpellsLevelEntry{ Count = new int[] { 0, 1, 1, 1, 1, 1, 1 } },//17
+                    new SpellsLevelEntry{ Count = new int[] { 0, 1, 1, 1, 1, 1, 1 } },//18
+                    new SpellsLevelEntry{ Count = new int[] { 0, 1, 1, 1, 1, 1, 1 } },//19
+                    new SpellsLevelEntry{ Count = new int[] { 0, 1, 1, 1, 1, 1, 1 } },//20
                     })
                 .Configure();
 

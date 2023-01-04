@@ -9,6 +9,7 @@ using BlueprintCore.Utils.Types;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Spells;
+using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using MediumClass.Medium.NewComponents;
@@ -20,6 +21,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TabletopTweaks.Core.NewComponents.AbilitySpecific;
+using TabletopTweaks.Core.Utilities;
 using static UnityModManagerNet.UnityModManager.ModEntry;
 
 namespace MediumClass.Medium.Spirits.Archmage
@@ -35,32 +38,15 @@ namespace MediumClass.Medium.Spirits.Archmage
         {
             Logger.Log("Generating Archmage Greater Power");
 
-            var buff = BuffConfigurator.New(FeatName + "Buff", Guids.ArchmageGreaterBuff)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .SetIcon(AbilityRefs.ShamanItemBondAbility.Reference.Get().Icon)
-                .AddAbilityUseTrigger(action: ActionsBuilder.New().RemoveSelf(),
-                spellbooks: new() { BlueprintTool.GetRef<BlueprintSpellbookReference>(Guids.ArchmageSpellbook),
-                    BlueprintTool.GetRef<BlueprintSpellbookReference>(Guids.MediumSpellbook) },
-                fromSpellbook: true, afterCast: true, forMultipleSpells: false, checkAbilityType: false, minSpellLevel: false, exactSpellLevel: false, spellDescriptor: SpellDescriptor.None, range: Kingmaker.UnitLogic.Abilities.Blueprints.AbilityRange.Touch)
-                .SetFlags(BlueprintBuff.Flags.RemoveOnRest)
-                .Configure();
-
-            var ability = AbilityConfigurator.New(FeatName + "Ability", Guids.ArchmageGreaterAbility)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .SetIcon(AbilityRefs.ShamanItemBondAbility.Reference.Get().Icon)
-                .AddAbilityEffectRunAction(actions: ActionsBuilder.New().ApplyBuffPermanent(buff))
-                .AddAbilityResourceLogic(amount: 1, isSpendResource: true, requiredResource: Guids.MediumInfluenceResource)
-                .SetActionType(Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Free)
-                .Configure();
-
-            FeatureConfigurator.New(FeatName, Guids.ArchmageGreater)
+            var ArchmageKenning = FeatureConfigurator.New(FeatName, Guids.ArchmageGreater)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIcon(AbilityRefs.ShamanItemBondAbility.Reference.Get().Icon)
                 .AddComponent<SpontaneousConversion>(c => {
                     c.m_CharacterClass = BlueprintTool.GetRef<BlueprintCharacterClassReference>(Guids.Archmage);
+                    c.m_SpellList = BlueprintTool.GetRef<BlueprintSpellListReference>(SpellListRefs.WizardSpellList.ToString());
+                    c.m_Spellbook = BlueprintTool.GetRef<BlueprintSpellbookReference>(Guids.ArchmageSpellbook);
+                    c.m_Resource = BlueprintTool.GetRef<BlueprintAbilityResourceReference>(Guids.MediumInfluenceResource);
                 })
                 .Configure();
         }

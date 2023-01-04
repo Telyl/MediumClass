@@ -15,6 +15,8 @@ using Kingmaker.UnitLogic.Abilities.Components;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Mechanics.Components;
+using MediumClass.Medium.NewActions;
+using MediumClass.Medium.NewComponents;
 using MediumClass.Medium.NewComponents.AbilitySpecific;
 using MediumClass.Utilities;
 using MediumClass.Utils;
@@ -50,8 +52,9 @@ namespace MediumClass.Medium
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIcon(AbilityRefs.EuphoricTranquility.Reference.Get().Icon)
+                .AddComponent<AbilityRequirementHasSpirit>()
                 .AddAbilityResourceLogic(amount: 1, isSpendResource: true, requiredResource: Guids.MediumInfluenceResource)
-                .AddAbilityEffectRunAction(actions: ActionsBuilder.New().ApplyBuff(archmagebuff, ContextDuration.Variable(ContextValues.Rank()), toCaster: true))
+                .AddAbilityEffectRunAction(actions: ActionsBuilder.New().Add<ContextActionSpiritInfluence>().ApplyBuff(archmagebuff, ContextDuration.Variable(ContextValues.Rank()), toCaster: true))
                 .AddContextRankConfig(ContextRankConfigs.ClassLevel(new string[] { Guids.Medium }))
                 .Configure();
             #endregion
@@ -68,8 +71,9 @@ namespace MediumClass.Medium
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIcon(AbilityRefs.EuphoricTranquility.Reference.Get().Icon)
+                .AddComponent<AbilityRequirementHasSpirit>()
                 .AddAbilityResourceLogic(amount: 1, isSpendResource: true, requiredResource: Guids.MediumInfluenceResource)
-                .AddAbilityEffectRunAction(actions: ActionsBuilder.New().ApplyBuff(championbuff, ContextDuration.Variable(ContextValues.Rank()), toCaster: true))
+                .AddAbilityEffectRunAction(actions: ActionsBuilder.New().Add<ContextActionSpiritInfluence>().ApplyBuff(championbuff, ContextDuration.Variable(ContextValues.Rank()), toCaster: true))
                 .AddContextRankConfig(ContextRankConfigs.ClassLevel(new string[] { Guids.Medium }))
                 .Configure();
             #endregion
@@ -86,8 +90,9 @@ namespace MediumClass.Medium
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIcon(AbilityRefs.EuphoricTranquility.Reference.Get().Icon)
+                .AddComponent<AbilityRequirementHasSpirit>()
                 .AddAbilityResourceLogic(amount: 1, isSpendResource: true, requiredResource: Guids.MediumInfluenceResource)
-                .AddAbilityEffectRunAction(actions: ActionsBuilder.New().ApplyBuff(guardianbuff, ContextDuration.Variable(ContextValues.Rank()), toCaster: true))
+                .AddAbilityEffectRunAction(actions: ActionsBuilder.New().Add<ContextActionSpiritInfluence>().ApplyBuff(guardianbuff, ContextDuration.Variable(ContextValues.Rank()), toCaster: true))
                 .AddContextRankConfig(ContextRankConfigs.ClassLevel(new string[] { Guids.Medium }))
                 .Configure();
             #endregion
@@ -104,8 +109,9 @@ namespace MediumClass.Medium
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIcon(AbilityRefs.EuphoricTranquility.Reference.Get().Icon)
+                .AddComponent<AbilityRequirementHasSpirit>()
                 .AddAbilityResourceLogic(amount: 1, isSpendResource: true, requiredResource: Guids.MediumInfluenceResource)
-                .AddAbilityEffectRunAction(actions: ActionsBuilder.New().ApplyBuff(hierophantbuff, ContextDuration.Variable(ContextValues.Rank()), toCaster: true))
+                .AddAbilityEffectRunAction(actions: ActionsBuilder.New().Add<ContextActionSpiritInfluence>().ApplyBuff(hierophantbuff, ContextDuration.Variable(ContextValues.Rank()), toCaster: true))
                 .AddContextRankConfig(ContextRankConfigs.ClassLevel(new string[] { Guids.Medium }))
                 .Configure();
             #endregion
@@ -123,8 +129,9 @@ namespace MediumClass.Medium
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIcon(AbilityRefs.EuphoricTranquility.Reference.Get().Icon)
+                .AddComponent<AbilityRequirementHasSpirit>()
                 .AddAbilityResourceLogic(amount: 1, isSpendResource: true, requiredResource: Guids.MediumInfluenceResource)
-                .AddAbilityEffectRunAction(actions: ActionsBuilder.New().ApplyBuff(marshalbuff, ContextDuration.Variable(ContextValues.Rank()), toCaster: true))
+                .AddAbilityEffectRunAction(actions: ActionsBuilder.New().Add<ContextActionSpiritInfluence>().ApplyBuff(marshalbuff, ContextDuration.Variable(ContextValues.Rank()), toCaster: true))
                 .AddContextRankConfig(ContextRankConfigs.ClassLevel(new string[] { Guids.Medium }))
                 .Configure();
             #endregion
@@ -142,8 +149,9 @@ namespace MediumClass.Medium
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIcon(AbilityRefs.EuphoricTranquility.Reference.Get().Icon)
+                .AddComponent<AbilityRequirementHasSpirit>()
                 .AddAbilityResourceLogic(amount: 1, isSpendResource: true, requiredResource: Guids.MediumInfluenceResource)
-                .AddAbilityEffectRunAction(actions: ActionsBuilder.New().ApplyBuff(tricksterbuff, ContextDuration.Variable(ContextValues.Rank()), toCaster: true))
+                .AddAbilityEffectRunAction(actions: ActionsBuilder.New().Add<ContextActionSpiritInfluence>().ApplyBuff(tricksterbuff, ContextDuration.Variable(ContextValues.Rank()), toCaster: true))
                 .AddContextRankConfig(ContextRankConfigs.ClassLevel(new string[] { Guids.Medium }))
                 .Configure();
             #endregion
@@ -153,6 +161,7 @@ namespace MediumClass.Medium
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIcon(AbilityRefs.EuphoricTranquility.Reference.Get().Icon)
+                .AddComponent<AbilityRequirementHasSpirit>()
                 .AddAbilityVariants(new() { archmageability, championability, guardianability, hierophantability, marshalability, tricksterability })
                 .Configure();
             

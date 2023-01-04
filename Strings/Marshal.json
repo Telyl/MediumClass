@@ -34,5 +34,50 @@
   {
     "Key": "MarshalInspiringCall.Description",
     "enGB": "As a standard action, you can grant all allies who can see and hear you a competence bonus equal to your spirit bonus on either saving throws or attack and damage rolls. You choose which bonus to grant each time you use inspiring call. This ability lasts for 1 round. If you have the decisive strike greater spirit power, you can use inspiring call as a move action. If you have the legendary marshal supreme spirit power, you can use inspiring call as a swift action."
+  },
+  {
+    "Key": "MarshalLesser.Name",
+    "ProcessTemplates": false,
+    "enGB": "Marshal's Order"
+  },
+  {
+    "Key": "MarshalLesser.Description",
+    "enGB": "You can use your spirit surge on attack rolls, saving throws, ability checks, concentration checks, and skill checks rolled by you or any allies who participated in your seance as long as you have line of sight and line of effect, and are within 30 feet of the chosen ally."
+  },
+  {
+    "Key": "MarshalGreaterSwift.Name",
+    "ProcessTemplates": false,
+    "enGB": "Decisive Strike - Swift"
+  },
+  {
+    "Key": "MarshalGreaterSwift.Description",
+    "enGB": "You can allow the marshal to gain 1 point of influence over you as a swift action to allow an ally within 30 feet who can see and hear you to make a single melee or ranged attack during your turn."
+  },
+  {
+    "Key": "MarshalGreaterStandard.Name",
+    "ProcessTemplates": false,
+    "enGB": "Decisive Strike - Standard"
+  },
+  {
+    "Key": "MarshalGreaterStandard.Description",
+    "enGB": "You can allow the marshal to gain 1 point of influence over you as a standard action to allow an ally within 30 feet who can see and hear you to make their next standard action spell a free action."
+  },
+  {
+    "Key": "MarshalGreaterFeat.Name",
+    "ProcessTemplates": false,
+    "enGB": "Decisive Strike"
+  },
+  {
+    "Key": "MarshalGreaterFeat.Description",
+    "enGB": "You can allow the marshal to gain 1 point of influence over you as a swift action to allow an ally within 30 feet who can see and hear you to make a single melee or ranged attack during your turn. You may use this ability as a standard action to allow an ally to make their next standard action spell a free action."
+  },
+  {
+    "Key": "MarshalSupreme.Name",
+    "ProcessTemplates": false,
+    "enGB": "Legendary Marshal"
+  },
+  {
+    "Key": "MarshalSupreme.Description",
+    "enGB": "You can use a lesser spirit surge without incurring influence. This lesser surge adds a maximum of 1d6 to the roll and does not apply your spirit bonus, regardless of other effects or abilities you have that alter your spirit surge."
   }
 ]

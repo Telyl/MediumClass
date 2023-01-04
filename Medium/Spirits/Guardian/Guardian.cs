@@ -33,6 +33,7 @@ namespace MediumClass.Medium.Spirits.Guardian
             CharacterClassConfigurator.New(ClassName, Guids.Guardian).Configure();
             SpiritBonus.ConfigureEnabled();
             SeanceBoon.ConfigureEnabled();
+            GuardianSmite.ConfigureEnabled();
             LegendaryGuardian.ConfigureEnabled();
             BlueprintProgression Progression = GuardianProgression();
 
@@ -83,8 +84,7 @@ namespace MediumClass.Medium.Spirits.Guardian
                 .AddEntry(4, Guids.GuardianSpiritBonus)
                 .AddEntry(6)
                 .AddEntry(8, Guids.GuardianSpiritBonus)
-                .AddEntry(11,
-                    FeatureRefs.Pounce.Reference.Get())
+                .AddEntry(11, Guids.GuardianGreater)
                 .AddEntry(12, Guids.GuardianSpiritBonus)
                 .AddEntry(16, Guids.GuardianSpiritBonus)
                 .AddEntry(17, Guids.LegendaryGuardian)

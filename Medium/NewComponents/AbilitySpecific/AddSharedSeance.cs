@@ -27,9 +27,7 @@ namespace MediumClass.Medium.NewComponents.AbilitySpecific
 	// Token: 0x020022E0 RID: 8928
 	[AllowedOn(typeof(BlueprintUnitFact), false)]
 	[TypeId("f09ba16fcc8f4c4aa918a5fd683af676")]
-	public class AddSharedSeance : UnitFactComponentDelegate,
-		IInitiatorRulebookHandler<RuleCanApplyBuff>,
-		IRulebookHandler<RuleCanApplyBuff>, ISubscriber, IInitiatorRulebookSubscriber, IUnitSubscriber
+	public class AddSharedSeance : UnitFactComponentDelegate, ISubscriber, IInitiatorRulebookSubscriber, IUnitSubscriber
 	{
 		private static readonly ModLogger Logger = Logging.GetLogger(nameof(AddSharedSeance));
         
@@ -93,11 +91,6 @@ namespace MediumClass.Medium.NewComponents.AbilitySpecific
             }
         }
 
-        public void OnEventAboutToTrigger(RuleCanApplyBuff evt)
-        {
-
-        }
-
         public override void OnTurnOn()
         {
             UnitEntityData medium = base.Owner;
@@ -119,7 +112,6 @@ namespace MediumClass.Medium.NewComponents.AbilitySpecific
         public override void OnTurnOff()
         {
             if (base.Owner.HasFact(BlueprintTool.Get<BlueprintUnitFact>(Guids.MediumSharedSeance))) {
-                Logger.Log("I am returning because I have the fact.");
                 return; }
             base.Owner.RemoveFact(ArchmageSeance);
             base.Owner.RemoveFact(ChampionSeance);
@@ -128,11 +120,5 @@ namespace MediumClass.Medium.NewComponents.AbilitySpecific
             base.Owner.RemoveFact(MarshalSeance);
             base.Owner.RemoveFact(TricksterSeance);
         }
-
-        public void OnEventDidTrigger(RuleCanApplyBuff evt)
-        {
-        }
-
-
 	}
 }

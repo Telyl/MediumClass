@@ -35,6 +35,7 @@ namespace MediumClass.Medium.Spirits.Hierophant
             SeanceBoon.ConfigureEnabled();
             EnergyFont.ConfigureEnabled();
             OverflowingGrace.ConfigureEnabled();
+            LegendaryHierophant.ConfigureEnabled();
             BlueprintSpellbook Spellbook = HierophantSpellbook();
             BlueprintProgression Progression = HierophantProgression();
 
@@ -85,7 +86,7 @@ namespace MediumClass.Medium.Spirits.Hierophant
                 .AddEntry(12, Guids.HierophantSpiritBonus)
                 .AddEntry(11, Guids.HierophantOverflowingGrace)
                 .AddEntry(16, Guids.HierophantSpiritBonus)
-                .AddEntry(17)
+                .AddEntry(17, Guids.HierophantSupreme)
                 .AddEntry(20, Guids.HierophantSpiritBonus);
 
             return ProgressionConfigurator.New(ClassName +"Progression", Guids.HierophantProgression)
@@ -122,10 +123,10 @@ namespace MediumClass.Medium.Spirits.Hierophant
                     new SpellsLevelEntry{ Count = new int[] { 0, 1, 1, 1, 1, 1 } },//14
                     new SpellsLevelEntry{ Count = new int[] { 0, 1, 1, 1, 1, 1 } },//15
                     new SpellsLevelEntry{ Count = new int[] { 0, 1, 1, 1, 1, 1, 1 } },//16
-                    new SpellsLevelEntry{ Count = new int[] { 0, 2, 2, 2, 1, 1, 1 } },//17
-                    new SpellsLevelEntry{ Count = new int[] { 0, 3, 3, 3, 2, 2, 2 } },//18
-                    new SpellsLevelEntry{ Count = new int[] { 0, 4, 4, 4, 3, 3, 3 } },//19
-                    new SpellsLevelEntry{ Count = new int[] { 0, 4, 4, 4, 4, 4, 4 } },//20
+                    new SpellsLevelEntry{ Count = new int[] { 0, 1, 1, 1, 1, 1, 1 } },//17
+                    new SpellsLevelEntry{ Count = new int[] { 0, 1, 1, 1, 1, 1, 1 } },//18
+                    new SpellsLevelEntry{ Count = new int[] { 0, 1, 1, 1, 1, 1, 1 } },//19
+                    new SpellsLevelEntry{ Count = new int[] { 0, 1, 1, 1, 1, 1, 1 } },//20
                     })
                 .Configure();
 

@@ -4,7 +4,9 @@ using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Blueprints.References;
+using BlueprintCore.Utils;
 using BlueprintCore.Utils.Types;
+using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.Craft;
 using Kingmaker.ElementsSystem;
@@ -15,6 +17,8 @@ using Kingmaker.UnitLogic.Commands.Base;
 using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Mechanics.Components;
 using Kingmaker.View.Animation;
+using MediumClass.Medium.NewActions;
+using MediumClass.Medium.NewComponents;
 using MediumClass.Medium.NewComponents.AbilitySpecific;
 using MediumClass.Utilities;
 using MediumClass.Utils;
@@ -44,7 +48,8 @@ namespace MediumClass.Medium.Spirits.Trickster
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIcon(AbilityRefs.TricksterCharmWhatever.Reference.Get().Icon)
-                .AddAbilityEffectRunAction(actions: CreateActionList(new ContextActionTransferMagic()))
+                .AddAbilityResourceLogic(amount: 1, isSpendResource: true, requiredResource: Guids.MediumInfluenceResource)
+                .AddAbilityEffectRunAction(actions: ActionsBuilder.New().Add<ContextActionSpiritInfluence>().Add<ContextActionTransferMagic>())
                 .Configure();
 
             var ability = AbilityConfigurator.New(FeatName + "Ability", Guids.TricksterTransferMagicAbility)
