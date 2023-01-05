@@ -34,14 +34,14 @@ namespace MediumClass.Medium.Spirits.Marshal
             Logger.Log("Generating Marshal Decisive Strike");
 
             var standardb = BuffConfigurator.New(FeatName + "StandardBuff", Guids.MarshalDecisiveStrikeStandardBuff)
-                .SetIcon(AbilityRefs.AssassinCreatePoisonAbility.Reference.Get().Icon)
+                .SetIcon("assets/icons/decisivestrikestandard.png")
                 .AddComponent<DecisiveStrikeStandardComponent>()
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .Configure();
 
             var swiftability = AbilityConfigurator.New(FeatName + "SwiftAbility", Guids.MarshalDecisiveStrikeSwiftAbility)
-                .SetIcon(AbilityRefs.AssassinCreatePoisonAbilitySwift.Reference.Get().Icon)
+                .SetIcon("assets/icons/decisivestrikeattack.png")
                 .SetDisplayName(DisplayNameSwift)
                 .SetDescription(DescriptionSwift)
                 .SetActionType(Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Swift)
@@ -62,7 +62,7 @@ namespace MediumClass.Medium.Spirits.Marshal
                 .Configure();
 
             var standardability = AbilityConfigurator.New(FeatName + "StandardAbility", Guids.MarshalDecisiveStrikeStandardAbility)
-                .SetIcon(AbilityRefs.AssassinCreatePoisonAbility.Reference.Get().Icon)
+                .SetIcon("assets/icons/decisivestrikestandard.png")
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetActionType(Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Standard)
@@ -83,10 +83,18 @@ namespace MediumClass.Medium.Spirits.Marshal
                                     asChild: false, isFromSpell: false, isNotDispelable: true))
                 .Configure();
 
+            var ability = AbilityConfigurator.New(FeatName + "Ability", Guids.MarshalDecisiveStrikeAbility)
+                .SetIcon("assets/icons/decisivestrike.png")
+                .SetDisplayName(DisplayName)
+                .SetDescription(Description)
+                .AddAbilityVariants(new() { standardability, swiftability })
+                .Configure();
+
+
             FeatureConfigurator.New(FeatName, Guids.MarshalDecisiveStrikeFeature)
                 .SetDisplayName(DisplayNameFeat)
                 .SetDescription(DescriptionFeat)
-                .AddFacts(new() { swiftability, standardability })
+                .AddFacts(new() { ability })
                 .Configure();
         }
     }

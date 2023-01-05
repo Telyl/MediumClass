@@ -34,6 +34,14 @@ namespace MediumClass.Medium
         private static readonly string FeatName = "MediumTranceOfThree";
         private static readonly string DisplayName = "MediumTranceOfThree.Name";
         private static readonly string Description = "MediumTranceOfThree.Description";
+        private const string IconPrefix = "assets/icons/";
+        private const string ArchmageIconName = "spiritarchmage2.png";
+        private const string ChampionIconName = "spiritchampion2.png";
+        private const string GuardianIconName = "spiritguardian2.png";
+        private const string HierophantIconName = "spirithierophant2.png";
+        private const string MarshalIconName = "spiritmarshal2.png";
+        private const string TricksterIconName = "spirittrickster2.png";
+        private const string TranceOfThreeIconName = "tranceofthree.png";
         private static readonly ModLogger Logger = Logging.GetLogger(nameof(TranceOfThree));
 
         public static void ConfigureEnabled()
@@ -44,14 +52,15 @@ namespace MediumClass.Medium
             BlueprintBuff archmagebuff = BuffConfigurator.New(FeatName + "ArchmageBuff", Guids.MediumTranceOfThreeArchmageBuff)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.EuphoricTranquility.Reference.Get().Icon)
-                //.AddFacts(new() { Guids.ArchmageSuddenAttack })
+                .SetIcon(IconPrefix + ArchmageIconName)
+                //.AddFacts(new() { Guids.ArchmageIntermediate})
                 .Configure();
 
             BlueprintAbility archmageability = AbilityConfigurator.New(FeatName + "ArchmageAbility", Guids.MediumTranceOfThreeArchmageAbility)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.EuphoricTranquility.Reference.Get().Icon)
+                .SetIcon(IconPrefix + ArchmageIconName)
+                .SetActionType(Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Swift)
                 .AddComponent<AbilityRequirementHasSpirit>()
                 .AddAbilityResourceLogic(amount: 1, isSpendResource: true, requiredResource: Guids.MediumInfluenceResource)
                 .AddAbilityEffectRunAction(actions: ActionsBuilder.New().Add<ContextActionSpiritInfluence>().ApplyBuff(archmagebuff, ContextDuration.Variable(ContextValues.Rank()), toCaster: true))
@@ -63,14 +72,15 @@ namespace MediumClass.Medium
             BlueprintBuff championbuff = BuffConfigurator.New(FeatName + "ChampionBuff", Guids.MediumTranceOfThreeChampionBuff)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.EuphoricTranquility.Reference.Get().Icon)
+                .SetIcon(IconPrefix + ChampionIconName)
                 .AddFacts(new() { Guids.ChampionSuddenAttack })
                 .Configure();
 
             BlueprintAbility championability = AbilityConfigurator.New(FeatName + "ChampionAbility", Guids.MediumTranceOfThreeChampionAbility)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.EuphoricTranquility.Reference.Get().Icon)
+                .SetIcon(IconPrefix + ChampionIconName)
+                .SetActionType(Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Swift)
                 .AddComponent<AbilityRequirementHasSpirit>()
                 .AddAbilityResourceLogic(amount: 1, isSpendResource: true, requiredResource: Guids.MediumInfluenceResource)
                 .AddAbilityEffectRunAction(actions: ActionsBuilder.New().Add<ContextActionSpiritInfluence>().ApplyBuff(championbuff, ContextDuration.Variable(ContextValues.Rank()), toCaster: true))
@@ -82,14 +92,15 @@ namespace MediumClass.Medium
             BlueprintBuff guardianbuff = BuffConfigurator.New(FeatName + "GuardianBuff", Guids.MediumTranceOfThreeGuardianBuff)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.EuphoricTranquility.Reference.Get().Icon)
+                .SetIcon(IconPrefix + GuardianIconName)
                 .AddFacts(new() { Guids.GuardianAbsorbBlow })
                 .Configure();
 
             BlueprintAbility guardianability = AbilityConfigurator.New(FeatName + "GuardianAbility", Guids.MediumTranceOfThreeGuardianAbility)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.EuphoricTranquility.Reference.Get().Icon)
+                .SetIcon(IconPrefix + GuardianIconName)
+                .SetActionType(Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Swift)
                 .AddComponent<AbilityRequirementHasSpirit>()
                 .AddAbilityResourceLogic(amount: 1, isSpendResource: true, requiredResource: Guids.MediumInfluenceResource)
                 .AddAbilityEffectRunAction(actions: ActionsBuilder.New().Add<ContextActionSpiritInfluence>().ApplyBuff(guardianbuff, ContextDuration.Variable(ContextValues.Rank()), toCaster: true))
@@ -101,14 +112,15 @@ namespace MediumClass.Medium
             BlueprintBuff hierophantbuff = BuffConfigurator.New(FeatName + "HierophantBuff", Guids.MediumTranceOfThreeHierophantBuff)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.EuphoricTranquility.Reference.Get().Icon)
+                .SetIcon(IconPrefix + HierophantIconName)
                 .AddFacts(new() { Guids.HierophantEnergyFont })
                 .Configure();
 
             BlueprintAbility hierophantability = AbilityConfigurator.New(FeatName + "HierophantAbility", Guids.MediumTranceOfThreeHierophantAbility)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.EuphoricTranquility.Reference.Get().Icon)
+                .SetIcon(IconPrefix + HierophantIconName)
+                .SetActionType(Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Swift)
                 .AddComponent<AbilityRequirementHasSpirit>()
                 .AddAbilityResourceLogic(amount: 1, isSpendResource: true, requiredResource: Guids.MediumInfluenceResource)
                 .AddAbilityEffectRunAction(actions: ActionsBuilder.New().Add<ContextActionSpiritInfluence>().ApplyBuff(hierophantbuff, ContextDuration.Variable(ContextValues.Rank()), toCaster: true))
@@ -120,7 +132,7 @@ namespace MediumClass.Medium
             BlueprintBuff marshalbuff = BuffConfigurator.New(FeatName + "MarshalBuff", Guids.MediumTranceOfThreeMarshalBuff)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.EuphoricTranquility.Reference.Get().Icon)
+                .SetIcon(IconPrefix + MarshalIconName)
                 .AddFacts(new() { Guids.MarshalInspiringCallStandard })
                 //TODO: add something here that lets me add marshal spirit bonus!
                 .Configure();
@@ -128,7 +140,8 @@ namespace MediumClass.Medium
             BlueprintAbility marshalability = AbilityConfigurator.New(FeatName + "MarshalAbility", Guids.MediumTranceOfThreeMarshalAbility)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.EuphoricTranquility.Reference.Get().Icon)
+                .SetIcon(IconPrefix + MarshalIconName)
+                .SetActionType(Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Swift)
                 .AddComponent<AbilityRequirementHasSpirit>()
                 .AddAbilityResourceLogic(amount: 1, isSpendResource: true, requiredResource: Guids.MediumInfluenceResource)
                 .AddAbilityEffectRunAction(actions: ActionsBuilder.New().Add<ContextActionSpiritInfluence>().ApplyBuff(marshalbuff, ContextDuration.Variable(ContextValues.Rank()), toCaster: true))
@@ -140,7 +153,7 @@ namespace MediumClass.Medium
             BlueprintBuff tricksterbuff = BuffConfigurator.New(FeatName + "TricksterBuff", Guids.MediumTranceOfThreeTricksterBuff)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.EuphoricTranquility.Reference.Get().Icon)
+                .SetIcon(IconPrefix + TricksterIconName)
                 .AddFacts(new() { Guids.TricksterSurpriseStrike, Guids.TricksterSurpriseStrike, Guids.TricksterSurpriseStrike, Guids.TricksterSurpriseStrike, Guids.TricksterSurpriseStrike })
                 // TODO: Add something that adds enough trickster surprise strikes to character level...
                 .Configure();
@@ -148,8 +161,9 @@ namespace MediumClass.Medium
             BlueprintAbility tricksterability = AbilityConfigurator.New(FeatName + "TricksterAbility", Guids.MediumTranceOfThreeTricksterAbility)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.EuphoricTranquility.Reference.Get().Icon)
+                .SetIcon(IconPrefix + TricksterIconName)
                 .AddComponent<AbilityRequirementHasSpirit>()
+                .SetActionType(Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Swift)
                 .AddAbilityResourceLogic(amount: 1, isSpendResource: true, requiredResource: Guids.MediumInfluenceResource)
                 .AddAbilityEffectRunAction(actions: ActionsBuilder.New().Add<ContextActionSpiritInfluence>().ApplyBuff(tricksterbuff, ContextDuration.Variable(ContextValues.Rank()), toCaster: true))
                 .AddContextRankConfig(ContextRankConfigs.ClassLevel(new string[] { Guids.Medium }))
@@ -160,7 +174,8 @@ namespace MediumClass.Medium
             BlueprintAbility ability = AbilityConfigurator.New(FeatName + "Ability", Guids.MediumTranceOfThreeAbility)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.EuphoricTranquility.Reference.Get().Icon)
+                .SetIcon(IconPrefix + TranceOfThreeIconName)
+                .SetActionType(Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Swift)
                 .AddComponent<AbilityRequirementHasSpirit>()
                 .AddAbilityVariants(new() { archmageability, championability, guardianability, hierophantability, marshalability, tricksterability })
                 .Configure();
@@ -168,7 +183,7 @@ namespace MediumClass.Medium
             BlueprintFeature feature = FeatureConfigurator.New(FeatName, Guids.MediumTranceOfThree)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.EuphoricTranquility.Reference.Get().Icon)
+                .SetIcon(IconPrefix + TranceOfThreeIconName)
                 .SetHideInUI(false)
                 .SetHideNotAvailibleInUI(false)
                 .SetIsClassFeature(true)

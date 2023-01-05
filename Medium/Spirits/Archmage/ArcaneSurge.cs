@@ -37,7 +37,7 @@ namespace MediumClass.Medium.Spirits.Archmage
             var buff = BuffConfigurator.New(FeatName + "Buff", Guids.ArchmageIntermediateBuff)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.EcclesitheurgeBondAbility.Reference.Get().Icon)
+                .SetIcon("assets/icons/arcanesurge.png")
                 .AddAbilityUseTrigger(action: ActionsBuilder.New().RemoveSelf(),
                 spellbooks: new() { BlueprintTool.GetRef<BlueprintSpellbookReference>(Guids.ArchmageSpellbook),
                     BlueprintTool.GetRef<BlueprintSpellbookReference>(Guids.MediumSpellbook) },
@@ -61,7 +61,7 @@ namespace MediumClass.Medium.Spirits.Archmage
             var ability = AbilityConfigurator.New(FeatName + "Ability", Guids.ArchmageIntermediateAbility)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.EcclesitheurgeBondAbility.Reference.Get().Icon)
+                .SetIcon("assets/icons/arcanesurge.png")
                 .AddAbilityEffectRunAction(actions: ActionsBuilder.New().Add<ContextActionSpiritInfluence>().ApplyBuffPermanent(buff))
                 .AddAbilityResourceLogic(amount: 1, isSpendResource: true, requiredResource: Guids.MediumInfluenceResource)
                 .SetActionType(Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Free)
@@ -70,7 +70,6 @@ namespace MediumClass.Medium.Spirits.Archmage
             FeatureConfigurator.New(FeatName, Guids.ArchmageIntermediate)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.EcclesitheurgeBondAbility.Reference.Get().Icon)
                 .AddFacts(new() { ability })
                 .Configure();
         }

@@ -138,7 +138,7 @@ namespace MediumClass.Medium.Spirits.Trickster
             BlueprintAbility TrickstersEdgeAbility = AbilityConfigurator.New(FeatName + "Ability", Guids.TricksterEdgeAbility)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(FeatureRefs.AllSkilledFeature.Reference.Get().Icon)
+                .SetIcon("assets/icons/trickstersedge.png")
                 .AddAbilityApplyFact(hasDuration: false, restriction: AbilityApplyFact.FactRestriction.CasterHasNoFact, facts: new() { athleticsbuff, mobilitybuff, thieverybuff, stealthbuff, naturebuff, religionbuff, arcanabuff, worldbuff, perceptionbuff, persuasionbuff, umdbuff })
                 .AddAbilityResourceLogic(amount: 1, isSpendResource: true, requiredResource: TrickstersEdgeResource)
                 .Configure();

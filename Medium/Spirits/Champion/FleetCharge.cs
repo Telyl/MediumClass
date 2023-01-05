@@ -42,7 +42,7 @@ namespace MediumClass.Medium.Spirits.Champion
                 .SetCanTargetPoint(false)
                 .SetCanTargetFriends(false)
                 .SetAnimation(Kingmaker.Visual.Animation.Kingmaker.Actions.UnitAnimationActionCastSpell.CastAnimationStyle.Special)
-                .SetIcon(AbilityRefs.ChallengeEvil.Reference.Get().Icon)
+                .SetIcon("assets/icons/fleetcharge.png")
                 .AddAbilityEffectRunAction(
                     actions: ActionsBuilder.New()
                         .MeleeAttack(autoCritConfirmation: false, autoCritThreat: false, autoHit: false, extraAttack: false, fullAttack: true, ignoreStatBonus: false, selectNewTarget: false))

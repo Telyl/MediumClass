@@ -107,6 +107,7 @@ namespace MediumClass.Utilities
         internal const string MarshalDecisiveStrikeStandardBuff = "d1b97daf-e899-4a75-bd68-f5e8fc582b29";
         internal const string MarshalDecisiveStrikeSwiftAbility = "e861c6c8-bd68-4432-93c0-e4e53742b49c";
         internal const string MarshalDecisiveStrikeStandardAbility = "5330612f-3c1b-4433-8a76-cbc87c641e0b";
+        internal const string MarshalDecisiveStrikeAbility = "4e306772-c4a9-4c06-9e28-156ccbe54d69";
         internal const string MarshalDecisiveStrikeFeature = "52557a8b-e597-4401-b2eb-3675c716ed43";
 
         internal const string MarshalLegendaryMarshal = "32dd0799-f2fd-40d4-9530-95510500ccdd";

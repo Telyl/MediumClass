@@ -26,7 +26,7 @@ namespace MediumClass.Medium.Spirits.Archmage
             FeatureConfigurator.New(FeatName, Guids.ArchmageSeanceBoon)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.DismissAreaEffect.Reference.Get().Icon)
+                .SetIcon("assets/icons/spiritarchmage.png")
                 .AddDraconicBloodlineArcana(value: 2, spellDescriptor: SpellDescriptor.Arcane, spellsOnly: true, useContextBonus: true)
                 .AddDraconicBloodlineArcana(value: 2, spellDescriptor: SpellDescriptor.Acid, spellsOnly: true, useContextBonus: true)
                 .AddDraconicBloodlineArcana(value: 2, spellDescriptor: SpellDescriptor.Fire, spellsOnly: true, useContextBonus: true)

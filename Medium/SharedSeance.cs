@@ -30,7 +30,6 @@ namespace MediumClass.Medium
             FeatureConfigurator.New(FeatName, Guids.MediumSharedSeance)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.ShareTransmutationAbility.Reference.Get().Icon)
                 .Configure();
         }
         

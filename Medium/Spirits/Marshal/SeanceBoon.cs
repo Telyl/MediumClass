@@ -26,6 +26,7 @@ namespace MediumClass.Medium.Spirits.Marshal
             var ability = AbilityConfigurator.New(FeatName + "Ability", Guids.MarshalSeanceBoonAbility)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
+                .SetIcon("assets/icons/spiritmarshal.png")
                 .AddAbilityApplyFact(hasDuration: false, restriction: AbilityApplyFact.FactRestriction.CasterHasNoFact, facts: new() { Guids.ArchmageSeanceBoon, Guids.ChampionSeanceBoon, Guids.GuardianSeanceBoon, Guids.HierophantSeanceBoon, Guids.TricksterSeanceBoon })
                 .AddAbilityResourceLogic(amount: 1, isSpendResource: true, requiredResource: MarshalSeanceBoonResource)
                 .Configure();

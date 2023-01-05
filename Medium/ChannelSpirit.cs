@@ -33,30 +33,30 @@ namespace MediumClass.Medium
         private static readonly string Description = "MediumChannelSpirit.Description";
 
 
-        private const string IconPrefix = "Assets/icons/";
+        private const string IconPrefix = "assets/icons/";
         internal const string ArchmageName = "Archmage.Name";
         private static readonly string ArchmageDescription = "Archmage.Description";
-        private const string ArchmageIconName = IconPrefix + "SpiritArchmage.png";
+        private const string ArchmageIconName = IconPrefix + "spiritarchmage2.png";
 
         internal const string ChampionName = "Champion.Name";
         private static readonly string ChampionDescription = "Champion.Description";
-        private const string ChampionIconName = IconPrefix + "SpiritChampion.png";
+        private const string ChampionIconName = IconPrefix + "spiritchampion2.png";
 
         internal const string GuardianName = "Guardian.Name";
         private static readonly string GuardianDescription = "Guardian.Description";
-        private const string GuardianIconName = IconPrefix + "SpiritGuardian.png";
+        private const string GuardianIconName = IconPrefix + "spiritguardian2.png";
 
         internal const string HierophantName = "Hierophant.Name";
         private static readonly string HierophantDescription = "Hierophant.Description";
-        private const string HierophantIconName = IconPrefix + "SpiritHierophant.png";
+        private const string HierophantIconName = IconPrefix + "spirithierophant2.png";
 
         internal const string MarshalName = "Marshal.Name";
         private static readonly string MarshalDescription = "Marshal.Description";
-        private const string MarshalIconName = IconPrefix + "SpiritMarshal.png";
+        private const string MarshalIconName = IconPrefix + "spiritmarshal2.png";
 
         internal const string TricksterName = "Trickster.Name";
         private static readonly string TricksterDescription = "Trickster.Description";
-        private const string TricksterIconName = IconPrefix + "SpiritTrickster.png";
+        private const string TricksterIconName = IconPrefix + "spirittrickster2.png";
         private static readonly ModLogger Logger = Logging.GetLogger(nameof(ChannelSpirit));
 
         public static void ConfigureEnabled()
@@ -83,7 +83,7 @@ namespace MediumClass.Medium
             var a = ActivatableAbilityConfigurator.New(FeatName + "AbilityArchmage", Guids.MediumChannelSpiritAbilityArchmage)
                 .SetDisplayName(ArchmageName)
                 .SetDescription(ArchmageDescription)
-                .SetIcon(AbilityRefs.DismissAreaEffect.Reference.Get().Icon)
+                .SetIcon(ArchmageIconName)
                 .SetBuff(ab)
                 .SetGroup((ActivatableAbilityGroup)239480)
                 .AddActionsOnBuffApply(actions: ActionsBuilder.New().Add<ContextActionSpiritInfluence>())
@@ -110,7 +110,7 @@ namespace MediumClass.Medium
             var c = ActivatableAbilityConfigurator.New(FeatName + "AbilityChampion", Guids.MediumChannelSpiritAbilityChampion)
                 .SetDisplayName(ChampionName)
                 .SetDescription(ChampionDescription)
-               // .SetIcon(TricksterIconName)
+                .SetIcon(ChampionIconName)
                 //.SetHiddenInUI(true)
                 .SetBuff(cb)
                 .SetGroup((ActivatableAbilityGroup)239480)
@@ -137,7 +137,7 @@ namespace MediumClass.Medium
             var g = ActivatableAbilityConfigurator.New(FeatName + "AbilityGuardian", Guids.MediumChannelSpiritAbilityGuardian)
                 .SetDisplayName(GuardianName)
                 .SetDescription(GuardianDescription)
-                .SetIcon(FeatureRefs.Bravery.Reference.Get().Icon)
+                .SetIcon(GuardianIconName)
                 //.SetHiddenInUI(true)
                 .SetBuff(gb)
                 .SetGroup((ActivatableAbilityGroup)239480)
@@ -164,8 +164,7 @@ namespace MediumClass.Medium
             var h = ActivatableAbilityConfigurator.New(FeatName + "AbilityHierophant", Guids.MediumChannelSpiritAbilityHierophant)
                 .SetDisplayName(HierophantName)
                 .SetDescription(HierophantDescription)
-                .SetIcon(AbilityRefs.CavalierForTheFaithAbility.Reference.Get().Icon)
-                //.SetHiddenInUI(true)
+                .SetIcon(HierophantIconName)
                 .SetBuff(hb)
                 .SetGroup((ActivatableAbilityGroup)239480)
                 .AddActivatableAbilityResourceLogic(requiredResource: BlueprintTool.GetRef<BlueprintAbilityResourceReference>(Guids.MediumInfluenceResource), spendType: Kingmaker.UnitLogic.ActivatableAbilities.ActivatableAbilityResourceLogic.ResourceSpendType.TurnOn)
@@ -193,8 +192,7 @@ namespace MediumClass.Medium
             var m = ActivatableAbilityConfigurator.New(FeatName + "AbilityMarshal", Guids.MediumChannelSpiritAbilityMarshal)
                 .SetDisplayName(MarshalName)
                 .SetDescription(MarshalDescription)
-                .SetIcon(AbilityRefs.CavalierForTheKingAbility.Reference.Get().Icon)
-                //.SetHiddenInUI(true)
+                .SetIcon(MarshalIconName)
                 .SetBuff(mb)
                 .SetGroup((ActivatableAbilityGroup)239480)
                 .AddActivatableAbilityResourceLogic(requiredResource: BlueprintTool.GetRef<BlueprintAbilityResourceReference>(Guids.MediumInfluenceResource), spendType: Kingmaker.UnitLogic.ActivatableAbilities.ActivatableAbilityResourceLogic.ResourceSpendType.TurnOn)
@@ -216,12 +214,12 @@ namespace MediumClass.Medium
                     c.Penalties = new StatType[] { StatType.AC, StatType.AdditionalCMB, StatType.AdditionalCMD };
                     c.Stats = new StatType[] { StatType.SkillAthletics, StatType.SkillKnowledgeArcana, StatType.SkillKnowledgeWorld, StatType.SkillLoreNature, StatType.SkillLoreReligion, StatType.SkillMobility, StatType.SkillPerception, StatType.SkillPersuasion, StatType.SkillStealth, StatType.SkillThievery, StatType.SkillUseMagicDevice, StatType.SaveReflex, StatType.Initiative };
                 })
-                .Configure();
+                .Configure(); 
             
             var t = ActivatableAbilityConfigurator.New(FeatName + "AbilityTrickster", Guids.MediumChannelSpiritAbilityTrickster)
                 .SetDisplayName(TricksterName)
                 .SetDescription(TricksterDescription)
-                .SetIcon(FeatureRefs.SneakAttack.Reference.Get().Icon)
+                .SetIcon(TricksterIconName)
                 .SetBuff(tb)
                 .SetGroup((ActivatableAbilityGroup)239480)
                 .AddActivatableAbilityResourceLogic(requiredResource: BlueprintTool.GetRef<BlueprintAbilityResourceReference>(Guids.MediumInfluenceResource), spendType: Kingmaker.UnitLogic.ActivatableAbilities.ActivatableAbilityResourceLogic.ResourceSpendType.TurnOn)

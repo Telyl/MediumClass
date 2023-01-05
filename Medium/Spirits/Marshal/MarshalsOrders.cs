@@ -26,12 +26,12 @@ namespace MediumClass.Medium.Spirits.Marshal
 
         public static void ConfigureEnabled()
         {
-            Logger.Log("Generating Marshal Marshal's Orders");
+            Logger.Log("Generating Marshal Marshal's Order");
 
             var buff = BuffConfigurator.For(Guids.SpiritSurgeBuff).Configure();
 
             var ability = AbilityConfigurator.New(FeatName + "Ability", Guids.MarshalMarshalsOrdersAbility)
-                .SetIcon(AbilityRefs.EldritchFontImprovedEldritchSurgeAttackAbility.Reference.Get().Icon)
+                .SetIcon("assets/icons/marshalsorder.png")
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetActionType(Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Free)

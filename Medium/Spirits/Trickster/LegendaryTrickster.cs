@@ -41,13 +41,14 @@ namespace MediumClass.Medium.Spirits.Trickster
                 .CopyFrom(AbilityRefs.PolymorphGreaterBase, c => c is not (SpellListComponent or RecommendationNoFeatFromGroup))
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
+                .SetIcon("assets/icons/spirittricksterpolymorph.png")
                 .SetType(Kingmaker.UnitLogic.Abilities.Blueprints.AbilityType.Supernatural)
                 .Configure();
 
             BlueprintBuff d20buff = BuffConfigurator.New(FeatName + "D20Buff", Guids.TricksterLegendaryTricksterD20Buff)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(BuffRefs.NaturalCharmerBuff.Reference.Get().Icon)
+                .SetIcon("assets/icons/spirittrickstertrickfate.png")
                 .AddModifyD20(rule: RuleType.SkillCheck, withChance: false, rollResult: new ContextValue() { Value = 20, }, rollsAmount: 0, takeBest: false, dispellOn20: true, specificSkill: false)
                 .Configure();
             
@@ -58,7 +59,7 @@ namespace MediumClass.Medium.Spirits.Trickster
             BlueprintAbility d20ability = AbilityConfigurator.New(FeatName + "D20Ability", Guids.TricksterLegendaryTricksterD20Ability)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.NaturalCharmerAbility.Reference.Get().Icon)
+                .SetIcon("assets/icons/spirittrickstertrickfate.png")
                 .AddAbilityEffectRunAction(actions: ActionsBuilder.New().ApplyBuffPermanent(d20buff))
                 .AddAbilityResourceLogic(1, isSpendResource:true, requiredResource: resource)
                 .Configure();

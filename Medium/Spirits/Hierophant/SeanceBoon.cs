@@ -19,7 +19,7 @@ namespace MediumClass.Medium.Spirits.Hierophant
             FeatureConfigurator.New(FeatName, Guids.HierophantSeanceBoon)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.CavalierForTheFaithAbility.Reference.Get().Icon)
+                .SetIcon("assets/icons/spirithierophant.png")
                 .AddIncreaseSpellHealing(2)
                 .Configure();
         }

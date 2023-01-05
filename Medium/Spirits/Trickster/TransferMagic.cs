@@ -42,12 +42,13 @@ namespace MediumClass.Medium.Spirits.Trickster
 
         public static void ConfigureEnabled()
         {
+            Logger.Log("Generating Trickster Transfer Magic");
             var effect = AbilityConfigurator.New(FeatName + "Effect", Guids.TricksterTransferMagicEffect)
                 .CopyFrom(AbilityRefs.ShockingGraspEffect, c => c is not (AbilityEffectRunAction or ContextRankConfig))
                 .SetAnimation(Kingmaker.Visual.Animation.Kingmaker.Actions.UnitAnimationActionCastSpell.CastAnimationStyle.Touch)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.TricksterCharmWhatever.Reference.Get().Icon)
+                .SetIcon("assets/icons/transfermagic.png")
                 .AddAbilityResourceLogic(amount: 1, isSpendResource: true, requiredResource: Guids.MediumInfluenceResource)
                 .AddAbilityEffectRunAction(actions: ActionsBuilder.New().Add<ContextActionSpiritInfluence>().Add<ContextActionTransferMagic>())
                 .Configure();
@@ -56,7 +57,7 @@ namespace MediumClass.Medium.Spirits.Trickster
                 .CopyFrom(AbilityRefs.ShockingGraspCast, c => c is not (SpellListComponent or AbilityEffectStickyTouch or CraftInfoComponent))
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.TricksterCharmWhatever.Reference.Get().Icon)
+                .SetIcon("assets/icons/transfermagic.png")
                 .SetActionType(UnitCommand.CommandType.Standard)
                 .SetCanTargetEnemies()
                 .SetCanTargetSelf(false)
@@ -66,11 +67,10 @@ namespace MediumClass.Medium.Spirits.Trickster
                 .SetAnimation(Kingmaker.Visual.Animation.Kingmaker.Actions.UnitAnimationActionCastSpell.CastAnimationStyle.Touch)
                 .Configure();
 
-            Logger.Log("Generating Trickster Sudden Attack");
+           
             FeatureConfigurator.New(FeatName, Guids.TricksterTransferMagic)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.TricksterCharmWhatever.Reference.Get().Icon)
                 .AddFacts(new() { ability })
                 .Configure();
         }

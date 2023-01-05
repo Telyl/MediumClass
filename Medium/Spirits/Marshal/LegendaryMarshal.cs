@@ -31,7 +31,7 @@ namespace MediumClass.Medium.Spirits.Marshal
             var buff = BuffConfigurator.For(Guids.SpiritSurgeBuff).Configure();
 
             var ability = AbilityConfigurator.New(FeatName + "Ability", Guids.MarshalLegendaryMarshalAbility)
-                .SetIcon(AbilityRefs.EldritchFontImprovedEldritchSurgeAttackAbility.Reference.Get().Icon)
+                .SetIcon("assets/icons/legendarymarshal.png")
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetActionType(Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Free)

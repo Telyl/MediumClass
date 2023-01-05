@@ -29,7 +29,17 @@
   {
     "Key": "MarshalInspiringCall.Name",
     "ProcessTemplates": false,
-    "enGB": "Inspiring Call - Marshal"
+    "enGB": "Inspiring Call"
+  },
+  {
+    "Key": "MarshalInspiringCallAttack.Name",
+    "ProcessTemplates": false,
+    "enGB": "Inspiring Call - Attack"
+  },
+  {
+    "Key": "MarshalInspiringCallSaves.Name",
+    "ProcessTemplates": false,
+    "enGB": "Inspiring Call - Saves"
   },
   {
     "Key": "MarshalInspiringCall.Description",

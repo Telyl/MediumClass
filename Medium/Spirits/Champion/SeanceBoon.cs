@@ -28,7 +28,7 @@ namespace MediumClass.Medium.Spirits.Champion
             FeatureConfigurator.New(FeatName, Guids.ChampionSeanceBoon)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.CavalierKnightsChallengeAbility.Reference.Get().Icon)
+                .SetIcon("assets/icons/spiritchampion.png")
                 .AddStatBonus(descriptor: ModifierDescriptor.UntypedStackable, stat: StatType.AdditionalDamage, value: 2)
                 .Configure();
         }

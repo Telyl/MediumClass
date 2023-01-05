@@ -20,7 +20,7 @@ namespace MediumClass.Medium.Spirits.Guardian
             FeatureConfigurator.New(FeatName, Guids.GuardianSeanceBoon)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(FeatureRefs.Bravery.Reference.Get().Icon)
+                .SetIcon("assets/icons/spiritguardian.png")
                 .AddStatBonus(descriptor: ModifierDescriptor.Other, stat: StatType.AdditionalCMD, value: 1)
                 .Configure();
         }

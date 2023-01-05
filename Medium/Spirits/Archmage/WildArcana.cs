@@ -41,7 +41,6 @@ namespace MediumClass.Medium.Spirits.Archmage
             var ArchmageKenning = FeatureConfigurator.New(FeatName, Guids.ArchmageGreater)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.ShamanItemBondAbility.Reference.Get().Icon)
                 .AddComponent<SpontaneousConversion>(c => {
                     c.m_CharacterClass = BlueprintTool.GetRef<BlueprintCharacterClassReference>(Guids.Archmage);
                     c.m_SpellList = BlueprintTool.GetRef<BlueprintSpellListReference>(SpellListRefs.WizardSpellList.ToString());

@@ -39,7 +39,7 @@ namespace MediumClass.Medium
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .AddRestTrigger(action: ActionsBuilder.New().RemoveBuff(debuff))
-                .SetIcon(BuffRefs.Asmodeus_Debuff.Reference.Get().Icon)
+                .SetIcon(BuffRefs.Fatigued.Reference.Get().Icon)
                 .AddComponent<MediumInfluencePenaltyComponent>()
                 .Configure();
 

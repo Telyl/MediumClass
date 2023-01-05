@@ -189,7 +189,7 @@ namespace MediumClass.Medium.Spirits.Trickster
             BlueprintAbility Ability = AbilityConfigurator.New(FeatName + "Ability", Guids.TricksterSeanceBoonAbility)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(FeatureRefs.FastLearner.Reference.Get().Icon)
+                .SetIcon("assets/icons/spirittrickster.png")
                 .AddAbilityApplyFact(hasDuration: false, restriction: AbilityApplyFact.FactRestriction.CasterHasNoFact, facts: new() { athleticsbuff, mobilitybuff, thieverybuff, stealthbuff, naturebuff, religionbuff, arcanabuff, worldbuff, perceptionbuff, persuasionbuff, umdbuff })
                 .AddAbilityResourceLogic(amount: 1, isSpendResource: true, requiredResource: TrickstersEdgeResource)
                 .Configure();
@@ -197,7 +197,6 @@ namespace MediumClass.Medium.Spirits.Trickster
             FeatureConfigurator.New(FeatName, Guids.TricksterSeanceBoon)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(FeatureRefs.SneakAttack.Reference.Get().Icon)
                 .AddFacts(new() { Ability })
                 .AddAbilityResources(amount: 1, restoreAmount: true, resource: TrickstersEdgeResource)
                 .Configure();

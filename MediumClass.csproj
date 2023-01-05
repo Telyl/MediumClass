@@ -39,9 +39,7 @@
     <EmbeddedResource Include="Strings\Guardian.json" />
     <EmbeddedResource Include="Strings\Marshal.json" />
     <EmbeddedResource Include="Strings\Medium.json" />
-    <EmbeddedResource Include="Strings\Hierophant.json">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </EmbeddedResource>
+    <EmbeddedResource Include="Strings\Hierophant.json" />
     <EmbeddedResource Include="Strings\Settings.json" />
   </ItemGroup>
 
@@ -120,22 +118,7 @@
     <None Update="Strings\Guardian.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Assets\icons\SpiritArchmage.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Assets\icons\SpiritChampion.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Assets\icons\SpiritGuardian.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Assets\icons\SpiritHierophant.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Assets\icons\SpiritMarshal.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Assets\icons\SpiritTrickster.png">
+    <None Update="mediumclass_assets">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Strings\Archmage.json">
@@ -151,14 +134,13 @@
 
   <ItemGroup>
     <Folder Include="Strings\" />
-    <Folder Include ="Assets\"/>
   </ItemGroup>
 
   <!-- Generates Assembly-CSharp_public.dll -->
   <Target Name="Publicize" AfterTargets="Clean">
     <ItemGroup>
       <Assemblies Include="$(WrathPath)\Wrath_Data\Managed\Assembly-CSharp.dll" />
-      <PublicAssembly Include="$(SolutionDir)lib\Assembly-CSharp_public.dll" />
+      <PublicAssembly Include="$(SolutionDir)lib\Assembly-CSharp.dll" />
       <RenamedAssembly Include="$(SolutionDir)lib\Assembly-CSharp.dll" />
     </ItemGroup>
 
@@ -185,13 +167,13 @@
     <ItemGroup>
       <Assembly Include="$(OutputPath)\$(AssemblyName).dll" />
       <ModConfig Include="$(OutputPath)\Info.json" />
-      <Assets Include="$(OutputPath)\Assets\icons\*.png" />
+      <Assets Include="$(OutputPath)\*_assets" />
     </ItemGroup>
 
     <Copy SourceFiles="@(Assembly)" DestinationFolder="$(WrathPath)\Mods\$(MSBuildProjectName)" />
     <Copy SourceFiles="@(ModConfig)" DestinationFolder="$(WrathPath)\Mods\$(MSBuildProjectName)" />
     <Copy SourceFiles="@(Strings)" DestinationFolder="$(WrathPath)\Mods\$(MSBuildProjectName)" />
-    <Copy SourceFiles="@(Assets)" DestinationFolder="$(WrathPath)\Mods\$(MSBuildProjectName)\Assets\icons" />
+    <Copy SourceFiles="@(Assets)" DestinationFolder="$(WrathPath)\Mods\$(MSBuildProjectName)" />
   </Target>
 
   <!-- Automatically creates a release zip -->
@@ -200,7 +182,7 @@
       <Assembly Include="$(OutputPath)\$(AssemblyName).dll" />
       <ModConfig Include="$(OutputPath)\Info.json" />
       <!--<Strings Include="$(OutputPath)\LocalizedStrings.json" />-->
-      <Assets Include="$(OutputPath)\Assets\icons\*" />
+      <Assets Include="$(OutputPath)\*_assets" />
     </ItemGroup>
 
     <Copy SourceFiles="@(Assembly)" DestinationFolder="$(OutputPath)\$(AssemblyName)" />
