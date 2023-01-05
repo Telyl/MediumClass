@@ -32,23 +32,31 @@ namespace MediumClass.Medium
         private static readonly string DisplayName = "MediumChannelSpirit.Name";
         private static readonly string Description = "MediumChannelSpirit.Description";
 
+
+        private const string IconPrefix = "Assets/icons/";
         internal const string ArchmageName = "Archmage.Name";
         private static readonly string ArchmageDescription = "Archmage.Description";
+        private const string ArchmageIconName = IconPrefix + "SpiritArchmage.png";
 
         internal const string ChampionName = "Champion.Name";
         private static readonly string ChampionDescription = "Champion.Description";
+        private const string ChampionIconName = IconPrefix + "SpiritChampion.png";
 
         internal const string GuardianName = "Guardian.Name";
         private static readonly string GuardianDescription = "Guardian.Description";
+        private const string GuardianIconName = IconPrefix + "SpiritGuardian.png";
 
         internal const string HierophantName = "Hierophant.Name";
         private static readonly string HierophantDescription = "Hierophant.Description";
+        private const string HierophantIconName = IconPrefix + "SpiritHierophant.png";
 
         internal const string MarshalName = "Marshal.Name";
         private static readonly string MarshalDescription = "Marshal.Description";
+        private const string MarshalIconName = IconPrefix + "SpiritMarshal.png";
 
         internal const string TricksterName = "Trickster.Name";
         private static readonly string TricksterDescription = "Trickster.Description";
+        private const string TricksterIconName = IconPrefix + "SpiritTrickster.png";
         private static readonly ModLogger Logger = Logging.GetLogger(nameof(ChannelSpirit));
 
         public static void ConfigureEnabled()
@@ -102,7 +110,7 @@ namespace MediumClass.Medium
             var c = ActivatableAbilityConfigurator.New(FeatName + "AbilityChampion", Guids.MediumChannelSpiritAbilityChampion)
                 .SetDisplayName(ChampionName)
                 .SetDescription(ChampionDescription)
-                .SetIcon(AbilityRefs.CavalierKnightsChallengeAbility.Reference.Get().Icon)
+               // .SetIcon(TricksterIconName)
                 //.SetHiddenInUI(true)
                 .SetBuff(cb)
                 .SetGroup((ActivatableAbilityGroup)239480)

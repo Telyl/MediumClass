@@ -35,6 +35,9 @@ namespace MediumClass.Utilities
         internal const string ChampionFleetCharge = "633aa194-4590-448b-85de-b197c4489a85";
         internal const string ChampionFleetChargeAbility = "38de709c-7281-4310-88d0-97c1d96cbdbf";
         internal const string ChampionFleetChargeBuff = "46fda148-2656-4c76-87f2-ad517db05f9e";
+        internal const string LegendaryChampion = "2f01ef4d-86e1-4072-8ae9-542d0e00c18a";
+        internal const string LegendaryChampionAbility = "a5f5a543-35ff-4647-a63e-8c7af7ff7f46";
+        internal const string LegendaryChampionResource = "a15bba3e-b8e2-4174-962a-36be22b11ac8";
         #endregion
 
         #region Guardian

@@ -26,6 +26,7 @@ namespace MediumClass.Medium.Spirits.Champion
             SeanceBoon.ConfigureEnabled();
             SuddenAttack.ConfigureEnabled();
             FleetCharge.ConfigureEnabled();
+            LegendaryChampion.ConfigureEnabled();
             BlueprintProgression Progression = ChampionProgression();
 
             CharacterClassConfigurator.For(Guids.Champion)
@@ -77,7 +78,7 @@ namespace MediumClass.Medium.Spirits.Champion
                 .AddEntry(11, Guids.ChampionFleetCharge)
                 .AddEntry(12, Guids.ChampionSpiritBonus)
                 .AddEntry(16, Guids.ChampionSpiritBonus)
-                .AddEntry(17)
+                .AddEntry(17, Guids.LegendaryChampion)
                 .AddEntry(20, Guids.ChampionSpiritBonus);
 
             return ProgressionConfigurator.New(ClassName +"Progression", Guids.ChampionProgression)

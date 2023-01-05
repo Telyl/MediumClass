@@ -22,10 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="Medium\NewComponents\AbilitySpecific\ContextActionTransferMagic - Copy.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Remove="Strings\Trickster.json" />
     <None Remove="Strings\Archmage.json" />
     <None Remove="Strings\Champion.json" />
@@ -124,16 +120,28 @@
     <None Update="Strings\Guardian.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="assets">
+    <None Update="Assets\icons\SpiritArchmage.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\icons\SpiritChampion.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\icons\SpiritGuardian.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\icons\SpiritHierophant.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\icons\SpiritMarshal.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\icons\SpiritTrickster.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Strings\Archmage.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Strings\Settings.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="MediumClass_assets">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Info.json">
@@ -143,6 +151,7 @@
 
   <ItemGroup>
     <Folder Include="Strings\" />
+    <Folder Include ="Assets\"/>
   </ItemGroup>
 
   <!-- Generates Assembly-CSharp_public.dll -->
@@ -176,13 +185,13 @@
     <ItemGroup>
       <Assembly Include="$(OutputPath)\$(AssemblyName).dll" />
       <ModConfig Include="$(OutputPath)\Info.json" />
-      <Assets Include="$(OutputPath)\*_assets" />
+      <Assets Include="$(OutputPath)\Assets\icons\*.png" />
     </ItemGroup>
 
     <Copy SourceFiles="@(Assembly)" DestinationFolder="$(WrathPath)\Mods\$(MSBuildProjectName)" />
     <Copy SourceFiles="@(ModConfig)" DestinationFolder="$(WrathPath)\Mods\$(MSBuildProjectName)" />
     <Copy SourceFiles="@(Strings)" DestinationFolder="$(WrathPath)\Mods\$(MSBuildProjectName)" />
-    <Copy SourceFiles="@(Assets)" DestinationFolder="$(WrathPath)\Mods\$(MSBuildProjectName)" />
+    <Copy SourceFiles="@(Assets)" DestinationFolder="$(WrathPath)\Mods\$(MSBuildProjectName)\Assets\icons" />
   </Target>
 
   <!-- Automatically creates a release zip -->
@@ -191,7 +200,7 @@
       <Assembly Include="$(OutputPath)\$(AssemblyName).dll" />
       <ModConfig Include="$(OutputPath)\Info.json" />
       <!--<Strings Include="$(OutputPath)\LocalizedStrings.json" />-->
-      <Assets Include="$(OutputPath)\*_assets" />
+      <Assets Include="$(OutputPath)\Assets\icons\*" />
     </ItemGroup>
 
     <Copy SourceFiles="@(Assembly)" DestinationFolder="$(OutputPath)\$(AssemblyName)" />

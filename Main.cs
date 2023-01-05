@@ -108,6 +108,7 @@ namespace MediumClass
                       "MediumClass.Strings.Trickster.json");
 
                     // Then settings
+
                     Settings.Init();
                     ConfigureClasses();
                     ConfigureHomebrew();

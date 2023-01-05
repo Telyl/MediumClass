@@ -8,6 +8,7 @@ using BlueprintCore.Blueprints.References;
 using BlueprintCore.Utils.Types;
 using Kingmaker.Blueprints;
 using Kingmaker.EntitySystem.Stats;
+using Kingmaker.UnitLogic.Mechanics;
 using MediumClass.Utilities;
 using MediumClass.Utils;
 using System;
@@ -29,46 +30,26 @@ namespace MediumClass.Medium.Spirits.Guardian
         public static void ConfigureEnabled()
         {
             Logger.Log("Generating Legendary Guardian");
-            var resource = AbilityResourceConfigurator.New(FeatName + "Resource", Guids.LegendaryGuardianResource)
-                .SetMaxAmount(new BlueprintAbilityResource.Amount
-                {
-                    BaseValue = 1,
-                    IncreasedByLevel = false,
-                    IncreasedByLevelStartPlusDivStep = false,
-                    StartingLevel = 0,
-                    StartingIncrease = 0,
-                    LevelStep = 0,
-                    PerStepIncrease = 0,
-                    MinClassLevelIncrease = 0,
-                    IncreasedByStat = true,
-                    ResourceBonusStat = StatType.Charisma
-                })
-                .SetMax(10)
-                .SetUseMax(false)
-                .Configure();
 
             var buff = BuffConfigurator.New(FeatName + "Buff", Guids.LegendaryGuardianBuff)
+                .CopyFrom(BuffRefs.WalkingDeadImmortalityBuff)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(BuffRefs.DefensiveStanceBuff.Reference.Get().Icon)
-                .AddIgnoreIncommingDamage()
-                .AddRemoveBuffIfPartyNotInCombat()
-                .Configure();
-
-            var ability = AbilityConfigurator.New(FeatName + "Ability", Guids.LegendaryGuardianAbility)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .AddAbilityEffectRunAction(actions: ActionsBuilder.New().ApplyBuffPermanent(buff))
-                .SetActionType(Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Swift)
-                .AddAbilityResourceLogic(amount: 1, requiredResource: Guids.LegendaryGuardianResource, isSpendResource: true, costIsCustom: false)
-                .SetIcon(BuffRefs.DefensiveStanceBuff.Reference.Get().Icon)
                 .Configure();
 
             FeatureConfigurator.New(FeatName, Guids.LegendaryGuardian)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .AddFacts(new() { ability })
-                .AddAbilityResources(amount: 0, resource: resource, restoreAmount: true, restoreOnLevelUp: false, useThisAsResource: false)
+                .AddKeepAlliesAlive(maxAttacksCount: new ContextValue()
+                {
+                    m_AbilityParameter = AbilityParameterType.Level,
+                    Property = Kingmaker.UnitLogic.Mechanics.Properties.UnitProperty.StatCharisma,
+                    ValueShared = Kingmaker.UnitLogic.Abilities.AbilitySharedValue.Damage,
+                    ValueRank = Kingmaker.Enums.AbilityRankType.Default,
+                    ValueType = ContextValueType.CasterProperty,
+                    Value = 0
+                },walkingDeadBuff: buff)
+                
                 .Configure();
         }
     }

@@ -7,13 +7,13 @@ Additional features for Pathfinder: Wrath of the Righteous
 	* [Weaker Spirit Channeling](https://www.d20pfsrd.com/alternative-rule-systems/occult-adventures/occult-classes/Medium/#TOC-Spirit-Su-)
 	* [Taboo - Stretch Goal](https://www.d20pfsrd.com/alternative-rule-systems/occult-adventures/occult-classes/Medium/#TOC-Taboo-Ex-)
 * Archmage
-	* [Legendary Archmage (Supreme, Su)](https://www.d20pfsrd.com/alternative-rule-systems/occult-adventures/occult-classes/medium/spirits/spirits-paizo-inc/#Archmage)
+	* COMPLETE - Legendary Archmage (Homebrew)
 * Champion
 	* [Legendary Champion (Supreme, Su)](https://www.d20pfsrd.com/alternative-rule-systems/occult-adventures/occult-classes/medium/spirits/spirits-paizo-inc/#Champion)
 * Guardian
-	* [Legendary Guardian (Supreme, Su)](https://www.d20pfsrd.com/alternative-rule-systems/occult-adventures/occult-classes/medium/spirits/spirits-paizo-inc/#Guardian)
+	* COMPLETE - Legendary Guardian (Homebrew) & Greater (Homebrew)
 * Hierophant
-	* COMPLETE
+	* COMPLETE - Legendary Hierophant (Partial Homebrew)
 * Marshal
 	* COMPLETE
 * Trickster

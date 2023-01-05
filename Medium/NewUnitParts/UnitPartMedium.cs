@@ -96,5 +96,6 @@ namespace MediumClass.Medium.NewUnitParts
 		public SpiritStatEntry SpiritBonuses = new SpiritStatEntry();
 		public SpiritStatEntry SpiritPenalties = new SpiritStatEntry();
 		public SpiritEntry Spirit = new SpiritEntry();
+
 	}
 }
