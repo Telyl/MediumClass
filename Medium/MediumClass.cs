@@ -62,8 +62,8 @@ namespace MediumClass.Medium
                 .SetPrimaryColor(11)
                 .SetSecondaryColor(47)
                 .SetDifficulty(3)
-                .AddToMaleEquipmentEntities("f26d20fbaedf1374388c75d7ab1d9ecc", "69b184d9e882f204f99c2cff2d471a13")
-                .AddToFemaleEquipmentEntities("2072db411b232024daf6fbfac1001065", "cec1fa08b14c22647834f2168336e16f")
+                .AddToMaleEquipmentEntities("65e7ae8b40be4d64ba07d50871719259", "04244d527b8a1f14db79374bc802aaaa")
+                .AddToFemaleEquipmentEntities("11266d19b35cb714d96f4c9de08df48e", "64abd9c4d6565de419f394f71a2d496f")
                 .AddToClassSkills(
                 StatType.SkillPersuasion,
                 StatType.SkillLoreReligion,

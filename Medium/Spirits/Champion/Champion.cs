@@ -70,8 +70,24 @@ namespace MediumClass.Medium.Spirits.Champion
             var entries = LevelEntryBuilder.New()
                 .AddEntry(1,
                     FeatureRefs.MartialWeaponProficiency.Reference.Get(),
+                    Guids.ChampionSpiritBonus, Guids.ChampionSeanceBoon,
+                    FeatureRefs.BastardSwordProficiency.Reference.Get(),
+                    FeatureRefs.DuelingSwordProficiency.Reference.Get(),
+                    FeatureRefs.DwarvenWeaponFamiliarity.Reference.Get(),
+                    FeatureRefs.ElvenCurvedBladeProficiency.Reference.Get(),
+                    FeatureRefs.EstocProficiency.Reference.Get(),
+                    FeatureRefs.FalcataProficiency.Reference.Get(),
+                    FeatureRefs.FauchardProficiency.Reference.Get(),
+                    FeatureRefs.HookedHammerProficiency.Reference.Get(),
+                    FeatureRefs.KamaProficiency.Reference.Get(),
+                    FeatureRefs.NunchakuProficiency.Reference.Get(),
+                    FeatureRefs.DoubleAxeProficiency.Reference.Get(),
+                    FeatureRefs.SaiProficiency.Reference.Get(),
+                    FeatureRefs.SlingStaffProficiency.Reference.Get(),
                     FeatureRefs.StarknifeProficiency.Reference.Get(),
-                    Guids.ChampionSpiritBonus, Guids.ChampionSeanceBoon)
+                    FeatureRefs.TongiProficiency.Reference.Get(),
+                    FeatureRefs.UrgroshProficiency.Reference.Get(),
+                    FeatureRefs.DoubleSwordProficiency.Reference.Get())
                 .AddEntry(4, Guids.ChampionSpiritBonus)
                 .AddEntry(6, Guids.ChampionSuddenAttack)
                 .AddEntry(8, Guids.ChampionSpiritBonus)

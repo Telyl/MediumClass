@@ -9,6 +9,7 @@ Additional features for Pathfinder: Wrath of the Righteous
 * Archmage
 	* COMPLETE - Legendary Archmage (Homebrew)
 * Champion
+	* Adds all exotic weapons instead of allowing a choice.
 	* [Legendary Champion (Supreme, Su)](https://www.d20pfsrd.com/alternative-rule-systems/occult-adventures/occult-classes/medium/spirits/spirits-paizo-inc/#Champion)
 * Guardian
 	* COMPLETE - Legendary Guardian (Homebrew) & Greater (Homebrew)
