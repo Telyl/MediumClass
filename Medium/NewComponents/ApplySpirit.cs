@@ -19,6 +19,7 @@ using Kingmaker.UnitLogic.Buffs;
 using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.UnitLogic.Parts;
 using Kingmaker.Utility;
+using MediumClass.Medium.NewUnitParts;
 using MediumClass.Utilities;
 using MediumClass.Utils;
 using Owlcat.QA.Validation;
@@ -287,6 +288,24 @@ namespace MediumClass.NewComponents
 				base.Owner.Facts.Remove(base.Owner.Facts.FindById(text), true);
 			}
 			// It doesn't care if it doesn't have the spellbook, and I don't care either.
+			//Owner.Ensure<UnitPartSpellcaster>().RemoveSpiritEntry();
+			var hierophant = base.Owner.Descriptor.DemandSpellbook(BlueprintTool.Get<BlueprintSpellbook>(Guids.HierophantSpellbook));			
+			if(hierophant != null)
+            {
+				foreach(var spell in hierophant.GetAllMemorizedSpells())
+                {
+					hierophant.ForgetMemorized(spell);
+                }
+            }
+			var archmage = base.Owner.Descriptor.DemandSpellbook(BlueprintTool.Get<BlueprintSpellbook>(Guids.ArchmageSpellbook));
+			if (archmage != null)
+			{
+				foreach (var spell in archmage.GetAllMemorizedSpells())
+				{
+					archmage.ForgetMemorized(spell);
+				}
+			}
+
 			base.Owner.Descriptor.DeleteSpellbook(BlueprintTool.Get<BlueprintSpellbook>(Guids.HierophantSpellbook));
 			base.Owner.Descriptor.DeleteSpellbook(BlueprintTool.Get<BlueprintSpellbook>(Guids.ArchmageSpellbook));
 			foreach (string text2 in base.Data.Features)

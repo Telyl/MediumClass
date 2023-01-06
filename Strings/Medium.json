@@ -52,7 +52,7 @@
   {
     "Key": "SpiritSurge.Description",
     "ProcessTemplates": false,
-    "enGB": "A medium can allow his spirit to gain 1 additional point of influence over him in order to add 1d6 to a value modified by his spirit bonus.\n The medium must be conscious and aware to use this ability. At 10th level, the medium’s spirit surge die increases to 1d8, and at 20th level it increases to 1d10. The duration of this ability decreases by 1 minute for each time the spirit modifies a check."
+    "enGB": "A medium can allow his spirit to gain 1 additional point of influence over him in order to add 1d6 to a value modified by his spirit bonus.\n The medium must be conscious and aware to use this ability. At 10th level, the medium’s spirit surge die increases to 1d8, and at 20th level it increases to 1d10. The bonuses last for 1 minute."
   },
 
   {
