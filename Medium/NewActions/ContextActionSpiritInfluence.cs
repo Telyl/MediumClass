@@ -35,6 +35,7 @@ namespace MediumClass.Medium.NewActions
             if(unitPartMedium != null)
             {
                 unitPartMedium.HandleInfluencePenalty();
+                Logger.Log("Just finished HandleInfluencePenalty");
             }
         }
     }

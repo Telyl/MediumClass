@@ -58,12 +58,12 @@ namespace MediumClass.Medium.NewUnitParts
 		{
 			Spirit = new SpiritEntry();
 			SpiritBonuses = new SpiritStatEntry();
-			TryRemove();
+			//TryRemove();
 		}
 
 		private void TryRemove()
 		{
-			this.RemoveSelf();
+			//this.RemoveSelf();
 		}
 
 		public bool IsInfluencePenalty()

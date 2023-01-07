@@ -87,7 +87,6 @@ namespace MediumClass.Medium
                 .SetIcon(ArchmageIconName)
                 .SetBuff(ab)
                 .SetGroup((ActivatableAbilityGroup)239480)
-                .AddActionsOnBuffApply(actions: ActionsBuilder.New().Add<ContextActionSpiritInfluence>())
                 .AddActivatableAbilityResourceLogic(requiredResource: BlueprintTool.GetRef<BlueprintAbilityResourceReference>(Guids.MediumInfluenceResource), spendType: Kingmaker.UnitLogic.ActivatableAbilities.ActivatableAbilityResourceLogic.ResourceSpendType.TurnOn)
                 .AddTurnOffImmediatelyWithUnitCommand()
                 .Configure();

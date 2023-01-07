@@ -22,7 +22,7 @@ using static UnityModManagerNet.UnityModManager.ModEntry;
 namespace MediumClass.Medium.NewComponents.AbilitySpecific
 {
     [TypeId("96306dd2-f947-44d4-a6d8-1eafe7c937dc")]
-    class MediumSpiritSurgeComponent : UnitFactComponentDelegate, IConcentrationBonusProvider
+    class MediumSpiritSurgeComponent : UnitFactComponentDelegate
     {
         private static readonly ModLogger Logger = Logging.GetLogger(nameof(MediumSpiritSurgeComponent));
         public override void OnTurnOn()
@@ -33,19 +33,19 @@ namespace MediumClass.Medium.NewComponents.AbilitySpecific
             Stats = unitPartMedium.Spirit.SpiritBonus.Stats;
             Concentration = unitPartMedium.Spirit.SpiritBonus.Concentration;
             CharacterLevel = base.Context.MaybeCaster.Progression.GetClassLevel(BlueprintTool.Get<BlueprintCharacterClass>(Guids.Medium));
-
-            Logger.Log($"BaseTarget: {base.Context.MainTarget}");
+            MarshalBonus = 0;
 
             if(unitPartMedium.Spirit.SpiritClass.Get() == BlueprintTool.Get<BlueprintCharacterClass>(Guids.Marshal))
             {
+                Logger.Log($"MarshalBonus: {MarshalBonus}");
                 if (base.Context.SourceAbility != BlueprintTool.Get<BlueprintAbility>(Guids.MarshalLegendaryMarshalAbility))
                 {
-                    MarshalBonus = base.Owner.Progression.Features.GetRank(unitPartMedium.Spirit.SpiritBonusFeature);
+                    MarshalBonus = base.Owner.Progression.Features.GetRank(unitPartMedium.Spirit.SpiritBonusFeature.Get());
                 }
             }
             foreach (StatType statType in Stats)
             {
-                base.Context.MainTarget.Unit.Descriptor.Stats.GetStat(statType).AddModifier(GetBonus() + MarshalBonus, base.Runtime, ModifierDescriptor.UntypedStackable);
+                base.Context.MainTarget.Unit.Descriptor.Stats.GetStat(statType).AddModifier((GetBonus() + MarshalBonus), base.Runtime, ModifierDescriptor.UntypedStackable);
             }
         }
 
@@ -55,15 +55,6 @@ namespace MediumClass.Medium.NewComponents.AbilitySpecific
             {
                 base.Context.MainTarget.Unit.Descriptor.Stats.GetStat(statType).RemoveModifiersFrom(base.Runtime);
             }
-        }
-
-        public int GetStaticConcentrationBonus(EntityFactComponent runtime)
-        {
-            if (!Concentration)
-            {
-                return 0;
-            }
-            return GetBonus() + MarshalBonus;
         }
 
         private int GetBonus()

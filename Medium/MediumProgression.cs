@@ -40,7 +40,7 @@ namespace MediumClass.Medium
                 .AddEntry(12, Guids.MediumSpiritBonus)
                 .AddEntry(15, Guids.MediumTranceOfThree)
                 .AddEntry(16, Guids.MediumSpiritBonus)
-                .AddEntry(17, Guids.SpiritPowerSupreme)
+                .AddEntry(17, Guids.SpiritPowerSupreme, Guids.HierophantSupreme)
                 .AddEntry(19, Guids.MediumSpiritMastery)
                 .AddEntry(20, Guids.MediumSpiritBonus, Guids.SpiritSurge);
 

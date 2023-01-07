@@ -40,9 +40,9 @@ namespace MediumClass.Medium.NewComponents
 	[AllowedOn(typeof(BlueprintUnit), false)]
 	[AllowedOn(typeof(BlueprintUnitFact), false)]
 	[TypeId("18df8977af254951be0e49854a471953")]
-	public class UnitPartSpellcaster : UnitPart, ISpontaneousConversionHandler
+	public class UnitPartHierophant : UnitPart, ISpontaneousConversionHandler
 	{
-		private static readonly ModLogger Logger = Logging.GetLogger(nameof(UnitPartSpellcaster));
+		private static readonly ModLogger Logger = Logging.GetLogger(nameof(UnitPartHierophant));
 		public BlueprintCharacterClass CharacterClass
 		{
 			get
@@ -99,20 +99,39 @@ namespace MediumClass.Medium.NewComponents
 			var conversionList = conversions.ToList();
 			if(!ability.Blueprint.IsSpell) { return; }
 			if(ability.Spellbook.Blueprint != this.Spellbook) { return; }
-			if(CharacterClass != BlueprintTool.Get<BlueprintCharacterClass>(Guids.Archmage)) { return; }
-			if(base.Owner.Progression.GetClassLevel(BlueprintTool.Get<BlueprintCharacterClass>(Guids.Medium)) < 11) { return; }
-			foreach (var abilityData in SpellTools.SpellList.WizardSpellList.GetSpells(ability.SpellLevel))
+			if(CharacterClass != BlueprintTool.Get<BlueprintCharacterClass>(Guids.Hierophant)) { return; }
+			if(base.Owner.Progression.GetClassLevel(BlueprintTool.Get<BlueprintCharacterClass>(Guids.Medium)) < 17) { return; }
+			foreach (var abilityData in SpellTools.SpellList.ClericSpellList.GetSpells(ability.SpellLevel))
 			{
 				if(ability.SpellLevel == 0) { break; }
-				AbilityData.AddAbilityUnique(ref conversionList, new SpiritAbilityData(ability, abilityData)
+				AbilityVariants variantComponent = abilityData.GetComponent<AbilityVariants>();
+				if (variantComponent != null)
 				{
-					OverridenResourceLogic = new InfluenceResourceOverride()
+					foreach (var variant in variantComponent.Variants.AsEnumerable())
 					{
-						m_Spirit = this.CharacterClass.ToReference<BlueprintCharacterClassReference>(),
-						m_RequiredResource = this.Resource.ToReference<BlueprintAbilityResourceReference>(),
-						cost = 1
+						AbilityData.AddAbilityUnique(ref conversionList, new SpiritAbilityData(ability, variant)
+						{
+							OverridenResourceLogic = new InfluenceResourceOverride()
+							{
+								m_Spirit = this.CharacterClass.ToReference<BlueprintCharacterClassReference>(),
+								m_RequiredResource = this.Resource.ToReference<BlueprintAbilityResourceReference>(),
+								cost = 1
+							}
+						});
 					}
-				});
+				}
+                else
+                {
+					AbilityData.AddAbilityUnique(ref conversionList, new SpiritAbilityData(ability, abilityData)
+					{
+						OverridenResourceLogic = new InfluenceResourceOverride()
+						{
+							m_Spirit = this.CharacterClass.ToReference<BlueprintCharacterClassReference>(),
+							m_RequiredResource = this.Resource.ToReference<BlueprintAbilityResourceReference>(),
+							cost = 1
+						}
+					});
+				}
 			}
 			conversions = conversionList;
 		}
@@ -181,17 +200,6 @@ namespace MediumClass.Medium.NewComponents
 					return;
 				}
 				unit.Descriptor.Resources.Spend(RequiredResource, cost);
-				HandleSpiritInfluence(ability);
-			}
-
-			public void HandleSpiritInfluence(AbilityData ability)
-			{
-				UnitEntityData unit = ability.Caster.Unit;
-				if (unit.Descriptor.Resources.GetResourceAmount(RequiredResource) > 2) { return; }
-				if (this.Spirit == BlueprintTool.Get<BlueprintCharacterClass>(Guids.Archmage))
-				{
-					unit.Descriptor.Buffs.AddBuff(BlueprintTool.Get<BlueprintBuff>(Guids.MediumInfluenceDebuff), unit, new TimeSpan(24, 0, 0));
-				}
 			}
 
 			[JsonProperty]

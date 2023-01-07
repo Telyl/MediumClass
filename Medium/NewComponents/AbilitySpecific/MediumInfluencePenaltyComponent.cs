@@ -33,8 +33,8 @@ namespace MediumClass.Medium.NewComponents.AbilitySpecific
             Penalties = unitPartMedium.Spirit.SpiritPenalty.Stats;
             SpiritBonus = base.Context.MaybeCaster.Progression.Features.GetRank(unitPartMedium.Spirit.SpiritBonusFeature);
 
-            base.Context.MainTarget.Unit.Descriptor.Stats.GetStat(StatType.Initiative).AddModifier((-2), base.Runtime, ModifierDescriptor.Penalty);
-            base.Context.MainTarget.Unit.Descriptor.Stats.GetStat(StatType.SaveWill).AddModifier((2), base.Runtime, ModifierDescriptor.UntypedStackable);
+            //base.Context.MainTarget.Unit.Descriptor.Stats.GetStat(StatType.Initiative).AddModifier((-2), base.Runtime, ModifierDescriptor.Penalty);
+            //base.Context.MainTarget.Unit.Descriptor.Stats.GetStat(StatType.SaveWill).AddModifier((2), base.Runtime, ModifierDescriptor.UntypedStackable);
 
             foreach (StatType statType in Penalties)
             {
@@ -57,9 +57,8 @@ namespace MediumClass.Medium.NewComponents.AbilitySpecific
             {
                 base.Owner.Buffs.RemoveFact(BuffRefs.FightDefensivelyBuff.Reference.Get());
             }
-            base.Context.MainTarget.Unit.Descriptor.Stats.GetStat(StatType.Initiative).RemoveModifiersFrom( base.Runtime);
-            base.Context.MainTarget.Unit.Descriptor.Stats.GetStat(StatType.SaveWill).RemoveModifiersFrom(base.Runtime);
-
+            //base.Context.MainTarget.Unit.Descriptor.Stats.GetStat(StatType.Initiative).RemoveModifiersFrom( base.Runtime);
+            //base.Context.MainTarget.Unit.Descriptor.Stats.GetStat(StatType.SaveWill).RemoveModifiersFrom(base.Runtime);
         }
 
         private StatType[] Penalties;

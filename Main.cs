@@ -95,6 +95,7 @@ namespace MediumClass
                         return;
                     }
                     Initialized = true;
+                    LogWrapper.EnableInternalVerboseLogs();
                     // First strings
                     LocalizationTool.LoadEmbeddedLocalizationPacks(
                       "MediumClass.Strings.Archmage.json",

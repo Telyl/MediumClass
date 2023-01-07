@@ -17,7 +17,7 @@ using static UnityModManagerNet.UnityModManager.ModEntry;
 
 namespace MediumClass.Medium.NewComponents.AbilitySpecific
 {
-    [TypeId("c94f2d6c4f2e42b79d068633a89be55f")]
+    [TypeId("46bdb129-b66b-4fd5-9b38-6d56ad0ab9aa")]
     class MediumSpiritComponent : UnitFactComponentDelegate
     {
         private static readonly ModLogger Logger = Logging.GetLogger(nameof(MediumSpiritComponent));

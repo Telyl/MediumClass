@@ -5,6 +5,7 @@ using BlueprintCore.Utils;
 using Kingmaker.Blueprints;
 using Kingmaker.EntitySystem.Stats;
 using MediumClass.Medium.NewComponents;
+using MediumClass.Medium.NewComponents.AbilitySpecific;
 using MediumClass.Utilities;
 using MediumClass.Utils;
 using TabletopTweaks.Core.NewComponents.AbilitySpecific;
@@ -47,13 +48,12 @@ namespace MediumClass.Medium.Spirits.Hierophant
                 .SetDescription(Description)
                 .SetIcon(AbilityRefs.CavalierForTheFaithAbility.Reference.Get().Icon)
                 .AddAbilityResources(amount: 0, resource: resource, restoreAmount: true, restoreOnLevelUp: false, useThisAsResource: false)
-                .AddComponent<SpellKenningComponent>(c =>
+                .AddComponent<LegendaryHierophantComponent>(c =>
                 {
+                    c.m_CharacterClass = BlueprintTool.GetRef<BlueprintCharacterClassReference>(Guids.Hierophant);
                     c.m_Spellbook = BlueprintTool.GetRef<BlueprintSpellbookReference>(Guids.HierophantSpellbook);
-                    c.m_SpellLists = new BlueprintSpellListReference[] {
-                        SpellTools.SpellList.ClericSpellList.ToReference<BlueprintSpellListReference>()
-                    };
-                    c.m_Resource = BlueprintTool.GetRef<BlueprintAbilityResourceReference>(Guids.MediumInfluenceResource);
+                    c.m_SpellLists = SpellTools.SpellList.ClericSpellList.ToReference<BlueprintSpellListReference>();
+                    c.m_Resource = resource.ToReference<BlueprintAbilityResourceReference>();
                 })
                 .SetRanks(1)
                 .Configure();
