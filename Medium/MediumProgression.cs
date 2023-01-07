@@ -26,16 +26,17 @@ namespace MediumClass.Medium
             Propitation.ConfigureEnabled();
             TranceOfThree.ConfigureEnabled();
             SpiritMastery.ConfigureEnabled();
+            MediumSpellcasterFeat.ConfigureEnabled();
 
             var entries = LevelEntryBuilder.New()
-                .AddEntry(1, Guids.MediumSpiritBonus, Guids.MediumProficiencies, Guids.SpiritPowerLesser, Guids.SpiritSurge, Guids.MediumChannelSpirit, Guids.MediumInfluence)
+                .AddEntry(1, Guids.MediumSpiritBonus, Guids.MediumProficiencies, Guids.SpiritPowerLesser, Guids.SpiritSurge, Guids.MediumChannelSpirit, Guids.MediumInfluence, Guids.MediumSpellcasterFeat, Guids.MediumSpellcasterFeatProhibitArchmage, Guids.MediumSpellcasterFeatProhibitHierophant)
                 .AddEntry(2, Guids.MediumSharedSeance)
                 .AddEntry(4, Guids.MediumSpiritBonus)
                 .AddEntry(6, Guids.SpiritPowerIntermediate)
                 .AddEntry(8, Guids.MediumSpiritBonus)
                 .AddEntry(9, Guids.MediumPropitation)
                 .AddEntry(10, Guids.SpiritSurge) 
-                .AddEntry(11, Guids.SpiritPowerGreater)
+                .AddEntry(11, Guids.SpiritPowerGreater, Guids.ArchmageGreater)
                 .AddEntry(12, Guids.MediumSpiritBonus)
                 .AddEntry(15, Guids.MediumTranceOfThree)
                 .AddEntry(16, Guids.MediumSpiritBonus)

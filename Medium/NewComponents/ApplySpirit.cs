@@ -19,11 +19,11 @@ using Kingmaker.UnitLogic.Buffs;
 using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.UnitLogic.Parts;
 using Kingmaker.Utility;
-using MediumClass.Medium.NewUnitParts;
 using MediumClass.Utilities;
 using MediumClass.Utils;
 using Owlcat.QA.Validation;
 using Owlcat.Runtime.Core.Utils;
+using TabletopTweaks.Core.NewUnitParts;
 using UnityEngine;
 using static UnityModManagerNet.UnityModManager.ModEntry;
 
@@ -169,7 +169,8 @@ namespace MediumClass.NewComponents
 				Feature feature = (Feature)base.Owner.AddFact(parameterizedFeatureEntry.Feature, null, parameterizedFeatureEntry.Param);
 				base.Data.Features.Add(feature.UniqueId);
 			}
-			Spellbook spellbook = ((this.Class.Spellbook != null) ? base.Owner.Descriptor.DemandSpellbook(this.Class.Spellbook) : null);
+			//Spellbook spellbook = ((this.Class.Spellbook != null) ? base.Owner.Descriptor.DemandSpellbook(this.Class.Spellbook) : null);
+			Spellbook spellbook = null;
 			base.Data.Spellbook = this.Class.Spellbook;
 			base.Data.Progressions.InsertRange(0, this.CollectProgressions(this.Level));
 			for (int j = 1; j <= num2; j++)
@@ -224,6 +225,15 @@ namespace MediumClass.NewComponents
 					spellbook.Memorize(abilityData, null);
 				}
 			}
+			if(this.Class == BlueprintTool.Get<BlueprintCharacterClass>(Guids.Archmage))
+            {
+				base.Owner.Progression.Features.RemoveFact(BlueprintTool.Get<BlueprintFeature>(Guids.MediumSpellcasterFeatProhibitArchmage));
+			}
+			else if (this.Class == BlueprintTool.Get<BlueprintCharacterClass>(Guids.Hierophant))
+			{
+				base.Owner.Progression.Features.RemoveFact(BlueprintTool.Get<BlueprintFeature>(Guids.MediumSpellcasterFeatProhibitHierophant));
+			}
+
 		}
 
 		// Token: 0x0600BDCD RID: 48589 RVA: 0x00317EDC File Offset: 0x003160DC
@@ -287,27 +297,7 @@ namespace MediumClass.NewComponents
 			{
 				base.Owner.Facts.Remove(base.Owner.Facts.FindById(text), true);
 			}
-			// It doesn't care if it doesn't have the spellbook, and I don't care either.
-			//Owner.Ensure<UnitPartSpellcaster>().RemoveSpiritEntry();
-			var hierophant = base.Owner.Descriptor.DemandSpellbook(BlueprintTool.Get<BlueprintSpellbook>(Guids.HierophantSpellbook));			
-			if(hierophant != null)
-            {
-				foreach(var spell in hierophant.GetAllMemorizedSpells())
-                {
-					hierophant.ForgetMemorized(spell);
-                }
-            }
-			var archmage = base.Owner.Descriptor.DemandSpellbook(BlueprintTool.Get<BlueprintSpellbook>(Guids.ArchmageSpellbook));
-			if (archmage != null)
-			{
-				foreach (var spell in archmage.GetAllMemorizedSpells())
-				{
-					archmage.ForgetMemorized(spell);
-				}
-			}
 
-			base.Owner.Descriptor.DeleteSpellbook(BlueprintTool.Get<BlueprintSpellbook>(Guids.HierophantSpellbook));
-			base.Owner.Descriptor.DeleteSpellbook(BlueprintTool.Get<BlueprintSpellbook>(Guids.ArchmageSpellbook));
 			foreach (string text2 in base.Data.Features)
 			{
 				base.Owner.Facts.Remove(base.Owner.Facts.FindById(text2), true);
@@ -340,6 +330,8 @@ namespace MediumClass.NewComponents
 				unitEntityData.RemoveFact(MarshalSeance);
 				unitEntityData.RemoveFact(TricksterSeance);
 			}
+			base.Owner.Progression.Features.AddFact(BlueprintTool.Get<BlueprintFeature>(Guids.MediumSpellcasterFeatProhibitArchmage), Context);
+			base.Owner.Progression.Features.AddFact(BlueprintTool.Get<BlueprintFeature>(Guids.MediumSpellcasterFeatProhibitHierophant), Context);
 			base.ClearData();
 		}
 

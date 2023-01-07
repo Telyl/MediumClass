@@ -76,7 +76,7 @@ namespace MediumClass.Medium.Spirits.Archmage
                 .AddEntry(4, Guids.ArchmageSpiritBonus)
                 .AddEntry(6, Guids.ArchmageIntermediate)
                 .AddEntry(8, Guids.ArchmageSpiritBonus)
-                .AddEntry(11, Guids.ArchmageGreater)
+                .AddEntry(11)
                 .AddEntry(12, Guids.ArchmageSpiritBonus)
                 .AddEntry(16, Guids.ArchmageSpiritBonus)
                 .AddEntry(17)

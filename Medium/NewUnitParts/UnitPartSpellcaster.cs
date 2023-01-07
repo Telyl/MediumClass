@@ -27,6 +27,7 @@ using MediumClass.Utils;
 using Newtonsoft.Json;
 using Owlcat.QA.Validation;
 using TabletopTweaks.Core.NewEvents;
+using TabletopTweaks.Core.Utilities;
 using UnityEngine;
 using UnityEngine.Serialization;
 using static UnityModManagerNet.UnityModManager.ModEntry;
@@ -39,9 +40,9 @@ namespace MediumClass.Medium.NewComponents
 	[AllowedOn(typeof(BlueprintUnit), false)]
 	[AllowedOn(typeof(BlueprintUnitFact), false)]
 	[TypeId("18df8977af254951be0e49854a471953")]
-	public class SpontaneousConversion : UnitFactComponentDelegate, ISpontaneousConversionHandler
+	public class UnitPartSpellcaster : UnitPart, ISpontaneousConversionHandler
 	{
-		private static readonly ModLogger Logger = Logging.GetLogger(nameof(SpontaneousConversion));
+		private static readonly ModLogger Logger = Logging.GetLogger(nameof(UnitPartSpellcaster));
 		public BlueprintCharacterClass CharacterClass
 		{
 			get
@@ -74,92 +75,55 @@ namespace MediumClass.Medium.NewComponents
 		public override void OnPostLoad()
 		{
 			base.OnPostLoad();
-			UpdateConversions();
 		}
 
-		public override void OnTurnOn()
+		public void AddSpellList(EntityFact fact, BlueprintSpellListReference spellList, BlueprintCharacterClassReference characterClass, BlueprintSpellbookReference spellbook, BlueprintAbilityResourceReference resource)
 		{
-			SpellLists.Add(new InfluenceSpellLists(SpellList.ToReference<BlueprintSpellListReference>(), this.Fact));
-			UpdateConversions();
+			m_CharacterClass = characterClass;
+			m_Spellbook = spellbook;
+			m_Resource = resource;
+			SpellLists.Add(new InfluenceSpellLists(spellList, fact));
 		}
-		public override void OnTurnOff() { }
+
+		public void RemoveEntry(EntityFact source)
+		{
+			SpellLists.RemoveAll((list) => list.Source == source);
+			m_Spellbook = new BlueprintSpellbookReference();
+			m_Resource = new BlueprintAbilityResourceReference();
+			m_CharacterClass = new BlueprintCharacterClassReference();
+			this.RemoveSelf();
+		}
 
 		public void HandleGetConversions(AbilityData ability, ref IEnumerable<AbilityData> conversions)
 		{
 			var conversionList = conversions.ToList();
-			BlueprintSpellbookReference SpellBook = this.Spellbook.ToReference<BlueprintSpellbookReference>();
-			if (!(SpellBook.deserializedGuid == ability.SpellbookBlueprint?.AssetGuid)) { return; }
-			if(GetConversionSpells(ability.SpellLevel).Count() == 0) {
-				UpdateConversions();
-            }
-			if(this.CharacterClass == BlueprintTool.Get<BlueprintCharacterClass>(Guids.Archmage))
-            {
-				foreach (var abilityData in GetConversionSpells(ability.SpellLevel))
+			if(!ability.Blueprint.IsSpell) { return; }
+			if(ability.Spellbook.Blueprint != this.Spellbook) { return; }
+			if(CharacterClass != BlueprintTool.Get<BlueprintCharacterClass>(Guids.Archmage)) { return; }
+			if(base.Owner.Progression.GetClassLevel(BlueprintTool.Get<BlueprintCharacterClass>(Guids.Medium)) < 11) { return; }
+			foreach (var abilityData in SpellTools.SpellList.WizardSpellList.GetSpells(ability.SpellLevel))
+			{
+				if(ability.SpellLevel == 0) { break; }
+				AbilityData.AddAbilityUnique(ref conversionList, new SpiritAbilityData(ability, abilityData)
 				{
-					AbilityData.AddAbilityUnique(ref conversionList, new SpiritAbilityData(ability, abilityData)
+					OverridenResourceLogic = new InfluenceResourceOverride()
 					{
-						OverridenResourceLogic = new InfluenceResourceOverride()
-						{
-							m_RequiredResource = this.Resource.ToReference<BlueprintAbilityResourceReference>(),
-							cost = 1
-						}
-					});
-				}
+						m_Spirit = this.CharacterClass.ToReference<BlueprintCharacterClassReference>(),
+						m_RequiredResource = this.Resource.ToReference<BlueprintAbilityResourceReference>(),
+						cost = 1
+					}
+				});
 			}
-            else
-            {
-				foreach (var abilityData in GetConversionSpells(ability.SpellLevel))
-				{
-					AbilityData.AddAbilityUnique(ref conversionList, new SpiritAbilityData(ability, abilityData)
-					{
-						ExtraSpellSlotCost = -1,
-						OverridenResourceLogic = new InfluenceResourceOverride()
-						{
-							m_RequiredResource = this.Resource.ToReference<BlueprintAbilityResourceReference>(),
-							m_Spirit = this.CharacterClass.ToReference<BlueprintCharacterClassReference>(),
-							cost = 1
-						}
-					});
-				}
-			}
-			
 			conversions = conversionList;
 		}
-
-		public void UpdateConversions()
-		{
-			for (int level = 0; level < cachedConversions.Length; level++)
-			{
-				cachedConversions[level] = SpellLists
-					.Select(list => list.SpellList.Get())
-					.SelectMany(list => list.SpellsByLevel)
-					.Where(spellList => spellList.SpellLevel != 0)
-					.Where(spellList => spellList.SpellLevel == level)
-					.SelectMany(level => level.Spells)
-					.Where(spell => this.Owner.DemandSpellbook(this.CharacterClass).IsKnownOnLevel(spell, level))
-					.SelectMany(spell => {
-						AbilityVariants variantComponent = spell.GetComponent<AbilityVariants>();
-						if (variantComponent != null)
-						{
-							return variantComponent.Variants.AsEnumerable();
-						}
-						return new BlueprintAbility[] { spell };
-					})
-					.Distinct()
-					.Where(spell => !spell.GetComponent<AbilityShadowSpell>())
-					.Select(spell => spell.ToReference<BlueprintAbilityReference>())
-					.ToList();
-			}
-		}
-
 		public IEnumerable<BlueprintAbility> GetConversionSpells(int level)
 		{
 			return cachedConversions[Math.Max(0, Math.Min(cachedConversions.Length - 1, level))].Select(spell => spell.Get());
 		}
 
-        private readonly List<BlueprintAbilityReference>[] cachedConversions = new List<BlueprintAbilityReference>[10];
+		private readonly List<BlueprintAbilityReference>[] cachedConversions = new List<BlueprintAbilityReference>[10];
 		private readonly List<InfluenceSpellLists> SpellLists = new();
-		
+
 
 		internal class InfluenceSpellLists
 		{
@@ -175,7 +139,6 @@ namespace MediumClass.Medium.NewComponents
 				Source = source;
 			}
 		}
-
 		internal class SpiritAbilityData : AbilityData
 		{
 			public SpiritAbilityData() : base() { }
@@ -199,9 +162,9 @@ namespace MediumClass.Medium.NewComponents
 			public BlueprintAbilityResource RequiredResource => m_RequiredResource;
 			public bool IsSpendResource => true;
 
-            public BlueprintCharacterClass Spirit => m_Spirit;
+			public BlueprintCharacterClass Spirit => m_Spirit;
 
-            public int CalculateCost(AbilityData ability)
+			public int CalculateCost(AbilityData ability)
 			{
 				return cost;
 			}
@@ -221,16 +184,17 @@ namespace MediumClass.Medium.NewComponents
 				HandleSpiritInfluence(ability);
 			}
 
-            public void HandleSpiritInfluence(AbilityData ability)
-            {
+			public void HandleSpiritInfluence(AbilityData ability)
+			{
 				UnitEntityData unit = ability.Caster.Unit;
-				if (unit.Descriptor.Resources.GetResourceAmount(RequiredResource) > 2) { return; }	
-				if (this.Spirit == BlueprintTool.Get<BlueprintCharacterClass>(Guids.Archmage)) { 
-					unit.Descriptor.Buffs.AddBuff(BlueprintTool.Get<BlueprintBuff>(Guids.MediumInfluenceDebuff), unit, new TimeSpan(24, 0, 0)); 
-				}		
+				if (unit.Descriptor.Resources.GetResourceAmount(RequiredResource) > 2) { return; }
+				if (this.Spirit == BlueprintTool.Get<BlueprintCharacterClass>(Guids.Archmage))
+				{
+					unit.Descriptor.Buffs.AddBuff(BlueprintTool.Get<BlueprintBuff>(Guids.MediumInfluenceDebuff), unit, new TimeSpan(24, 0, 0));
+				}
 			}
 
-            [JsonProperty]
+			[JsonProperty]
 			public BlueprintAbilityResourceReference m_RequiredResource;
 			[JsonProperty]
 			public BlueprintCharacterClassReference m_Spirit;
@@ -242,7 +206,7 @@ namespace MediumClass.Medium.NewComponents
 		[SerializeField]
 		[FormerlySerializedAs("CharacterClass")]
 		public BlueprintCharacterClassReference m_CharacterClass;
-		
+
 		[NotNull]
 		[ValidateNotNull]
 		[SerializeField]
@@ -259,4 +223,3 @@ namespace MediumClass.Medium.NewComponents
 		public BlueprintAbilityResourceReference m_Resource;
 	}
 }
-

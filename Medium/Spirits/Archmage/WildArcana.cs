@@ -41,12 +41,14 @@ namespace MediumClass.Medium.Spirits.Archmage
             var ArchmageKenning = FeatureConfigurator.New(FeatName, Guids.ArchmageGreater)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .AddComponent<SpontaneousConversion>(c => {
+                .AddComponent<WildArcanaComponent>(c =>
+                {
                     c.m_CharacterClass = BlueprintTool.GetRef<BlueprintCharacterClassReference>(Guids.Archmage);
-                    c.m_SpellList = BlueprintTool.GetRef<BlueprintSpellListReference>(SpellListRefs.WizardSpellList.ToString());
                     c.m_Spellbook = BlueprintTool.GetRef<BlueprintSpellbookReference>(Guids.ArchmageSpellbook);
+                    c.m_SpellLists = SpellTools.SpellList.WizardSpellList.ToReference<BlueprintSpellListReference>();
                     c.m_Resource = BlueprintTool.GetRef<BlueprintAbilityResourceReference>(Guids.MediumInfluenceResource);
                 })
+                .SetRanks(1)
                 .Configure();
         }
     }

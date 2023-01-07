@@ -7,6 +7,8 @@ using Kingmaker.EntitySystem.Stats;
 using MediumClass.Medium.NewComponents;
 using MediumClass.Utilities;
 using MediumClass.Utils;
+using TabletopTweaks.Core.NewComponents.AbilitySpecific;
+using TabletopTweaks.Core.Utilities;
 using static UnityModManagerNet.UnityModManager.ModEntry;
 
 namespace MediumClass.Medium.Spirits.Hierophant
@@ -45,12 +47,15 @@ namespace MediumClass.Medium.Spirits.Hierophant
                 .SetDescription(Description)
                 .SetIcon(AbilityRefs.CavalierForTheFaithAbility.Reference.Get().Icon)
                 .AddAbilityResources(amount: 0, resource: resource, restoreAmount: true, restoreOnLevelUp: false, useThisAsResource: false)
-                .AddComponent<SpontaneousConversion>(c => {
-                    c.m_CharacterClass = BlueprintTool.GetRef<BlueprintCharacterClassReference>(Guids.Hierophant);
-                    c.m_SpellList = BlueprintTool.GetRef<BlueprintSpellListReference>(SpellListRefs.ClericSpellList.ToString());
+                .AddComponent<SpellKenningComponent>(c =>
+                {
                     c.m_Spellbook = BlueprintTool.GetRef<BlueprintSpellbookReference>(Guids.HierophantSpellbook);
-                    c.m_Resource = BlueprintTool.GetRef<BlueprintAbilityResourceReference>(Guids.HierophantSupremeResource);
+                    c.m_SpellLists = new BlueprintSpellListReference[] {
+                        SpellTools.SpellList.ClericSpellList.ToReference<BlueprintSpellListReference>()
+                    };
+                    c.m_Resource = BlueprintTool.GetRef<BlueprintAbilityResourceReference>(Guids.MediumInfluenceResource);
                 })
+                .SetRanks(1)
                 .Configure();
         }
     }

@@ -1,8 +1,12 @@
-﻿using Kingmaker.Blueprints;
+﻿using BlueprintCore.Utils;
+using Kingmaker.Blueprints;
+using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.UnitLogic;
+using Kingmaker.UnitLogic.Parts;
 using MediumClass.Medium.NewUnitParts;
+using MediumClass.Utilities;
 using MediumClass.Utils;
 using System;
 using System.Collections.Generic;

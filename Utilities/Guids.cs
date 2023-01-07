@@ -222,7 +222,9 @@ namespace MediumClass.Utilities
         internal const string MediumTranceOfThreeMarshalAbility = "31c65335-fca1-458f-b48c-e29d158ea642";
         internal const string MediumTranceOfThreeTricksterBuff = "c3678338-f30b-44c1-a559-851bd324d338";
         internal const string MediumTranceOfThreeTricksterAbility = "073a383a-1719-4d2b-a694-dd24aa1e13a5";
-
+        internal const string MediumSpellcasterFeat = "6afa9523-eb95-490d-96ad-b6b5e7b37015";
+        internal const string MediumSpellcasterFeatProhibitArchmage = "041eb0b7-848b-4e74-8c76-fb5469a7d87e";
+        internal const string MediumSpellcasterFeatProhibitHierophant = "92d5cbd0-b6f7-4364-8c63-6c3227377576";
         #endregion
 
         internal static readonly (string guid, string displayName)[] Spirits =
