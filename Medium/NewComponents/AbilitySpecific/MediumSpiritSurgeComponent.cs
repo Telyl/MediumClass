@@ -22,7 +22,7 @@ using static UnityModManagerNet.UnityModManager.ModEntry;
 namespace MediumClass.Medium.NewComponents.AbilitySpecific
 {
     [TypeId("96306dd2-f947-44d4-a6d8-1eafe7c937dc")]
-    class MediumSpiritSurgeComponent : UnitFactComponentDelegate
+    class MediumSpiritSurgeComponent : UnitFactComponentDelegate, IConcentrationBonusProvider
     {
         private static readonly ModLogger Logger = Logging.GetLogger(nameof(MediumSpiritSurgeComponent));
         public override void OnTurnOn()
@@ -37,27 +37,28 @@ namespace MediumClass.Medium.NewComponents.AbilitySpecific
 
             if(unitPartMedium.Spirit.SpiritClass.Get() == BlueprintTool.Get<BlueprintCharacterClass>(Guids.Marshal))
             {
-                Logger.Log($"MarshalBonus: {MarshalBonus}");
                 if (base.Context.SourceAbility != BlueprintTool.Get<BlueprintAbility>(Guids.MarshalLegendaryMarshalAbility))
-                {
                     MarshalBonus = base.Owner.Progression.Features.GetRank(unitPartMedium.Spirit.SpiritBonusFeature.Get());
-                }
             }
             foreach (StatType statType in Stats)
-            {
                 base.Context.MainTarget.Unit.Descriptor.Stats.GetStat(statType).AddModifier((GetBonus() + MarshalBonus), base.Runtime, ModifierDescriptor.UntypedStackable);
-            }
         }
 
         public override void OnTurnOff()
         {
             foreach (StatType statType in Stats)
-            {
                 base.Context.MainTarget.Unit.Descriptor.Stats.GetStat(statType).RemoveModifiersFrom(base.Runtime);
-            }
         }
 
-        private int GetBonus()
+        public int GetStaticConcentrationBonus(EntityFactComponent runtime)
+        {
+            if (!Concentration) 
+                return 0;
+            using (runtime.RequestEventContext())
+                return GetBonus() + MarshalBonus;
+        }
+
+        public int GetBonus()
         {
             if(base.Context.SourceAbility == BlueprintTool.Get<BlueprintAbility>(Guids.MarshalLegendaryMarshalAbility)) { return rnd.Next(1, 6); }
             switch (CharacterLevel)
@@ -73,10 +74,10 @@ namespace MediumClass.Medium.NewComponents.AbilitySpecific
         }
 
         // Our spirit could change while we have spirit surge on which causes some issues; keep track of the status modified.
-        private StatType[] Stats;
-        private bool Concentration = false;
-        private Random rnd = new Random();
-        private int CharacterLevel = 0;
-        private int MarshalBonus = 0;
+        public StatType[] Stats;
+        public bool Concentration = false;
+        public Random rnd = new Random();
+        public int CharacterLevel = 0;
+        public int MarshalBonus = 0;
     }
 }
