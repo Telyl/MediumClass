@@ -236,7 +236,10 @@ namespace MediumClass.NewComponents
 			{
 				base.Owner.Progression.Features.RemoveFact(BlueprintTool.Get<BlueprintFeature>(Guids.MediumSpellcasterFeatProhibitHierophant));
 			}
-
+			if(base.Owner.Progression.Features.HasFact(BlueprintTool.Get<BlueprintFeature>(Guids.MediumSpiritMastery)) && medium.FreeSurgeAmount == 0)
+            {
+				medium.FreeSurgeAmount += 2;
+            }
 		}
 
 		// Token: 0x0600BDCD RID: 48589 RVA: 0x00317EDC File Offset: 0x003160DC

@@ -98,14 +98,30 @@ namespace MediumClass.Medium.NewUnitParts
 				FreeSurgeAmount = 8;
 			}
 			if(base.Owner.HasFact(BlueprintTool.Get<BlueprintUnitFact>(Guids.MediumSpiritMastery)))
+            {
 				FreeSurgeAmount *= 2;
+				FreeSurgeAmount += 2;
+			}
+				
 		}
 
 		public void RemoveWeakerSpiritChannel()
 		{
 			FreeSurgeAmount = 0;
 			ForgonePowers = 0;
+			if (base.Owner.HasFact(BlueprintTool.Get<BlueprintUnitFact>(Guids.MediumSpiritMastery)))
+				FreeSurgeAmount = 2;
 		}
+
+		public void HandleSpiritMastery()
+        {
+			FreeSurgeAmount = 2;
+        }
+
+		public void RemoveSpiritMastery()
+        {
+			FreeSurgeAmount = 0;
+        }
 
 		public bool IsInfluencePenalty()
         {

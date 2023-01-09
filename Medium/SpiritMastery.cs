@@ -6,6 +6,7 @@ using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
 using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Mechanics.Components;
+using MediumClass.Medium.NewComponents.AbilitySpecific;
 using MediumClass.Utilities;
 using MediumClass.Utils;
 using System;
@@ -36,7 +37,7 @@ namespace MediumClass.Medium
                 .SetReapplyOnLevelUp(false)
                 .SetRanks(10)
                 .SetAllowNonContextActions(false)
-                .AddIncreaseResourceAmount(BlueprintTool.GetRef<BlueprintAbilityResourceReference>(Guids.MediumInfluenceResource), value: 2)
+                .AddComponent<MediumSpiritMasteryComponent>()
                 .Configure();
         }
     }
