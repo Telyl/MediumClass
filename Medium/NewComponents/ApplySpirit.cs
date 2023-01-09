@@ -19,6 +19,7 @@ using Kingmaker.UnitLogic.Buffs;
 using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.UnitLogic.Parts;
 using Kingmaker.Utility;
+using MediumClass.Medium.NewUnitParts;
 using MediumClass.Utilities;
 using MediumClass.Utils;
 using Owlcat.QA.Validation;
@@ -225,11 +226,13 @@ namespace MediumClass.NewComponents
 					spellbook.Memorize(abilityData, null);
 				}
 			}
-			if(this.Class == BlueprintTool.Get<BlueprintCharacterClass>(Guids.Archmage))
+			UnitPartMedium medium = base.Owner.Ensure<UnitPartMedium>();
+			int SpiritPowerRank = base.Owner.Progression.Features.GetRank(BlueprintTool.Get<BlueprintFeature>(Guids.SpiritPower)) - medium.ForgonePowers;
+			if (this.Class == BlueprintTool.Get<BlueprintCharacterClass>(Guids.Archmage) && SpiritPowerRank == 0)
             {
 				base.Owner.Progression.Features.RemoveFact(BlueprintTool.Get<BlueprintFeature>(Guids.MediumSpellcasterFeatProhibitArchmage));
 			}
-			else if (this.Class == BlueprintTool.Get<BlueprintCharacterClass>(Guids.Hierophant))
+			else if (this.Class == BlueprintTool.Get<BlueprintCharacterClass>(Guids.Hierophant) && SpiritPowerRank == 0)
 			{
 				base.Owner.Progression.Features.RemoveFact(BlueprintTool.Get<BlueprintFeature>(Guids.MediumSpellcasterFeatProhibitHierophant));
 			}
@@ -274,6 +277,9 @@ namespace MediumClass.NewComponents
 			{
 				return;
 			}
+			//Get the spirit powers from unit part and exnay them!
+			UnitPartMedium medium = base.Owner.Ensure<UnitPartMedium>();
+			int SpiritPowerRank = base.Owner.Progression.Features.GetRank(BlueprintTool.Get<BlueprintFeature>(Guids.SpiritPower)) - medium.ForgonePowers;
 			foreach (BlueprintFeatureBase blueprintFeatureBase in levelEntry.Features)
 			{
 				if (!(blueprintFeatureBase is IFeatureSelection))
@@ -281,11 +287,29 @@ namespace MediumClass.NewComponents
 					BlueprintFeature blueprintFeature = blueprintFeatureBase as BlueprintFeature;
 					if (blueprintFeature == null || blueprintFeature.MeetsPrerequisites(null, base.Owner, null, true))
 					{
+						if (SpiritLesserPower.Get() == blueprintFeature)
+                        {
+							if (SpiritPowerRank == 0) { continue; }
+						}
+						else if (SpiritIntermediatePower.Get() == blueprintFeature)
+                        {
+							if (SpiritPowerRank <= 1) { continue; }
+						}
+						else if (SpiritGreaterPower.Get() == blueprintFeature)
+                        {
+							if (SpiritPowerRank <= 2) { continue; }
+						}	
+						else if (SpiritSupremePower.Get() == blueprintFeature)
+                        {
+							if (SpiritPowerRank <= 3) { continue; }
+						}
 						EntityFact entityFact = base.Owner.AddFact(blueprintFeatureBase, null, null);
 						base.Data.Features.Add(entityFact.UniqueId);
 					}
 				}
 			}
+			//TODO: Add resource for each spirit power removed. Add a pre-created feat X amount of times! Remove it later! (or maybe this += 2 trick works?)
+			//base.Owner.Resources.GetResource(BlueprintTool.Get<BlueprintAbilityResource>(Guids.MediumInfluenceResource))
 		}
 
 		// Token: 0x0600BDCF RID: 48591 RVA: 0x00318090 File Offset: 0x00316290
@@ -343,6 +367,11 @@ namespace MediumClass.NewComponents
 		[SerializeField]
 		[ValidateNotNull]
 		public BlueprintCharacterClassReference m_Class;
+
+		public BlueprintFeatureReference SpiritLesserPower = new BlueprintFeatureReference();
+		public BlueprintFeatureReference SpiritIntermediatePower = new BlueprintFeatureReference();
+		public BlueprintFeatureReference SpiritGreaterPower = new BlueprintFeatureReference();
+		public BlueprintFeatureReference SpiritSupremePower = new BlueprintFeatureReference();
 
 		// Token: 0x0400802E RID: 32814
 		[SerializeField]

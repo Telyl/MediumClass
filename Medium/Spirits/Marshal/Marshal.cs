@@ -69,10 +69,7 @@ namespace MediumClass.Medium.Spirits.Marshal
         private static BlueprintProgression MarshalProgression()
         {
             var entries = LevelEntryBuilder.New()
-                .AddEntry(1, 
-                    FeatureRefs.HeavyArmorProficiency.Reference.Get(),
-                    FeatureRefs.ShieldsProficiency.Reference.Get(),
-                    FeatureRefs.TowerShieldProficiency.Reference.Get(),
+                .AddEntry(1,
                     Guids.MarshalSeanceBoon,
                     Guids.MarshalSpiritBonus,
                     Guids.MarshalMarshalsOrders)

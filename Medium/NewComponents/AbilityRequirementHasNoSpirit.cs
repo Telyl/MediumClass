@@ -16,13 +16,13 @@ using static UnityModManagerNet.UnityModManager.ModEntry;
 
 namespace MediumClass.Medium.NewComponents
 {
-    [TypeId("60be564b13e54e3cb0ca08e50bbcf2e3")]
-    public class AbilityRequirementHasSpirit : BlueprintComponent, IAbilityRestriction
+    [TypeId("8deea97d-ea0c-441f-904d-30b3f1f078b2")]
+    public class AbilityRequirementHasNoSpirit : BlueprintComponent, IAbilityRestriction
     {
-        private static readonly ModLogger Logger = Logging.GetLogger(nameof(AbilityRequirementHasSpirit));
+        private static readonly ModLogger Logger = Logging.GetLogger(nameof(AbilityRequirementHasNoSpirit));
         public string GetAbilityRestrictionUIText()
         {
-            return $"You must have a spirit channeled";
+            return $"You cannot have a spirit channeled";
         }
 
         public bool IsAbilityRestrictionPassed(AbilityData ability)
@@ -32,7 +32,7 @@ namespace MediumClass.Medium.NewComponents
                 {
                     if(ability.Caster.Buffs.GetBuff(clazzbuff) != null)
                     {
-                        return true;
+                        return false;
                     }
                 }
                 catch(Exception e)
@@ -40,7 +40,7 @@ namespace MediumClass.Medium.NewComponents
                     Logger.LogException(e);
                 }
             }
-            return false;
+            return true;
         }
     }
 }

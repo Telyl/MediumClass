@@ -23,8 +23,8 @@ namespace MediumClass.Medium.NewComponents.AbilitySpecific
         private static readonly ModLogger Logger = Logging.GetLogger(nameof(MediumSpiritComponent));
         public override void OnTurnOn()
         {
-            Owner.Ensure<UnitPartMedium>().AddSpiritEntry(SpiritClass, SpiritInfluencePenalty, MediumInfluence, SpiritBonusFeature, base.Fact, Concentration, Stats, Penalties);
-            Owner.Get<UnitPartMedium>().HandleInfluencePenalty();
+            Owner.Ensure<UnitPartMedium>().AddSpiritEntry(SpiritClass, SpiritInfluencePenalty, MediumInfluence, SpiritBonusFeature, base.Fact, Concentration, Stats, Penalties, 
+                SpiritLesserPower, SpiritIntermediatePower, SpiritGreaterPower, SpiritSupremePower);
         }
 
         public override void OnTurnOff()
@@ -37,6 +37,10 @@ namespace MediumClass.Medium.NewComponents.AbilitySpecific
         public BlueprintBuffReference SpiritInfluencePenalty;
         public BlueprintAbilityResourceReference MediumInfluence;
         public BlueprintFeatureReference SpiritBonusFeature;
+        public BlueprintFeatureReference SpiritLesserPower;
+        public BlueprintFeatureReference SpiritIntermediatePower;
+        public BlueprintFeatureReference SpiritGreaterPower;
+        public BlueprintFeatureReference SpiritSupremePower;
         public StatType[] Stats;
         public StatType[] Penalties;
         public bool Concentration = false;

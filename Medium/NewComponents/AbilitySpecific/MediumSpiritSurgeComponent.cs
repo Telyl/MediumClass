@@ -42,6 +42,12 @@ namespace MediumClass.Medium.NewComponents.AbilitySpecific
             }
             foreach (StatType statType in Stats)
                 base.Context.MainTarget.Unit.Descriptor.Stats.GetStat(statType).AddModifier((GetBonus() + MarshalBonus), base.Runtime, ModifierDescriptor.UntypedStackable);
+            if(unitPartMedium.FreeSurgeAmount > 0)
+            {
+                var resource = base.Owner.Resources.GetResource(unitPartMedium.Spirit.InfluenceResource.Get());
+                resource.Amount += 1;
+                unitPartMedium.FreeSurgeAmount -= 1;
+            }
         }
 
         public override void OnTurnOff()
@@ -73,11 +79,11 @@ namespace MediumClass.Medium.NewComponents.AbilitySpecific
             return 0;
         }
 
-        // Our spirit could change while we have spirit surge on which causes some issues; keep track of the status modified.
         public StatType[] Stats;
         public bool Concentration = false;
         public Random rnd = new Random();
         public int CharacterLevel = 0;
         public int MarshalBonus = 0;
+        private int FreeSurges = 0;
     }
 }

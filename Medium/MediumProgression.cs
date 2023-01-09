@@ -27,20 +27,21 @@ namespace MediumClass.Medium
             TranceOfThree.ConfigureEnabled();
             SpiritMastery.ConfigureEnabled();
             MediumSpellcasterFeat.ConfigureEnabled();
+            WeakerSpiritChannel.ConfigureEnabled();
 
             var entries = LevelEntryBuilder.New()
-                .AddEntry(1, Guids.MediumSpiritBonus, Guids.MediumProficiencies, Guids.SpiritPowerLesser, Guids.SpiritSurge, Guids.MediumChannelSpirit, Guids.MediumInfluence, Guids.MediumSpellcasterFeat, Guids.MediumSpellcasterFeatProhibitArchmage, Guids.MediumSpellcasterFeatProhibitHierophant)
+                .AddEntry(1, Guids.MediumSpiritBonus, Guids.MediumProficiencies, Guids.SpiritPower, Guids.SpiritSurge, Guids.MediumChannelSpirit, Guids.MediumInfluence, Guids.MediumSpellcasterFeat, Guids.MediumSpellcasterFeatProhibitArchmage, Guids.MediumSpellcasterFeatProhibitHierophant, Guids.WeakerSpiritChannel)
                 .AddEntry(2, Guids.MediumSharedSeance)
                 .AddEntry(4, Guids.MediumSpiritBonus)
-                .AddEntry(6, Guids.SpiritPowerIntermediate)
+                .AddEntry(6, Guids.SpiritPower)
                 .AddEntry(8, Guids.MediumSpiritBonus)
                 .AddEntry(9, Guids.MediumPropitation)
                 .AddEntry(10, Guids.SpiritSurge) 
-                .AddEntry(11, Guids.SpiritPowerGreater, Guids.ArchmageGreater)
+                .AddEntry(11, Guids.SpiritPower, Guids.ArchmageGreater)
                 .AddEntry(12, Guids.MediumSpiritBonus)
                 .AddEntry(15, Guids.MediumTranceOfThree)
                 .AddEntry(16, Guids.MediumSpiritBonus)
-                .AddEntry(17, Guids.SpiritPowerSupreme, Guids.HierophantSupreme)
+                .AddEntry(17, Guids.SpiritPower, Guids.HierophantSupreme)
                 .AddEntry(19, Guids.MediumSpiritMastery)
                 .AddEntry(20, Guids.MediumSpiritBonus, Guids.SpiritSurge);
 

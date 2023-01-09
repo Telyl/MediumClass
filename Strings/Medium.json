@@ -153,5 +153,15 @@
   {
     "Key": "MediumTranceOfThree.Description",
     "enGB": "At 15th level, as a swift action, a medium can allow his spirit to gain 1 point of influence over him in order to allow a portion of a legendary spirit from another legend to enter him for 1 round per level, granting him the intermediate spirit power from another legend.\nIf that power has a limited number of uses per day, the medium must keep track of the remaining uses even after the secondary spirit is gone; if the medium calls the secondary spirit again that day, it can grant the remaining uses of that power. If the medium uses an ability that incurs influence, the medium’s primary spirit gains that amount of influence over him, not the secondary spirit. The medium doesn’t gain the benefits of his spirit bonus from the secondary spirit.\nThe medium can end the trance of three early as a free action."
+  },
+  {
+    "Key": "WeakerSpiritChannel.Name",
+    "ProcessTemplates": false,
+    "enGB": "Channel Weaker Spirit"
+  },
+
+  {
+    "Key": "WeakerSpiritChannel.Description",
+    "enGB": "A description goes here!"
   }
 ]

@@ -28,6 +28,7 @@ namespace MediumClass.Utilities
 
         #region Champion
         internal const string Champion = "5f24b820-8644-4d52-aea7-7323b1b2849c";
+        internal const string ChampionLesser = "74a5e3f4-5cc7-4449-b866-224eb4ac6cb7";
         internal const string ChampionProgression = "eb13263c-7117-4545-8db9-4fc913596978";
         internal const string ChampionSpiritBonus = "008a7081-8ecd-4f97-8f59-0dcc3a2f41e8";
         internal const string ChampionSeanceBoon = "cad6901e-f6ce-41fc-b822-1105565fc770";
@@ -42,6 +43,7 @@ namespace MediumClass.Utilities
 
         #region Guardian
         internal const string Guardian = "ce5874c4-aef6-4b68-8344-38e2a9970373";
+        internal const string GuardianLesser = "b17e10f8-2f72-46cc-b622-a65a72c1c299";
         internal const string GuardianProgression = "90dd3599-8162-43f3-9612-75b4b35bca2c";
         internal const string GuardianSpiritBonus = "c2f636ff-652f-4891-819f-1362a22c90b6";
         internal const string GuardianSeanceBoon = "d5e04574-0761-4265-bbba-dcac35f50057";
@@ -164,10 +166,7 @@ namespace MediumClass.Utilities
         #endregion
 
         #region Spirit Powers
-        internal const string SpiritPowerLesser = "8de7a6b4-a076-4e68-bb45-a397ba4455dc";
-        internal const string SpiritPowerIntermediate = "81643114-9cc9-4e8b-a229-32c4839e1bca";
-        internal const string SpiritPowerGreater = "0c4d3adc-905b-4e89-8411-9f87a557abb4";
-        internal const string SpiritPowerSupreme = "0fa95d9e-9f0b-4565-8117-fbfb5568e15d";
+        internal const string SpiritPower = "8de7a6b4-a076-4e68-bb45-a397ba4455dc";
         #endregion
 
         #region Spirit Surge
@@ -225,6 +224,14 @@ namespace MediumClass.Utilities
         internal const string MediumSpellcasterFeat = "6afa9523-eb95-490d-96ad-b6b5e7b37015";
         internal const string MediumSpellcasterFeatProhibitArchmage = "041eb0b7-848b-4e74-8c76-fb5469a7d87e";
         internal const string MediumSpellcasterFeatProhibitHierophant = "92d5cbd0-b6f7-4364-8c63-6c3227377576";
+        internal const string WeakerSpiritChannel = "26ce0e4c-c29c-4c54-9018-38f3a5041960";
+        internal const string WeakerSpiritChannelAbilities = "0431f68d-bd16-475c-9d92-aa1f8952f05e";
+        internal const string WeakerSpiritChannelOneAbility = "44e4657d-3dd7-4bed-99ee-59330a5fe748";
+        internal const string WeakerSpiritChannelTwoAbility = "30e71e5c-b06d-40b3-97a6-69787d939ad2";
+        internal const string WeakerSpiritChannelThreeAbility = "9b6a2313-f4aa-4fa2-9be5-dbefd4a3829e";
+        internal const string WeakerSpiritChannelFourAbility = "a774129a-fffd-4610-94d4-f34f13fad159";
+        internal const string WeakerSpiritChannelNoneAbility = "81306526-b271-49be-8908-1a2556c7d970";
+        internal const string WeakerSpiritChannelBuff = "2413ac21-7921-446e-9073-fac8b6de11bd";
         #endregion
 
         internal static readonly (string guid, string displayName)[] Spirits =
@@ -232,7 +239,5 @@ namespace MediumClass.Utilities
           {
               (Archmage, MediumClass.Medium.Spirits.Archmage.Archmage.ArchmageName)
           };
-
-        public static string GuardianSpiritPowers { get; internal set; }
     }
 }
