@@ -16,6 +16,7 @@ using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.UnitLogic.Mechanics;
 using MediumClass.Medium.NewActions;
+using MediumClass.Medium.NewComponents;
 using MediumClass.Medium.NewComponents.AbilitySpecific;
 using MediumClass.NewComponents;
 using MediumClass.Utilities;
@@ -69,27 +70,9 @@ namespace MediumClass.Medium
 
             #region Archmage
             var ab = BuffConfigurator.New(FeatName + "AbilityArchmageBuff", Guids.MediumChannelSpiritAbilityArchmageBuff)
-                .AddComponent<MediumSpiritComponent>(c => {
-                    c.SpiritClass = BlueprintTool.GetRef<BlueprintCharacterClassReference>(Guids.Archmage);
-                    c.SpiritInfluencePenalty = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumInfluenceDebuff);
-                    c.MediumInfluence = BlueprintTool.GetRef<BlueprintAbilityResourceReference>(Guids.MediumInfluenceResource);
-                    c.SpiritBonusFeature = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ArchmageSpiritBonus);
-                    c.SpiritLesserPower = new BlueprintFeatureReference();
-                    c.SpiritIntermediatePower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ArchmageIntermediate);
-                    c.SpiritGreaterPower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ArchmageGreater);
-                    c.SpiritSupremePower = new BlueprintFeatureReference();
-                    c.Concentration = true;
-                    c.Stats = new StatType[] { StatType.SkillKnowledgeArcana, StatType.SkillKnowledgeWorld };
-                    c.Penalties = new StatType[] { StatType.AdditionalAttackBonus, StatType.AdditionalDamage, StatType.SaveFortitude, StatType.SkillAthletics };
-                })
-                .AddComponent<AddSharedSeance>()
                 .AddComponent<ApplySpirit>(c =>
                 {
                     c.m_Class = BlueprintTool.GetRef<BlueprintCharacterClassReference>(Guids.Archmage);
-                    c.SpiritLesserPower = new BlueprintFeatureReference();
-                    c.SpiritIntermediatePower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ArchmageIntermediate);
-                    c.SpiritGreaterPower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ArchmageGreater);
-                    c.SpiritSupremePower = new BlueprintFeatureReference();
                 })
                 .SetFlags(BlueprintBuff.Flags.RemoveOnRest)
                 .Configure();
@@ -97,36 +80,8 @@ namespace MediumClass.Medium
                 .SetDisplayName(ArchmageName)
                 .SetDescription(ArchmageDescription)
                 .SetIcon(ArchmageIconName)
-                .AddComponent(new AbilityRequirementHasBuff()
-                {
-                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityArchmageBuff),
-                    Not = true
-                })
-                .AddComponent(new AbilityRequirementHasBuff()
-                {
-                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityTricksterBuff),
-                    Not = true
-                })
-                .AddComponent(new AbilityRequirementHasBuff()
-                {
-                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityChampionBuff),
-                    Not = true
-                })
-                .AddComponent(new AbilityRequirementHasBuff()
-                {
-                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityGuardianBuff),
-                    Not = true
-                })
-                .AddComponent(new AbilityRequirementHasBuff()
-                {
-                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityHierophantBuff),
-                    Not = true
-                })
-                .AddComponent(new AbilityRequirementHasBuff()
-                {
-                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityMarshalBuff),
-                    Not = true
-                })
+                .AddComponent<AbilityRequirementHasNoSpirit>()
+                .SetActionType(Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Free)
                 .AddAbilityEffectRunAction(
                     actions: ActionsBuilder.New()
                         .Add<ContextActionSpiritInfluence>()
@@ -139,23 +94,6 @@ namespace MediumClass.Medium
                 .AddComponent<ApplySpirit>(c =>
                 {
                     c.m_Class = BlueprintTool.GetRef<BlueprintCharacterClassReference>(Guids.Champion);
-                    c.SpiritLesserPower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ChampionLesser);
-                    c.SpiritIntermediatePower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ChampionSuddenAttack);
-                    c.SpiritGreaterPower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ChampionFleetCharge);
-                    c.SpiritSupremePower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.LegendaryChampion);
-                })
-                .AddComponent<AddSharedSeance>()
-                .AddComponent<MediumSpiritComponent>(c => {
-                    c.SpiritClass = BlueprintTool.GetRef<BlueprintCharacterClassReference>(Guids.Champion);
-                    c.SpiritInfluencePenalty = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumInfluenceDebuff);
-                    c.MediumInfluence = BlueprintTool.GetRef<BlueprintAbilityResourceReference>(Guids.MediumInfluenceResource);
-                    c.SpiritBonusFeature = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ChampionSpiritBonus);
-                    c.SpiritLesserPower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ChampionLesser); 
-                    c.SpiritIntermediatePower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ChampionSuddenAttack); 
-                    c.SpiritGreaterPower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ChampionFleetCharge); 
-                    c.SpiritSupremePower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.LegendaryChampion); 
-                    c.Stats = new StatType[] { StatType.SkillAthletics, StatType.SaveFortitude, StatType.AdditionalDamage, StatType.AdditionalAttackBonus };
-                    c.Penalties = new StatType[] { StatType.SkillKnowledgeArcana, StatType.SkillKnowledgeWorld, StatType.BonusCasterLevel };
                 })
                 .SetFlags(BlueprintBuff.Flags.RemoveOnRest)
                 .Configure();
@@ -163,36 +101,8 @@ namespace MediumClass.Medium
                 .SetDisplayName(ChampionName)
                 .SetDescription(ChampionDescription)
                 .SetIcon(ChampionIconName)
-                .AddComponent(new AbilityRequirementHasBuff()
-                {
-                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityArchmageBuff),
-                    Not = true
-                })
-                .AddComponent(new AbilityRequirementHasBuff()
-                {
-                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityChampionBuff),
-                    Not = true
-                })
-                .AddComponent(new AbilityRequirementHasBuff()
-                {
-                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityTricksterBuff),
-                    Not = true
-                })
-                .AddComponent(new AbilityRequirementHasBuff()
-                {
-                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityGuardianBuff),
-                    Not = true
-                })
-                .AddComponent(new AbilityRequirementHasBuff()
-                {
-                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityHierophantBuff),
-                    Not = true
-                })
-                .AddComponent(new AbilityRequirementHasBuff()
-                {
-                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityMarshalBuff),
-                    Not = true
-                })
+                .AddComponent<AbilityRequirementHasNoSpirit>()
+                .SetActionType(Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Free)
                 .AddAbilityEffectRunAction(
                     actions: ActionsBuilder.New()
                         .Add<ContextActionSpiritInfluence>()
@@ -205,23 +115,6 @@ namespace MediumClass.Medium
                 .AddComponent<ApplySpirit>(c =>
                 {
                     c.m_Class = BlueprintTool.GetRef<BlueprintCharacterClassReference>(Guids.Guardian);
-                    c.SpiritLesserPower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.GuardianLesser);
-                    c.SpiritIntermediatePower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.GuardianAbsorbBlow);
-                    c.SpiritGreaterPower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.GuardianGreater);
-                    c.SpiritSupremePower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.LegendaryGuardian);
-                })
-                .AddComponent<AddSharedSeance>()
-                .AddComponent<MediumSpiritComponent>(c => {
-                    c.SpiritClass = BlueprintTool.GetRef<BlueprintCharacterClassReference>(Guids.Guardian);
-                    c.SpiritInfluencePenalty = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumInfluenceDebuff);
-                    c.MediumInfluence = BlueprintTool.GetRef<BlueprintAbilityResourceReference>(Guids.MediumInfluenceResource);
-                    c.SpiritBonusFeature = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.GuardianSpiritBonus);
-                    c.SpiritLesserPower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.GuardianLesser); 
-                    c.SpiritIntermediatePower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.GuardianAbsorbBlow); 
-                    c.SpiritGreaterPower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.GuardianGreater); 
-                    c.SpiritSupremePower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.LegendaryGuardian); 
-                    c.Stats = new StatType[] { StatType.AC, StatType.SaveReflex, StatType.SaveFortitude };
-                    c.Penalties = new StatType[] { StatType.AdditionalDamage };
                 })
                 .SetFlags(BlueprintBuff.Flags.RemoveOnRest)
                 .Configure();
@@ -229,36 +122,8 @@ namespace MediumClass.Medium
                 .SetDisplayName(GuardianName)
                 .SetDescription(GuardianDescription)
                 .SetIcon(GuardianIconName)
-                .AddComponent(new AbilityRequirementHasBuff()
-                {
-                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityArchmageBuff),
-                    Not = true
-                })
-                .AddComponent(new AbilityRequirementHasBuff()
-                {
-                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityChampionBuff),
-                    Not = true
-                })
-                .AddComponent(new AbilityRequirementHasBuff()
-                {
-                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityGuardianBuff),
-                    Not = true
-                })
-                .AddComponent(new AbilityRequirementHasBuff()
-                {
-                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityTricksterBuff),
-                    Not = true
-                })
-                .AddComponent(new AbilityRequirementHasBuff()
-                {
-                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityHierophantBuff),
-                    Not = true
-                })
-                .AddComponent(new AbilityRequirementHasBuff()
-                {
-                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityMarshalBuff),
-                    Not = true
-                })
+                .AddComponent<AbilityRequirementHasNoSpirit>()
+                .SetActionType(Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Free)
                 .AddAbilityEffectRunAction(
                     actions: ActionsBuilder.New()
                         .Add<ContextActionSpiritInfluence>()
@@ -271,23 +136,6 @@ namespace MediumClass.Medium
                 .AddComponent<ApplySpirit>(c =>
                 {
                     c.m_Class = BlueprintTool.GetRef<BlueprintCharacterClassReference>(Guids.Hierophant);
-                    c.SpiritLesserPower = new BlueprintFeatureReference();
-                    c.SpiritIntermediatePower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.HierophantEnergyFont);
-                    c.SpiritGreaterPower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.HierophantOverflowingGrace);
-                    c.SpiritSupremePower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.HierophantSupreme);
-                })
-                .AddComponent<AddSharedSeance>()
-                .AddComponent<MediumSpiritComponent>(c => {
-                    c.SpiritClass = BlueprintTool.GetRef<BlueprintCharacterClassReference>(Guids.Hierophant);
-                    c.SpiritInfluencePenalty = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumInfluenceDebuff);
-                    c.MediumInfluence = BlueprintTool.GetRef<BlueprintAbilityResourceReference>(Guids.MediumInfluenceResource);
-                    c.SpiritBonusFeature = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.HierophantSpiritBonus);
-                    c.SpiritLesserPower = new BlueprintFeatureReference();
-                    c.SpiritIntermediatePower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.HierophantEnergyFont); 
-                    c.SpiritGreaterPower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.HierophantOverflowingGrace); 
-                    c.SpiritSupremePower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.HierophantSupreme); 
-                    c.Stats = new StatType[] { StatType.SkillPerception, StatType.SkillLoreNature, StatType.SkillLoreReligion, StatType.SaveWill };
-                    c.Penalties = new StatType[] { StatType.SkillUseMagicDevice, StatType.SkillPersuasion };
                 })
                 .SetFlags(BlueprintBuff.Flags.RemoveOnRest)
                 .Configure();
@@ -295,36 +143,8 @@ namespace MediumClass.Medium
                 .SetDisplayName(HierophantName)
                 .SetDescription(HierophantDescription)
                 .SetIcon(HierophantIconName)
-                .AddComponent(new AbilityRequirementHasBuff()
-                {
-                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityArchmageBuff),
-                    Not = true
-                })
-                .AddComponent(new AbilityRequirementHasBuff()
-                {
-                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityChampionBuff),
-                    Not = true
-                })
-                .AddComponent(new AbilityRequirementHasBuff()
-                {
-                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityGuardianBuff),
-                    Not = true
-                })
-                .AddComponent(new AbilityRequirementHasBuff()
-                {
-                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityHierophantBuff),
-                    Not = true
-                })
-                .AddComponent(new AbilityRequirementHasBuff()
-                {
-                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityTricksterBuff),
-                    Not = true
-                })
-                .AddComponent(new AbilityRequirementHasBuff()
-                {
-                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityMarshalBuff),
-                    Not = true
-                })
+                .AddComponent<AbilityRequirementHasNoSpirit>()
+                .SetActionType(Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Free)
                 .AddAbilityEffectRunAction(
                     actions: ActionsBuilder.New()
                         .Add<ContextActionSpiritInfluence>()
@@ -337,28 +157,6 @@ namespace MediumClass.Medium
                 .AddComponent<ApplySpirit>(c =>
                 {
                     c.m_Class = BlueprintTool.GetRef<BlueprintCharacterClassReference>(Guids.Marshal);
-                    c.SpiritLesserPower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MarshalMarshalsOrders);
-                    c.SpiritIntermediatePower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MarshalInspiringCallStandard);
-                    c.SpiritIntermediatePowerMove = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MarshalInspiringCallMove);
-                    c.SpiritIntermediatePowerSwift = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MarshalInspiringCallSwift);
-                    c.SpiritGreaterPower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MarshalDecisiveStrikeFeature);
-                    c.SpiritSupremePower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MarshalLegendaryMarshal);
-                })
-                .AddComponent<AddSharedSeance>()
-                .AddComponent<MediumSpiritComponent>(c => {
-                    c.SpiritClass = BlueprintTool.GetRef<BlueprintCharacterClassReference>(Guids.Marshal);
-                    c.SpiritInfluencePenalty = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumInfluenceDebuff);
-                    c.MediumInfluence = BlueprintTool.GetRef<BlueprintAbilityResourceReference>(Guids.MediumInfluenceResource);
-                    c.SpiritBonusFeature = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MarshalSpiritBonus);
-                    c.SpiritLesserPower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MarshalMarshalsOrders); 
-                    c.SpiritIntermediatePower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MarshalInspiringCallStandard);
-                    c.SpiritIntermediatePowerMove = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MarshalInspiringCallMove);
-                    c.SpiritIntermediatePowerSwift = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MarshalInspiringCallSwift);
-                    c.SpiritGreaterPower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MarshalDecisiveStrikeFeature); 
-                    c.SpiritSupremePower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MarshalLegendaryMarshal); 
-                    c.Stats = new StatType[] { StatType.AdditionalAttackBonus }.Concat(StatTypeHelper.Saves).Concat(StatTypeHelper.Skills).ToArray();
-                    c.Penalties = new StatType[] { StatType.SkillPerception, StatType.SkillLoreNature, StatType.SkillLoreReligion , StatType.SaveWill };
-                    c.Concentration = true;
                 })
                 .SetFlags(BlueprintBuff.Flags.RemoveOnRest)
                 .Configure();
@@ -367,36 +165,8 @@ namespace MediumClass.Medium
                 .SetDisplayName(MarshalName)
                 .SetDescription(MarshalDescription)
                 .SetIcon(MarshalIconName)
-                .AddComponent(new AbilityRequirementHasBuff()
-                {
-                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityArchmageBuff),
-                    Not = true
-                })
-                .AddComponent(new AbilityRequirementHasBuff()
-                {
-                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityChampionBuff),
-                    Not = true
-                })
-                .AddComponent(new AbilityRequirementHasBuff()
-                {
-                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityGuardianBuff),
-                    Not = true
-                })
-                .AddComponent(new AbilityRequirementHasBuff()
-                {
-                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityMarshalBuff),
-                    Not = true
-                })
-                .AddComponent(new AbilityRequirementHasBuff()
-                {
-                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityHierophantBuff),
-                    Not = true
-                })
-                .AddComponent(new AbilityRequirementHasBuff()
-                {
-                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityTricksterBuff),
-                    Not = true
-                })
+                .AddComponent<AbilityRequirementHasNoSpirit>()
+                .SetActionType(Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Free)
                 .AddAbilityEffectRunAction(
                     actions: ActionsBuilder.New()
                         .Add<ContextActionSpiritInfluence>()
@@ -409,23 +179,6 @@ namespace MediumClass.Medium
                 .AddComponent<ApplySpirit>(c =>
                 {
                     c.m_Class = BlueprintTool.GetRef<BlueprintCharacterClassReference>(Guids.Trickster);
-                    c.SpiritLesserPower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.TricksterEdge);
-                    c.SpiritIntermediatePower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.TricksterSurpriseStrike);
-                    c.SpiritGreaterPower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.TricksterTransferMagic);
-                    c.SpiritSupremePower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.TricksterLegendaryTrickster);
-                })
-                .AddComponent<AddSharedSeance>()
-                .AddComponent<MediumSpiritComponent>(c => {
-                    c.SpiritClass = BlueprintTool.GetRef<BlueprintCharacterClassReference>(Guids.Trickster);
-                    c.SpiritInfluencePenalty = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumInfluenceDebuff);
-                    c.MediumInfluence = BlueprintTool.GetRef<BlueprintAbilityResourceReference>(Guids.MediumInfluenceResource);
-                    c.SpiritBonusFeature = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.TricksterSpiritBonus);
-                    c.SpiritLesserPower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.TricksterEdge);
-                    c.SpiritIntermediatePower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.TricksterSurpriseStrike); 
-                    c.SpiritGreaterPower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.TricksterTransferMagic); 
-                    c.SpiritSupremePower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.TricksterLegendaryTrickster); 
-                    c.Penalties = new StatType[] { StatType.AC, StatType.AdditionalCMB, StatType.AdditionalCMD };
-                    c.Stats = new StatType[] { StatType.SkillAthletics, StatType.SkillKnowledgeArcana, StatType.SkillKnowledgeWorld, StatType.SkillLoreNature, StatType.SkillLoreReligion, StatType.SkillMobility, StatType.SkillPerception, StatType.SkillPersuasion, StatType.SkillStealth, StatType.SkillThievery, StatType.SkillUseMagicDevice, StatType.SaveReflex, StatType.Initiative };
                 })
                 .SetFlags(BlueprintBuff.Flags.RemoveOnRest)
                 .Configure(); 
@@ -434,36 +187,8 @@ namespace MediumClass.Medium
                 .SetDisplayName(TricksterName)
                 .SetDescription(TricksterDescription)
                 .SetIcon(TricksterIconName)
-                .AddComponent(new AbilityRequirementHasBuff()
-                {
-                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityArchmageBuff),
-                    Not = true
-                })
-                .AddComponent(new AbilityRequirementHasBuff()
-                {
-                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityChampionBuff),
-                    Not = true
-                })
-                .AddComponent(new AbilityRequirementHasBuff()
-                {
-                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityGuardianBuff),
-                    Not = true
-                })
-                .AddComponent(new AbilityRequirementHasBuff()
-                {
-                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityHierophantBuff),
-                    Not = true
-                })
-                .AddComponent(new AbilityRequirementHasBuff()
-                {
-                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityMarshalBuff),
-                    Not = true
-                })
-                .AddComponent(new AbilityRequirementHasBuff()
-                {
-                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityTricksterBuff),
-                    Not = true
-                })
+                .AddComponent<AbilityRequirementHasNoSpirit>()
+                .SetActionType(Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Free)
                 .AddAbilityEffectRunAction(
                     actions: ActionsBuilder.New()
                         .Add<ContextActionSpiritInfluence>()
@@ -472,19 +197,93 @@ namespace MediumClass.Medium
                 .Configure();
             #endregion
 
-            // If OwlCat ever makes this look nicer, I'll re-enable it, otherwise it's cleaner and more elegant and less clunky to just have them all show up.
-            /*var ability = AbilityConfigurator.New(FeatName + "Ability", Guids.MediumChannelSpiritAbility)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .SetIcon(AbilityRefs.ShamanWanderingHexAbility.Reference.Get().Icon)
-                .AddActivatableAbilityVariants(variants: new() { a, c, g, h, m, t })
-                .AddActivationDisable()
-                .Configure();*/
-
             FeatureConfigurator.New(FeatName, Guids.MediumChannelSpirit)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIcon(AbilityRefs.ShamanWanderingHexAbility.Reference.Get().Icon)
+                .AddComponent<MediumSpiritComponent>(c => {
+                    c.SpiritClass = BlueprintTool.GetRef<BlueprintCharacterClassReference>(Guids.Archmage);
+                    c.SpiritInfluencePenalty = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumInfluenceDebuff);
+                    c.SpiritInfluence = BlueprintTool.GetRef<BlueprintAbilityResourceReference>(Guids.MediumInfluenceResourceArchmage);
+                    c.SpiritBonusFeature = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ArchmageSpiritBonus);
+                    c.SpiritSeanceBoon = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ArchmageSeanceBoon);
+                    c.SpiritLesserPower = new BlueprintFeatureReference();
+                    c.SpiritIntermediatePower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ArchmageIntermediate);
+                    c.SpiritGreaterPower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ArchmageGreater);
+                    c.SpiritSupremePower = new BlueprintFeatureReference();
+                    c.Concentration = true;
+                    c.Stats = new StatType[] { StatType.SkillKnowledgeArcana, StatType.SkillKnowledgeWorld };
+                    c.Penalties = new StatType[] { StatType.AdditionalAttackBonus, StatType.AdditionalDamage, StatType.SaveFortitude, StatType.SkillAthletics };
+                })
+                .AddComponent<MediumSpiritComponent>(c => {
+                    c.SpiritClass = BlueprintTool.GetRef<BlueprintCharacterClassReference>(Guids.Champion);
+                    c.SpiritInfluencePenalty = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumInfluenceDebuff);
+                    c.SpiritInfluence = BlueprintTool.GetRef<BlueprintAbilityResourceReference>(Guids.MediumInfluenceResourceChampion);
+                    c.SpiritBonusFeature = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ChampionSpiritBonus);
+                    c.SpiritSeanceBoon = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ChampionSeanceBoon);
+                    c.SpiritLesserPower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ChampionLesser);
+                    c.SpiritIntermediatePower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ChampionSuddenAttack);
+                    c.SpiritGreaterPower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ChampionFleetCharge);
+                    c.SpiritSupremePower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.LegendaryChampion);
+                    c.Stats = new StatType[] { StatType.SkillAthletics, StatType.SaveFortitude, StatType.AdditionalDamage, StatType.AdditionalAttackBonus };
+                    c.Penalties = new StatType[] { StatType.SkillKnowledgeArcana, StatType.SkillKnowledgeWorld, StatType.BonusCasterLevel };
+                })
+                .AddComponent<MediumSpiritComponent>(c => {
+                    c.SpiritClass = BlueprintTool.GetRef<BlueprintCharacterClassReference>(Guids.Guardian);
+                    c.SpiritInfluencePenalty = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumInfluenceDebuff);
+                    c.SpiritInfluence = BlueprintTool.GetRef<BlueprintAbilityResourceReference>(Guids.MediumInfluenceResourceGuardian);
+                    c.SpiritBonusFeature = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.GuardianSpiritBonus);
+                    c.SpiritSeanceBoon = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.GuardianSeanceBoon);
+                    c.SpiritLesserPower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.GuardianLesser);
+                    c.SpiritIntermediatePower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.GuardianAbsorbBlow);
+                    c.SpiritGreaterPower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.GuardianGreater);
+                    c.SpiritSupremePower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.LegendaryGuardian);
+                    c.Stats = new StatType[] { StatType.AC, StatType.SaveReflex, StatType.SaveFortitude };
+                    c.Penalties = new StatType[] { StatType.AdditionalDamage };
+                })
+                .AddComponent<MediumSpiritComponent>(c => {
+                    c.SpiritClass = BlueprintTool.GetRef<BlueprintCharacterClassReference>(Guids.Hierophant);
+                    c.SpiritInfluencePenalty = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumInfluenceDebuff);
+                    c.SpiritInfluence = BlueprintTool.GetRef<BlueprintAbilityResourceReference>(Guids.MediumInfluenceResourceHierophant);
+                    c.SpiritBonusFeature = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.HierophantSpiritBonus);
+                    c.SpiritSeanceBoon = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.HierophantSeanceBoon);
+                    c.SpiritLesserPower = new BlueprintFeatureReference();
+                    c.SpiritIntermediatePower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.HierophantEnergyFont);
+                    c.SpiritGreaterPower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.HierophantOverflowingGrace);
+                    c.SpiritSupremePower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.HierophantSupreme);
+                    c.Stats = new StatType[] { StatType.SkillPerception, StatType.SkillLoreNature, StatType.SkillLoreReligion, StatType.SaveWill };
+                    c.Penalties = new StatType[] { StatType.SkillUseMagicDevice, StatType.SkillPersuasion };
+                })
+                .AddComponent<MediumSpiritComponent>(c => {
+                    c.SpiritClass = BlueprintTool.GetRef<BlueprintCharacterClassReference>(Guids.Marshal);
+                    c.SpiritInfluencePenalty = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumInfluenceDebuff);
+                    c.SpiritInfluence = BlueprintTool.GetRef<BlueprintAbilityResourceReference>(Guids.MediumInfluenceResourceMarshal);
+                    c.SpiritBonusFeature = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MarshalSpiritBonus);
+                    c.SpiritSeanceBoon = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MarshalSeanceBoon);
+                    c.SpiritLesserPower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MarshalMarshalsOrders);
+                    c.SpiritIntermediatePower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MarshalInspiringCallStandard);
+                    c.SpiritIntermediatePowerMove = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MarshalInspiringCallMove);
+                    c.SpiritIntermediatePowerSwift = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MarshalInspiringCallSwift);
+                    c.SpiritGreaterPower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MarshalDecisiveStrikeFeature);
+                    c.SpiritSupremePower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MarshalLegendaryMarshal);
+                    c.Stats = new StatType[] { StatType.AdditionalAttackBonus }.Concat(StatTypeHelper.Saves).Concat(StatTypeHelper.Skills).ToArray();
+                    c.Penalties = new StatType[] { StatType.SkillPerception, StatType.SkillLoreNature, StatType.SkillLoreReligion, StatType.SaveWill };
+                    c.Concentration = true;
+                })
+                .AddComponent<MediumSpiritComponent>(c => {
+                    c.SpiritClass = BlueprintTool.GetRef<BlueprintCharacterClassReference>(Guids.Trickster);
+                    c.SpiritInfluencePenalty = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumInfluenceDebuff);
+                    c.SpiritInfluence = BlueprintTool.GetRef<BlueprintAbilityResourceReference>(Guids.MediumInfluenceResourceTrickster);
+                    c.SpiritBonusFeature = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.TricksterSpiritBonus);
+                    c.SpiritSeanceBoon = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.TricksterSeanceBoon);
+                    c.SpiritLesserPower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.TricksterEdge);
+                    c.SpiritIntermediatePower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.TricksterSurpriseStrike);
+                    c.SpiritGreaterPower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.TricksterTransferMagic);
+                    c.SpiritSupremePower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.TricksterLegendaryTrickster);
+                    c.Penalties = new StatType[] { StatType.AC, StatType.AdditionalCMB, StatType.AdditionalCMD };
+                    c.Stats = new StatType[] { StatType.SkillAthletics, StatType.SkillKnowledgeArcana, StatType.SkillKnowledgeWorld, StatType.SkillLoreNature, StatType.SkillLoreReligion,
+                        StatType.SkillMobility, StatType.SkillPerception, StatType.SkillPersuasion, StatType.SkillStealth, StatType.SkillThievery, StatType.SkillUseMagicDevice, StatType.SaveReflex, StatType.Initiative };
+                })
                 .AddFacts(new() { a, c, g, h, m, t })
                 .Configure();
         }

@@ -23,7 +23,7 @@ namespace MediumClass.Medium.NewComponents.AbilitySpecific
         private static readonly ModLogger Logger = Logging.GetLogger(nameof(MediumSpiritComponent));
         public override void OnTurnOn()
         {
-            Owner.Ensure<UnitPartMedium>().AddSpiritEntry(SpiritClass, SpiritInfluencePenalty, MediumInfluence, SpiritBonusFeature, base.Fact, Concentration, Stats, Penalties, 
+            Owner.Ensure<UnitPartMedium>().AddSpiritEntry(SpiritClass, SpiritInfluencePenalty, SpiritInfluence, SpiritBonusFeature, SpiritSeanceBoon, base.Fact, Concentration, Stats, Penalties, 
                 SpiritLesserPower, SpiritIntermediatePower, SpiritGreaterPower, SpiritSupremePower, SpiritIntermediatePowerMove, SpiritIntermediatePowerSwift);
         }
 
@@ -35,8 +35,9 @@ namespace MediumClass.Medium.NewComponents.AbilitySpecific
 
         public BlueprintCharacterClassReference SpiritClass;
         public BlueprintBuffReference SpiritInfluencePenalty;
-        public BlueprintAbilityResourceReference MediumInfluence;
+        public BlueprintAbilityResourceReference SpiritInfluence;
         public BlueprintFeatureReference SpiritBonusFeature;
+        public BlueprintFeatureReference SpiritSeanceBoon;
         public BlueprintFeatureReference SpiritLesserPower;
         public BlueprintFeatureReference SpiritIntermediatePower;
         public BlueprintFeatureReference SpiritIntermediatePowerMove = new BlueprintFeatureReference();

@@ -35,69 +35,6 @@ namespace MediumClass.NewComponents
 	public class ApplySpirit : UnitFactComponentDelegate<ApplyClassProgressionData>
 	{
 		private static readonly ModLogger Logger = Logging.GetLogger(nameof(ApplySpirit));
-
-		private static BlueprintUnitFact _archmageSeance;
-		private static BlueprintUnitFact ArchmageSeance
-		{
-			get
-			{
-				_archmageSeance ??= BlueprintTool.Get<BlueprintUnitFact>(Guids.ArchmageSeanceBoon);
-				return _archmageSeance;
-			}
-		}
-
-		private static BlueprintUnitFact _championSeance;
-		private static BlueprintUnitFact ChampionSeance
-		{
-			get
-			{
-				_championSeance ??= BlueprintTool.Get<BlueprintUnitFact>(Guids.ChampionSeanceBoon);
-				return _championSeance;
-			}
-		}
-
-		private static BlueprintUnitFact _guardianSeance;
-		private static BlueprintUnitFact GuardianSeance
-		{
-			get
-			{
-				_guardianSeance ??= BlueprintTool.Get<BlueprintUnitFact>(Guids.GuardianSeanceBoon);
-				return _guardianSeance;
-			}
-		}
-
-		private static BlueprintUnitFact _hierophantSeance;
-		private static BlueprintUnitFact HierophantSeance
-		{
-			get
-			{
-				_hierophantSeance ??= BlueprintTool.Get<BlueprintUnitFact>(Guids.HierophantSeanceBoon);
-				return _hierophantSeance;
-			}
-		}
-
-		private static BlueprintUnitFact _marshalSeance;
-		private static BlueprintUnitFact MarshalSeance
-		{
-			get
-			{
-				_marshalSeance ??= BlueprintTool.Get<BlueprintUnitFact>(Guids.MarshalSeanceBoon);
-				return _marshalSeance;
-			}
-		}
-
-		private static BlueprintUnitFact _tricksterSeance;
-		private static BlueprintUnitFact TricksterSeance
-		{
-			get
-			{
-				_tricksterSeance ??= BlueprintTool.Get<BlueprintUnitFact>(Guids.TricksterSeanceBoon);
-				return _tricksterSeance;
-			}
-		}
-
-		// Token: 0x17001CF5 RID: 7413
-		// (get) Token: 0x0600BDC6 RID: 48582 RVA: 0x00317B1B File Offset: 0x00315D1B
 		public BlueprintCharacterClass Class
 		{
 			get
@@ -105,9 +42,6 @@ namespace MediumClass.NewComponents
 				return this.m_Class;
 			}
 		}
-
-		// Token: 0x17001CF6 RID: 7414
-		// (get) Token: 0x0600BDC7 RID: 48583 RVA: 0x00317B28 File Offset: 0x00315D28
 		public ReferenceArrayProxy<BlueprintAbility, BlueprintAbilityReference> SelectSpells
 		{
 			get
@@ -115,9 +49,6 @@ namespace MediumClass.NewComponents
 				return this.m_SelectSpells;
 			}
 		}
-
-		// Token: 0x17001CF7 RID: 7415
-		// (get) Token: 0x0600BDC8 RID: 48584 RVA: 0x00317B35 File Offset: 0x00315D35
 		public ReferenceArrayProxy<BlueprintAbility, BlueprintAbilityReference> MemorizeSpells
 		{
 			get
@@ -125,9 +56,6 @@ namespace MediumClass.NewComponents
 				return this.m_MemorizeSpells;
 			}
 		}
-
-		// Token: 0x17001CF8 RID: 7416
-		// (get) Token: 0x0600BDC9 RID: 48585 RVA: 0x00317B42 File Offset: 0x00315D42
 		public ReferenceArrayProxy<BlueprintFeature, BlueprintFeatureReference> Features
 		{
 			get
@@ -135,8 +63,6 @@ namespace MediumClass.NewComponents
 				return this.m_Features;
 			}
 		}
-
-		// Token: 0x0600BDCA RID: 48586 RVA: 0x00317B4F File Offset: 0x00315D4F
 		public override void OnActivate()
 		{
 			this.Level = Owner.Descriptor.Progression.GetClassLevel(BlueprintTool.Get<BlueprintCharacterClass>(Guids.Medium));
@@ -158,8 +84,16 @@ namespace MediumClass.NewComponents
 			//base.Owner.Progression.AddFakeClassLevels(this.Class, num2); //We don't want this. In fact, this is bad and breaks level-ups!
 			base.Data.Class = this.Class;
 			base.Data.Levels = num2 - num;
-			Game.Instance.AdvanceGameTime(new TimeSpan(1, 0, 0), false);
-
+			//Game.Instance.AdvanceGameTime(new TimeSpan(1, 0, 0), false); // I don't care about advancing time. It's a game.
+			UnitPartMedium medium = base.Owner.Ensure<UnitPartMedium>();
+			if(isSecondarySpirit)
+            {
+				medium.SecondarySpirit = this.m_Class;
+            }
+			else
+            {
+				medium.PrimarySpirit = this.m_Class;
+			}
 			foreach (BlueprintFeature blueprintFeature in this.Features)
 			{
 				EntityFact entityFact = base.Owner.AddFact(blueprintFeature, null, null);
@@ -226,20 +160,25 @@ namespace MediumClass.NewComponents
 					spellbook.Memorize(abilityData, null);
 				}
 			}
-			UnitPartMedium medium = base.Owner.Ensure<UnitPartMedium>();
+			
 			int SpiritPowerRank = base.Owner.Progression.Features.GetRank(BlueprintTool.Get<BlueprintFeature>(Guids.SpiritPower)) - medium.ForgonePowers;
-			if (this.Class == BlueprintTool.Get<BlueprintCharacterClass>(Guids.Archmage) && SpiritPowerRank > 0)
+			if (this.Class == BlueprintTool.Get<BlueprintCharacterClass>(Guids.Archmage) && SpiritPowerRank > 0 && !isSecondarySpirit)
             {
 				base.Owner.Progression.Features.RemoveFact(BlueprintTool.Get<BlueprintFeature>(Guids.MediumSpellcasterFeatProhibitArchmage));
 			}
-			else if (this.Class == BlueprintTool.Get<BlueprintCharacterClass>(Guids.Hierophant) && SpiritPowerRank > 0)
+			else if (this.Class == BlueprintTool.Get<BlueprintCharacterClass>(Guids.Hierophant) && SpiritPowerRank > 0 && !isSecondarySpirit)
 			{
 				base.Owner.Progression.Features.RemoveFact(BlueprintTool.Get<BlueprintFeature>(Guids.MediumSpellcasterFeatProhibitHierophant));
 			}
-			if(base.Owner.Progression.Features.HasFact(BlueprintTool.Get<BlueprintFeature>(Guids.MediumSpiritMastery)) && medium.FreeSurgeAmount == 0)
+			if(base.Owner.Progression.Features.HasFact(BlueprintTool.Get<BlueprintFeature>(Guids.MediumSpiritMastery)) && medium.FreeSurgeAmount == 0 && !isSecondarySpirit)
             {
 				medium.FreeSurgeAmount += 2;
             }
+
+			foreach (UnitEntityData unitEntityData in Game.Instance.Player.ActiveCompanions)
+            {
+				unitEntityData.AddFact(medium.Spirits[medium.PrimarySpirit].SpiritSeanceBoon.Get());
+			}
 		}
 
 		// Token: 0x0600BDCD RID: 48589 RVA: 0x00317EDC File Offset: 0x003160DC
@@ -290,30 +229,36 @@ namespace MediumClass.NewComponents
 					BlueprintFeature blueprintFeature = blueprintFeatureBase as BlueprintFeature;
 					if (blueprintFeature == null || blueprintFeature.MeetsPrerequisites(null, base.Owner, null, true))
 					{
-						if (SpiritLesserPower.Get() == blueprintFeature)
+						if(!isSecondarySpirit)
                         {
-							if (SpiritPowerRank == 0) { continue; }
+							if (medium.Spirits[medium.PrimarySpirit].SpiritLesserPower.Get() == blueprintFeature)
+							{
+								if (SpiritPowerRank == 0) { continue; }
+							}
+							else if (medium.Spirits[medium.PrimarySpirit].SpiritIntermediatePower.Get() == blueprintFeature)
+							{
+								if (SpiritPowerRank <= 1) { continue; }
+							}
+							else if (medium.Spirits[medium.PrimarySpirit].SpiritIntermediatePowerMove.Get() == blueprintFeature)
+							{
+								if (SpiritPowerRank <= 1) { continue; }
+							}
+							else if (medium.Spirits[medium.PrimarySpirit].SpiritIntermediatePowerSwift.Get() == blueprintFeature)
+							{
+								if (SpiritPowerRank <= 1) { continue; }
+							}
+							else if (medium.Spirits[medium.PrimarySpirit].SpiritGreaterPower.Get() == blueprintFeature)
+							{
+								if (SpiritPowerRank <= 2) { continue; }
+							}
+							else if (medium.Spirits[medium.PrimarySpirit].SpiritSupremePower.Get() == blueprintFeature)
+							{
+								if (SpiritPowerRank <= 3) { continue; }
+							}
 						}
-						else if (SpiritIntermediatePower.Get() == blueprintFeature)
-                        {
-							if (SpiritPowerRank <= 1) { continue; }
-						}
-						else if (SpiritIntermediatePowerMove.Get() == blueprintFeature)
-						{
-							if (SpiritPowerRank <= 1) { continue; }
-						}
-						else if (SpiritIntermediatePowerSwift.Get() == blueprintFeature)
-						{
-							if (SpiritPowerRank <= 1) { continue; }
-						}
-						else if (SpiritGreaterPower.Get() == blueprintFeature)
-                        {
-							if (SpiritPowerRank <= 2) { continue; }
-						}	
-						else if (SpiritSupremePower.Get() == blueprintFeature)
-                        {
-							if (SpiritPowerRank <= 3) { continue; }
-						}
+						if(isSecondarySpirit && medium.Spirits[medium.SecondarySpirit].SpiritLesserPower.Get() == blueprintFeature) {
+							continue;
+                        }
 						EntityFact entityFact = base.Owner.AddFact(blueprintFeatureBase, null, null);
 						base.Data.Features.Add(entityFact.UniqueId);
 					}
@@ -337,36 +282,32 @@ namespace MediumClass.NewComponents
 			{
 				base.Owner.Facts.Remove(base.Owner.Facts.FindById(text2), true);
 			}
-			
+
 			//TODO: This is bad. Please. This is a hack job that isn't even a hack job. Clean up later.
-			List<Buff> list = base.Owner.Buffs.Enumerable.ToTempList<Buff>();
-			foreach (Buff buff in list)
+			if (!isSecondarySpirit)
 			{
-				if (buff.Blueprint.Name.Contains("Trickster's Edge")){
-					Logger.Log("It contained Trickster's Edge.");
-					base.Owner.Buffs.RemoveFact(buff);
-				}
-				if (buff.Blueprint.Name.Contains("Seance Boon"))
+				List<Buff> list = base.Owner.Buffs.Enumerable.ToTempList<Buff>();
+				foreach (Buff buff in list)
 				{
-					Logger.Log("It contained Seance Boon");
-					base.Owner.Buffs.RemoveFact(buff);
+					if (buff.Blueprint.Name.Contains("Trickster's Edge")){
+						base.Owner.Buffs.RemoveFact(buff);
+					}
+					if (buff.Blueprint.Name.Contains("Seance Boon"))
+					{
+						base.Owner.Buffs.RemoveFact(buff);
+					}
 				}
-			}
 
-
-			// No one else around will have the medium class, so I'm going to brute force it.
 			UnitEntityData medium = base.Owner;
-			foreach (UnitEntityData unitEntityData in GameHelper.GetTargetsAround(base.Owner.Position, FeetExtension.Feet(1000), false, true))
-			{
-				unitEntityData.RemoveFact(ArchmageSeance);
-				unitEntityData.RemoveFact(ChampionSeance);
-				unitEntityData.RemoveFact(GuardianSeance);
-				unitEntityData.RemoveFact(HierophantSeance);
-				unitEntityData.RemoveFact(MarshalSeance);
-				unitEntityData.RemoveFact(TricksterSeance);
+			UnitPartMedium unitPartMedium = base.Owner.Ensure<UnitPartMedium>();
+			
+				foreach (UnitEntityData unitEntityData in Game.Instance.Player.ActiveCompanions)
+				{
+					unitEntityData.RemoveFact(unitPartMedium.Spirits[unitPartMedium.PrimarySpirit].SpiritSeanceBoon);
+				}
+				base.Owner.Progression.Features.AddFact(BlueprintTool.Get<BlueprintFeature>(Guids.MediumSpellcasterFeatProhibitArchmage), Context);
+				base.Owner.Progression.Features.AddFact(BlueprintTool.Get<BlueprintFeature>(Guids.MediumSpellcasterFeatProhibitHierophant), Context);
 			}
-			base.Owner.Progression.Features.AddFact(BlueprintTool.Get<BlueprintFeature>(Guids.MediumSpellcasterFeatProhibitArchmage), Context);
-			base.Owner.Progression.Features.AddFact(BlueprintTool.Get<BlueprintFeature>(Guids.MediumSpellcasterFeatProhibitHierophant), Context);
 			base.ClearData();
 		}
 
@@ -379,12 +320,7 @@ namespace MediumClass.NewComponents
 		[ValidateNotNull]
 		public BlueprintCharacterClassReference m_Class;
 
-		public BlueprintFeatureReference SpiritLesserPower = new BlueprintFeatureReference();
-		public BlueprintFeatureReference SpiritIntermediatePower = new BlueprintFeatureReference();
-		public BlueprintFeatureReference SpiritIntermediatePowerMove = new BlueprintFeatureReference();
-		public BlueprintFeatureReference SpiritIntermediatePowerSwift = new BlueprintFeatureReference();
-		public BlueprintFeatureReference SpiritGreaterPower = new BlueprintFeatureReference();
-		public BlueprintFeatureReference SpiritSupremePower = new BlueprintFeatureReference();
+		public bool isSecondarySpirit = false;
 
 		// Token: 0x0400802E RID: 32814
 		[SerializeField]

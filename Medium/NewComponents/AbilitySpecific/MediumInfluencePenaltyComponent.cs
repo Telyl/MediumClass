@@ -30,21 +30,37 @@ namespace MediumClass.Medium.NewComponents.AbilitySpecific
             UnitPartMedium unitPartMedium = base.Context.MaybeCaster.Get<UnitPartMedium>();
             if (unitPartMedium == null) { return; }
 
-            Penalties = unitPartMedium.Spirit.SpiritPenalty.Stats;
-            SpiritBonus = base.Context.MaybeCaster.Progression.Features.GetRank(unitPartMedium.Spirit.SpiritBonusFeature);
+            if(isSecondaryCheck)
+            {
+                if(!unitPartMedium.Spirits.ContainsKey(unitPartMedium.SecondarySpirit)) { return; }
+                Penalties = unitPartMedium.Spirits[unitPartMedium.SecondarySpirit].SpiritPenalty.Stats;
+                SpiritBonus = base.Context.MaybeCaster.Progression.Features.GetRank(unitPartMedium.Spirits[unitPartMedium.SecondarySpirit].SpiritBonusFeature);
+                if (unitPartMedium.SecondarySpirit.Get() == BlueprintTool.Get<BlueprintCharacterClass>(Guids.Marshal))
+                {
+                    fightDefensively = true;
+                    base.Context.MainTarget.Unit.Buffs.AddBuff(BuffRefs.FightDefensivelyBuff.Reference.Get(), base.Context, new TimeSpan(24, 0, 0));
+                }
+            }
+            else
+            {
+                if (!unitPartMedium.Spirits.ContainsKey(unitPartMedium.PrimarySpirit)) { return; }
+                Penalties = unitPartMedium.Spirits[unitPartMedium.PrimarySpirit].SpiritPenalty.Stats;
+                SpiritBonus = base.Context.MaybeCaster.Progression.Features.GetRank(unitPartMedium.Spirits[unitPartMedium.PrimarySpirit].SpiritBonusFeature);
+                if (unitPartMedium.PrimarySpirit.Get() == BlueprintTool.Get<BlueprintCharacterClass>(Guids.Marshal))
+                {
+                    fightDefensively = true;
+                    base.Context.MainTarget.Unit.Buffs.AddBuff(BuffRefs.FightDefensivelyBuff.Reference.Get(), base.Context, new TimeSpan(24, 0, 0));
+                }
+            }
+            
 
-            //base.Context.MainTarget.Unit.Descriptor.Stats.GetStat(StatType.Initiative).AddModifier((-2), base.Runtime, ModifierDescriptor.Penalty);
-            //base.Context.MainTarget.Unit.Descriptor.Stats.GetStat(StatType.SaveWill).AddModifier((2), base.Runtime, ModifierDescriptor.UntypedStackable);
+            base.Context.MainTarget.Unit.Descriptor.Stats.GetStat(StatType.Initiative).AddModifier((-2), base.Runtime, ModifierDescriptor.Penalty);
+            base.Context.MainTarget.Unit.Descriptor.Stats.GetStat(StatType.SaveWill).AddModifier((2), base.Runtime, ModifierDescriptor.UntypedStackable);
 
             foreach (StatType statType in Penalties)
             {
                 base.Context.MainTarget.Unit.Descriptor.Stats.GetStat(statType).AddModifier((SpiritBonus * -1), base.Runtime, ModifierDescriptor.Penalty);
-            }
-            if(unitPartMedium.Spirit.SpiritClass.Get() == BlueprintTool.Get<BlueprintCharacterClass>(Guids.Marshal))
-            {
-                fightDefensively = true;
-                base.Context.MainTarget.Unit.Buffs.AddBuff(BuffRefs.FightDefensivelyBuff.Reference.Get(), base.Context, new TimeSpan(24, 0, 0));
-            }
+            }    
         }
 
         public override void OnTurnOff()
@@ -57,12 +73,13 @@ namespace MediumClass.Medium.NewComponents.AbilitySpecific
             {
                 base.Owner.Buffs.RemoveFact(BuffRefs.FightDefensivelyBuff.Reference.Get());
             }
-            //base.Context.MainTarget.Unit.Descriptor.Stats.GetStat(StatType.Initiative).RemoveModifiersFrom( base.Runtime);
-            //base.Context.MainTarget.Unit.Descriptor.Stats.GetStat(StatType.SaveWill).RemoveModifiersFrom(base.Runtime);
+            base.Context.MainTarget.Unit.Descriptor.Stats.GetStat(StatType.Initiative).RemoveModifiersFrom( base.Runtime);
+            base.Context.MainTarget.Unit.Descriptor.Stats.GetStat(StatType.SaveWill).RemoveModifiersFrom(base.Runtime);
         }
 
         private StatType[] Penalties;
         private int SpiritBonus = 0;
         private bool fightDefensively = false;
+        public bool isSecondaryCheck = false;
     }
 }

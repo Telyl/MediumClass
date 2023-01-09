@@ -30,21 +30,21 @@ namespace MediumClass.Medium.NewComponents.AbilitySpecific
             UnitPartMedium unitPartMedium = base.Context.MaybeCaster.Get<UnitPartMedium>();
             if(unitPartMedium == null) { return; }
 
-            Stats = unitPartMedium.Spirit.SpiritBonus.Stats;
-            Concentration = unitPartMedium.Spirit.SpiritBonus.Concentration;
+            Stats = unitPartMedium.Spirits[unitPartMedium.PrimarySpirit].SpiritBonus.Stats;
+            Concentration = unitPartMedium.Spirits[unitPartMedium.PrimarySpirit].SpiritBonus.Concentration;
             CharacterLevel = base.Context.MaybeCaster.Progression.GetClassLevel(BlueprintTool.Get<BlueprintCharacterClass>(Guids.Medium));
             MarshalBonus = 0;
 
-            if(unitPartMedium.Spirit.SpiritClass.Get() == BlueprintTool.Get<BlueprintCharacterClass>(Guids.Marshal))
+            if(unitPartMedium.PrimarySpirit.Get() == BlueprintTool.Get<BlueprintCharacterClass>(Guids.Marshal))
             {
                 if (base.Context.SourceAbility != BlueprintTool.Get<BlueprintAbility>(Guids.MarshalLegendaryMarshalAbility))
-                    MarshalBonus = base.Owner.Progression.Features.GetRank(unitPartMedium.Spirit.SpiritBonusFeature.Get());
+                    MarshalBonus = base.Owner.Progression.Features.GetRank(unitPartMedium.Spirits[unitPartMedium.PrimarySpirit].SpiritBonusFeature.Get());
             }
             foreach (StatType statType in Stats)
                 base.Context.MainTarget.Unit.Descriptor.Stats.GetStat(statType).AddModifier((GetBonus() + MarshalBonus), base.Runtime, ModifierDescriptor.UntypedStackable);
             if(unitPartMedium.FreeSurgeAmount > 0)
             {
-                var resource = base.Owner.Resources.GetResource(unitPartMedium.Spirit.InfluenceResource.Get());
+                var resource = base.Owner.Resources.GetResource(BlueprintTool.Get<BlueprintAbilityResource>(Guids.MediumInfluenceResource));
                 resource.Amount += 1;
                 unitPartMedium.FreeSurgeAmount -= 1;
             }
