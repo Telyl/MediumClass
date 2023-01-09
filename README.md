@@ -5,6 +5,7 @@ Additional features for Pathfinder: Wrath of the Righteous
 * Some Icons
 * Medium
 	* [Taboo - Stretch Goal](https://www.d20pfsrd.com/alternative-rule-systems/occult-adventures/occult-classes/Medium/#TOC-Taboo-Ex-)
+	* Astral Beacon
 * Archmage
 	* COMPLETE - Legendary Archmage (Homebrew)
 * Champion

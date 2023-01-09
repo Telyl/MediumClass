@@ -157,11 +157,30 @@
   {
     "Key": "WeakerSpiritChannel.Name",
     "ProcessTemplates": false,
-    "enGB": "Channel Weaker Spirit"
+    "enGB": "Forego Power(s)"
   },
-
+  {
+    "Key": "WeakerSpiritChannel1.Name",
+    "ProcessTemplates": false,
+    "enGB": "Forego One Power"
+  },
   {
     "Key": "WeakerSpiritChannel.Description",
-    "enGB": "A description goes here!"
+    "enGB": "During his seance, the medium can choose to channel a weaker spirit to gain its help without incurring as much of its influence. If he does so, he can forgo any number of spirit powers, starting with his most powerful spirit power. For each spirit power he forgoes, the medium can use his spirit surge ability twice without incurring influence. If the medium has the Spirit Mastery class feature this value increases to four additional times per power he forgoes."
+  },
+  {
+    "Key": "WeakerSpiritChannel2.Name",
+    "ProcessTemplates": false,
+    "enGB": "Forego Two Powers"
+  },
+  {
+    "Key": "WeakerSpiritChannel3.Name",
+    "ProcessTemplates": false,
+    "enGB": "Forego Three Powers"
+  },
+  {
+    "Key": "WeakerSpiritChannel4.Name",
+    "ProcessTemplates": false,
+    "enGB": "Forego Four Powers"
   }
 ]

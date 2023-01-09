@@ -32,6 +32,11 @@ namespace MediumClass.Medium
         private static readonly string FeatName = "WeakerSpiritChannel";
         private static readonly string DisplayName = "WeakerSpiritChannel.Name";
         private static readonly string Description = "WeakerSpiritChannel.Description";
+        private static readonly string DisplayName1 = "WeakerSpiritChannel1.Name";
+        private static readonly string DisplayName2 = "WeakerSpiritChannel2.Name";
+        private static readonly string DisplayName3 = "WeakerSpiritChannel3.Name";
+        private static readonly string DisplayName4 = "WeakerSpiritChannel4.Name";
+
         private static readonly ModLogger Logger = Logging.GetLogger(nameof(WeakerSpiritChannel));
 
         public static void ConfigureEnabled()
@@ -43,20 +48,11 @@ namespace MediumClass.Medium
                 .SetDescription(Description)
                 .SetIcon(AbilityRefs.SpiderSwarmDamageAbility.Reference.Get().Icon)
                 .AddComponent<MediumWeakerSpiritComponent>()
-                .Configure();
-
-            BlueprintAbility WeakerSpiritAbilitiesNone = AbilityConfigurator.New(FeatName + "NoneAbility", Guids.WeakerSpiritChannelNoneAbility)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .SetIcon(AbilityRefs.SpikedPit.Reference.Get().Icon)
-                .AddComponent<AbilityRequirementHasNoSpirit>()
-                .AddAbilityEffectRunAction(
-                    actions: ActionsBuilder.New()
-                        .RemoveBuff(buff))
+                .SetFlags(BlueprintBuff.Flags.RemoveOnRest)
                 .Configure();
 
             BlueprintAbility WeakerSpiritAbilitiesSupreme = AbilityConfigurator.New(FeatName + "FourAbility", Guids.WeakerSpiritChannelFourAbility)
-                .SetDisplayName(DisplayName)
+                .SetDisplayName(DisplayName4)
                 .SetDescription(Description)
                 .SetIcon(AbilityRefs.SpiderSwarmDamageAbility.Reference.Get().Icon)
                 .AddComponent<AbilityRequirementSpiritPowerRank>()
@@ -67,7 +63,7 @@ namespace MediumClass.Medium
                 .Configure();
 
             BlueprintAbility WeakerSpiritAbilitiesGreater = AbilityConfigurator.New(FeatName + "ThreeAbility", Guids.WeakerSpiritChannelThreeAbility)
-                .SetDisplayName(DisplayName)
+                .SetDisplayName(DisplayName3)
                 .SetDescription(Description)
                 .AddComponent<AbilityRequirementSpiritPowerRank>()
                 .AddComponent<AbilityRequirementHasNoSpirit>()
@@ -78,7 +74,7 @@ namespace MediumClass.Medium
                 .Configure();
 
             BlueprintAbility WeakerSpiritAbilitiesIntermediate = AbilityConfigurator.New(FeatName + "TwoAbility", Guids.WeakerSpiritChannelTwoAbility)
-                .SetDisplayName(DisplayName)
+                .SetDisplayName(DisplayName2)
                 .SetDescription(Description)
                 .SetIcon(AbilityRefs.SpiderSwarmDamageAbility.Reference.Get().Icon)
                 .AddComponent<AbilityRequirementSpiritPowerRank>()
@@ -89,7 +85,7 @@ namespace MediumClass.Medium
                 .Configure();
 
             BlueprintAbility WeakerSpiritAbilitiesLesser = AbilityConfigurator.New(FeatName + "OneAbility", Guids.WeakerSpiritChannelOneAbility)
-                .SetDisplayName(DisplayName)
+                .SetDisplayName(DisplayName1)
                 .SetDescription(Description)
                 .SetIcon(AbilityRefs.SpiderSwarmDamageAbility.Reference.Get().Icon)
                 .AddComponent<AbilityRequirementSpiritPowerRank>()
@@ -104,7 +100,7 @@ namespace MediumClass.Medium
                 .SetDescription(Description)
                 .SetIcon(AbilityRefs.SpiderSwarmDamageAbility.Reference.Get().Icon)
                 .AddComponent<AbilityRequirementHasNoSpirit>()
-                .AddAbilityVariants(variants: new() { WeakerSpiritAbilitiesLesser, WeakerSpiritAbilitiesIntermediate, WeakerSpiritAbilitiesGreater, WeakerSpiritAbilitiesSupreme, WeakerSpiritAbilitiesNone })
+                .AddAbilityVariants(variants: new() { WeakerSpiritAbilitiesLesser, WeakerSpiritAbilitiesIntermediate, WeakerSpiritAbilitiesGreater, WeakerSpiritAbilitiesSupreme })
                 .Configure();
 
             FeatureConfigurator.New(FeatName, Guids.WeakerSpiritChannel)

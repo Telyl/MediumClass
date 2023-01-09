@@ -84,6 +84,5 @@ namespace MediumClass.Medium.NewComponents.AbilitySpecific
         public Random rnd = new Random();
         public int CharacterLevel = 0;
         public int MarshalBonus = 0;
-        private int FreeSurges = 0;
     }
 }

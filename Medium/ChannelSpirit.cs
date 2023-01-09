@@ -2,6 +2,7 @@
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Blueprints.References;
 using BlueprintCore.Utils;
@@ -11,6 +12,7 @@ using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.ActivatableAbilities;
+using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.UnitLogic.Mechanics;
 using MediumClass.Medium.NewActions;
@@ -23,6 +25,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TabletopTweaks.Core.NewComponents;
 using static UnityModManagerNet.UnityModManager.ModEntry;
 
 namespace MediumClass.Medium
@@ -88,15 +91,47 @@ namespace MediumClass.Medium
                     c.SpiritGreaterPower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ArchmageGreater);
                     c.SpiritSupremePower = new BlueprintFeatureReference();
                 })
+                .SetFlags(BlueprintBuff.Flags.RemoveOnRest)
                 .Configure();
-            var a = ActivatableAbilityConfigurator.New(FeatName + "AbilityArchmage", Guids.MediumChannelSpiritAbilityArchmage)
+            var a = AbilityConfigurator.New(FeatName + "AbilityArchmage", Guids.MediumChannelSpiritAbilityArchmage)
                 .SetDisplayName(ArchmageName)
                 .SetDescription(ArchmageDescription)
                 .SetIcon(ArchmageIconName)
-                .SetBuff(ab)
-                .SetGroup((ActivatableAbilityGroup)239480)
-                .AddActivatableAbilityResourceLogic(requiredResource: BlueprintTool.GetRef<BlueprintAbilityResourceReference>(Guids.MediumInfluenceResource), spendType: Kingmaker.UnitLogic.ActivatableAbilities.ActivatableAbilityResourceLogic.ResourceSpendType.TurnOn)
-                .SetDeactivateImmediately(true)
+                .AddComponent(new AbilityRequirementHasBuff()
+                {
+                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityArchmageBuff),
+                    Not = true
+                })
+                .AddComponent(new AbilityRequirementHasBuff()
+                {
+                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityTricksterBuff),
+                    Not = true
+                })
+                .AddComponent(new AbilityRequirementHasBuff()
+                {
+                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityChampionBuff),
+                    Not = true
+                })
+                .AddComponent(new AbilityRequirementHasBuff()
+                {
+                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityGuardianBuff),
+                    Not = true
+                })
+                .AddComponent(new AbilityRequirementHasBuff()
+                {
+                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityHierophantBuff),
+                    Not = true
+                })
+                .AddComponent(new AbilityRequirementHasBuff()
+                {
+                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityMarshalBuff),
+                    Not = true
+                })
+                .AddAbilityEffectRunAction(
+                    actions: ActionsBuilder.New()
+                        .Add<ContextActionSpiritInfluence>()
+                        .ApplyBuffPermanent(ab, asChild: false, isFromSpell: false, isNotDispelable: true))
+                .AddAbilityResourceLogic(requiredResource: BlueprintTool.GetRef<BlueprintAbilityResourceReference>(Guids.MediumInfluenceResource), amount: 1, isSpendResource: true)
                 .Configure();
             #endregion
             #region Champion
@@ -122,16 +157,47 @@ namespace MediumClass.Medium
                     c.Stats = new StatType[] { StatType.SkillAthletics, StatType.SaveFortitude, StatType.AdditionalDamage, StatType.AdditionalAttackBonus };
                     c.Penalties = new StatType[] { StatType.SkillKnowledgeArcana, StatType.SkillKnowledgeWorld, StatType.BonusCasterLevel };
                 })
+                .SetFlags(BlueprintBuff.Flags.RemoveOnRest)
                 .Configure();
-            var c = ActivatableAbilityConfigurator.New(FeatName + "AbilityChampion", Guids.MediumChannelSpiritAbilityChampion)
+            var c = AbilityConfigurator.New(FeatName + "AbilityChampion", Guids.MediumChannelSpiritAbilityChampion)
                 .SetDisplayName(ChampionName)
                 .SetDescription(ChampionDescription)
                 .SetIcon(ChampionIconName)
-                //.SetHiddenInUI(true)
-                .SetBuff(cb)
-                .SetGroup((ActivatableAbilityGroup)239480)
-                .AddActivatableAbilityResourceLogic(requiredResource: BlueprintTool.GetRef<BlueprintAbilityResourceReference>(Guids.MediumInfluenceResource), spendType: Kingmaker.UnitLogic.ActivatableAbilities.ActivatableAbilityResourceLogic.ResourceSpendType.TurnOn)
-                .SetDeactivateImmediately(true)
+                .AddComponent(new AbilityRequirementHasBuff()
+                {
+                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityArchmageBuff),
+                    Not = true
+                })
+                .AddComponent(new AbilityRequirementHasBuff()
+                {
+                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityChampionBuff),
+                    Not = true
+                })
+                .AddComponent(new AbilityRequirementHasBuff()
+                {
+                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityTricksterBuff),
+                    Not = true
+                })
+                .AddComponent(new AbilityRequirementHasBuff()
+                {
+                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityGuardianBuff),
+                    Not = true
+                })
+                .AddComponent(new AbilityRequirementHasBuff()
+                {
+                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityHierophantBuff),
+                    Not = true
+                })
+                .AddComponent(new AbilityRequirementHasBuff()
+                {
+                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityMarshalBuff),
+                    Not = true
+                })
+                .AddAbilityEffectRunAction(
+                    actions: ActionsBuilder.New()
+                        .Add<ContextActionSpiritInfluence>()
+                        .ApplyBuffPermanent(cb, asChild: false, isFromSpell: false, isNotDispelable: true))
+                .AddAbilityResourceLogic(requiredResource: BlueprintTool.GetRef<BlueprintAbilityResourceReference>(Guids.MediumInfluenceResource), amount: 1, isSpendResource: true)
                 .Configure();
             #endregion
             #region Guardian
@@ -157,16 +223,47 @@ namespace MediumClass.Medium
                     c.Stats = new StatType[] { StatType.AC, StatType.SaveReflex, StatType.SaveFortitude };
                     c.Penalties = new StatType[] { StatType.AdditionalDamage };
                 })
+                .SetFlags(BlueprintBuff.Flags.RemoveOnRest)
                 .Configure();
-            var g = ActivatableAbilityConfigurator.New(FeatName + "AbilityGuardian", Guids.MediumChannelSpiritAbilityGuardian)
+            var g = AbilityConfigurator.New(FeatName + "AbilityGuardian", Guids.MediumChannelSpiritAbilityGuardian)
                 .SetDisplayName(GuardianName)
                 .SetDescription(GuardianDescription)
                 .SetIcon(GuardianIconName)
-                //.SetHiddenInUI(true)
-                .SetBuff(gb)
-                .SetGroup((ActivatableAbilityGroup)239480)
-                .AddActivatableAbilityResourceLogic(requiredResource: BlueprintTool.GetRef<BlueprintAbilityResourceReference>(Guids.MediumInfluenceResource), spendType: Kingmaker.UnitLogic.ActivatableAbilities.ActivatableAbilityResourceLogic.ResourceSpendType.TurnOn)
-                .SetDeactivateImmediately(true)
+                .AddComponent(new AbilityRequirementHasBuff()
+                {
+                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityArchmageBuff),
+                    Not = true
+                })
+                .AddComponent(new AbilityRequirementHasBuff()
+                {
+                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityChampionBuff),
+                    Not = true
+                })
+                .AddComponent(new AbilityRequirementHasBuff()
+                {
+                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityGuardianBuff),
+                    Not = true
+                })
+                .AddComponent(new AbilityRequirementHasBuff()
+                {
+                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityTricksterBuff),
+                    Not = true
+                })
+                .AddComponent(new AbilityRequirementHasBuff()
+                {
+                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityHierophantBuff),
+                    Not = true
+                })
+                .AddComponent(new AbilityRequirementHasBuff()
+                {
+                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityMarshalBuff),
+                    Not = true
+                })
+                .AddAbilityEffectRunAction(
+                    actions: ActionsBuilder.New()
+                        .Add<ContextActionSpiritInfluence>()
+                        .ApplyBuffPermanent(gb, asChild: false, isFromSpell: false, isNotDispelable: true))
+                .AddAbilityResourceLogic(requiredResource: BlueprintTool.GetRef<BlueprintAbilityResourceReference>(Guids.MediumInfluenceResource), amount: 1, isSpendResource: true)
                 .Configure();
             #endregion
             #region Hierophant
@@ -192,15 +289,47 @@ namespace MediumClass.Medium
                     c.Stats = new StatType[] { StatType.SkillPerception, StatType.SkillLoreNature, StatType.SkillLoreReligion, StatType.SaveWill };
                     c.Penalties = new StatType[] { StatType.SkillUseMagicDevice, StatType.SkillPersuasion };
                 })
+                .SetFlags(BlueprintBuff.Flags.RemoveOnRest)
                 .Configure();
-            var h = ActivatableAbilityConfigurator.New(FeatName + "AbilityHierophant", Guids.MediumChannelSpiritAbilityHierophant)
+            var h = AbilityConfigurator.New(FeatName + "AbilityHierophant", Guids.MediumChannelSpiritAbilityHierophant)
                 .SetDisplayName(HierophantName)
                 .SetDescription(HierophantDescription)
                 .SetIcon(HierophantIconName)
-                .SetBuff(hb)
-                .SetGroup((ActivatableAbilityGroup)239480)
-                .AddActivatableAbilityResourceLogic(requiredResource: BlueprintTool.GetRef<BlueprintAbilityResourceReference>(Guids.MediumInfluenceResource), spendType: Kingmaker.UnitLogic.ActivatableAbilities.ActivatableAbilityResourceLogic.ResourceSpendType.TurnOn)
-                .SetDeactivateImmediately(true)
+                .AddComponent(new AbilityRequirementHasBuff()
+                {
+                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityArchmageBuff),
+                    Not = true
+                })
+                .AddComponent(new AbilityRequirementHasBuff()
+                {
+                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityChampionBuff),
+                    Not = true
+                })
+                .AddComponent(new AbilityRequirementHasBuff()
+                {
+                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityGuardianBuff),
+                    Not = true
+                })
+                .AddComponent(new AbilityRequirementHasBuff()
+                {
+                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityHierophantBuff),
+                    Not = true
+                })
+                .AddComponent(new AbilityRequirementHasBuff()
+                {
+                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityTricksterBuff),
+                    Not = true
+                })
+                .AddComponent(new AbilityRequirementHasBuff()
+                {
+                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityMarshalBuff),
+                    Not = true
+                })
+                .AddAbilityEffectRunAction(
+                    actions: ActionsBuilder.New()
+                        .Add<ContextActionSpiritInfluence>()
+                        .ApplyBuffPermanent(hb, asChild: false, isFromSpell: false, isNotDispelable: true))
+                .AddAbilityResourceLogic(requiredResource: BlueprintTool.GetRef<BlueprintAbilityResourceReference>(Guids.MediumInfluenceResource), amount: 1, isSpendResource: true)
                 .Configure();
             #endregion
             #region Marshal
@@ -231,16 +360,48 @@ namespace MediumClass.Medium
                     c.Penalties = new StatType[] { StatType.SkillPerception, StatType.SkillLoreNature, StatType.SkillLoreReligion , StatType.SaveWill };
                     c.Concentration = true;
                 })
+                .SetFlags(BlueprintBuff.Flags.RemoveOnRest)
                 .Configure();
 
-            var m = ActivatableAbilityConfigurator.New(FeatName + "AbilityMarshal", Guids.MediumChannelSpiritAbilityMarshal)
+            var m = AbilityConfigurator.New(FeatName + "AbilityMarshal", Guids.MediumChannelSpiritAbilityMarshal)
                 .SetDisplayName(MarshalName)
                 .SetDescription(MarshalDescription)
                 .SetIcon(MarshalIconName)
-                .SetBuff(mb)
-                .SetGroup((ActivatableAbilityGroup)239480)
-                .AddActivatableAbilityResourceLogic(requiredResource: BlueprintTool.GetRef<BlueprintAbilityResourceReference>(Guids.MediumInfluenceResource), spendType: Kingmaker.UnitLogic.ActivatableAbilities.ActivatableAbilityResourceLogic.ResourceSpendType.TurnOn)
-                .SetDeactivateImmediately(true)
+                .AddComponent(new AbilityRequirementHasBuff()
+                {
+                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityArchmageBuff),
+                    Not = true
+                })
+                .AddComponent(new AbilityRequirementHasBuff()
+                {
+                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityChampionBuff),
+                    Not = true
+                })
+                .AddComponent(new AbilityRequirementHasBuff()
+                {
+                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityGuardianBuff),
+                    Not = true
+                })
+                .AddComponent(new AbilityRequirementHasBuff()
+                {
+                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityMarshalBuff),
+                    Not = true
+                })
+                .AddComponent(new AbilityRequirementHasBuff()
+                {
+                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityHierophantBuff),
+                    Not = true
+                })
+                .AddComponent(new AbilityRequirementHasBuff()
+                {
+                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityTricksterBuff),
+                    Not = true
+                })
+                .AddAbilityEffectRunAction(
+                    actions: ActionsBuilder.New()
+                        .Add<ContextActionSpiritInfluence>()
+                        .ApplyBuffPermanent(mb, asChild: false, isFromSpell: false, isNotDispelable: true))
+                .AddAbilityResourceLogic(requiredResource: BlueprintTool.GetRef<BlueprintAbilityResourceReference>(Guids.MediumInfluenceResource), amount: 1, isSpendResource: true)
                 .Configure();
             #endregion
             #region Trickster
@@ -266,21 +427,53 @@ namespace MediumClass.Medium
                     c.Penalties = new StatType[] { StatType.AC, StatType.AdditionalCMB, StatType.AdditionalCMD };
                     c.Stats = new StatType[] { StatType.SkillAthletics, StatType.SkillKnowledgeArcana, StatType.SkillKnowledgeWorld, StatType.SkillLoreNature, StatType.SkillLoreReligion, StatType.SkillMobility, StatType.SkillPerception, StatType.SkillPersuasion, StatType.SkillStealth, StatType.SkillThievery, StatType.SkillUseMagicDevice, StatType.SaveReflex, StatType.Initiative };
                 })
+                .SetFlags(BlueprintBuff.Flags.RemoveOnRest)
                 .Configure(); 
             
-            var t = ActivatableAbilityConfigurator.New(FeatName + "AbilityTrickster", Guids.MediumChannelSpiritAbilityTrickster)
+            var t = AbilityConfigurator.New(FeatName + "AbilityTrickster", Guids.MediumChannelSpiritAbilityTrickster)
                 .SetDisplayName(TricksterName)
                 .SetDescription(TricksterDescription)
                 .SetIcon(TricksterIconName)
-                .SetBuff(tb)
-                .SetGroup((ActivatableAbilityGroup)239480)
-                .AddActivatableAbilityResourceLogic(requiredResource: BlueprintTool.GetRef<BlueprintAbilityResourceReference>(Guids.MediumInfluenceResource), spendType: Kingmaker.UnitLogic.ActivatableAbilities.ActivatableAbilityResourceLogic.ResourceSpendType.TurnOn)
-                .SetDeactivateImmediately(true)
+                .AddComponent(new AbilityRequirementHasBuff()
+                {
+                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityArchmageBuff),
+                    Not = true
+                })
+                .AddComponent(new AbilityRequirementHasBuff()
+                {
+                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityChampionBuff),
+                    Not = true
+                })
+                .AddComponent(new AbilityRequirementHasBuff()
+                {
+                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityGuardianBuff),
+                    Not = true
+                })
+                .AddComponent(new AbilityRequirementHasBuff()
+                {
+                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityHierophantBuff),
+                    Not = true
+                })
+                .AddComponent(new AbilityRequirementHasBuff()
+                {
+                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityMarshalBuff),
+                    Not = true
+                })
+                .AddComponent(new AbilityRequirementHasBuff()
+                {
+                    RequiredBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumChannelSpiritAbilityTricksterBuff),
+                    Not = true
+                })
+                .AddAbilityEffectRunAction(
+                    actions: ActionsBuilder.New()
+                        .Add<ContextActionSpiritInfluence>()
+                        .ApplyBuffPermanent(tb, asChild: false, isFromSpell: false, isNotDispelable: true))
+                .AddAbilityResourceLogic(requiredResource: BlueprintTool.GetRef<BlueprintAbilityResourceReference>(Guids.MediumInfluenceResource), amount: 1, isSpendResource: true)
                 .Configure();
             #endregion
 
             // If OwlCat ever makes this look nicer, I'll re-enable it, otherwise it's cleaner and more elegant and less clunky to just have them all show up.
-            /*var ability = ActivatableAbilityConfigurator.New(FeatName + "Ability", Guids.MediumChannelSpiritAbility)
+            /*var ability = AbilityConfigurator.New(FeatName + "Ability", Guids.MediumChannelSpiritAbility)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIcon(AbilityRefs.ShamanWanderingHexAbility.Reference.Get().Icon)

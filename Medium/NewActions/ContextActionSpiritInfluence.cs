@@ -31,11 +31,9 @@ namespace MediumClass.Medium.NewActions
                 return;
             }
             UnitPartMedium unitPartMedium = maybeCaster.Get<UnitPartMedium>();
-            Logger.Log($"RunAction ContextActionMediumInfluence");
             if(unitPartMedium != null)
             {
                 unitPartMedium.HandleInfluencePenalty();
-                Logger.Log("Just finished HandleInfluencePenalty");
             }
         }
     }

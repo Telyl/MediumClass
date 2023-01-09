@@ -205,6 +205,12 @@ namespace MediumClass.Utilities
         internal const string MediumInfluence = "b37c5612-7f17-453e-a8dc-fd61d9060281";
         internal const string MediumInfluenceDebuff = "7e8990eb-8ed1-4625-a695-8ded5b6e166c";
         internal const string MediumInfluenceResource = "8326af03-a110-4071-bce3-26b601c1c28d";
+        internal const string MediumInfluenceResourceArchmage = "0319b6d1-892d-436d-9fb7-2606e517385a";
+        internal const string MediumInfluenceResourceChampion = "5f541cd0-eb7d-4f9b-bc7d-d0485c51ad74";
+        internal const string MediumInfluenceResourceGuardian = "885d6a83-63dd-457c-97a6-e400ed1b8efa";
+        internal const string MediumInfluenceResourceHierophant = "da3df11f-1a47-4b77-a054-eb5eceed6cb6";
+        internal const string MediumInfluenceResourceMarshal = "2586ecdf-1d36-45db-900c-3a0740408822";
+        internal const string MediumInfluenceResourceTrickster = "a0a6c74c-66a2-4f15-a583-f4541a4bdd40";
         internal const string MediumPropitation = "a18d34f6-3f97-4c1a-b58c-6c62d099e7f2";
         internal const string MediumSpiritMastery = "7f43ca94-7b10-4660-8f38-09ae8b0e1773";
         internal const string MediumTranceOfThree = "5f6fc22c-018a-45ae-a334-0c4811968e45";
@@ -230,8 +236,16 @@ namespace MediumClass.Utilities
         internal const string WeakerSpiritChannelTwoAbility = "30e71e5c-b06d-40b3-97a6-69787d939ad2";
         internal const string WeakerSpiritChannelThreeAbility = "9b6a2313-f4aa-4fa2-9be5-dbefd4a3829e";
         internal const string WeakerSpiritChannelFourAbility = "a774129a-fffd-4610-94d4-f34f13fad159";
-        internal const string WeakerSpiritChannelNoneAbility = "81306526-b271-49be-8908-1a2556c7d970";
         internal const string WeakerSpiritChannelBuff = "2413ac21-7921-446e-9073-fac8b6de11bd";
+        internal const string AstralBeacon = "5835c65f-1774-41d9-a20b-e012f9fbb83d";
+        internal const string AstralBeaconAbility = "f4b6547b-eaf7-4eeb-a135-dc751c2304a9";
+        internal const string AstralBeaconAbilityArchmage = "ac2aedb1-bc69-473d-ab66-e9e2247d2645";
+        internal const string AstralBeaconAbilityChampion = "8579ebe9-f0eb-42fc-b634-e1b64b13d09d";
+        internal const string AstralBeaconAbilityGuardian = "2d71ac0d-b742-494f-90ed-8838047d3450";
+        internal const string AstralBeaconAbilityHierophant = "0cae2e1b-9aca-45ff-ae7e-59b6837dfa9c";
+        internal const string AstralBeaconAbilityMarshal = "7c31a885-271e-4e07-9584-2bfa28be1010";
+        internal const string AstralBeaconAbilityTrickster = "828f18b5-f402-4286-ab3f-70a4ad3cd6f4";
+        internal const string AstralBeaconBuff = "744affbb-fbac-4687-b6b8-56124828a0d7";
         #endregion
 
         internal static readonly (string guid, string displayName)[] Spirits =
