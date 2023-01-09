@@ -209,7 +209,9 @@ namespace MediumClass.Medium
                 {
                     c.m_Class = BlueprintTool.GetRef<BlueprintCharacterClassReference>(Guids.Marshal);
                     c.SpiritLesserPower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MarshalMarshalsOrders);
-                    c.SpiritIntermediatePower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MarshalInspiringCallStandard); //TODO
+                    c.SpiritIntermediatePower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MarshalInspiringCallStandard);
+                    c.SpiritIntermediatePowerMove = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MarshalInspiringCallMove);
+                    c.SpiritIntermediatePowerSwift = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MarshalInspiringCallSwift);
                     c.SpiritGreaterPower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MarshalDecisiveStrikeFeature);
                     c.SpiritSupremePower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MarshalLegendaryMarshal);
                 })
@@ -220,7 +222,9 @@ namespace MediumClass.Medium
                     c.MediumInfluence = BlueprintTool.GetRef<BlueprintAbilityResourceReference>(Guids.MediumInfluenceResource);
                     c.SpiritBonusFeature = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MarshalSpiritBonus);
                     c.SpiritLesserPower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MarshalMarshalsOrders); 
-                    c.SpiritIntermediatePower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MarshalInspiringCallStandard); //TODO
+                    c.SpiritIntermediatePower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MarshalInspiringCallStandard);
+                    c.SpiritIntermediatePowerMove = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MarshalInspiringCallMove);
+                    c.SpiritIntermediatePowerSwift = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MarshalInspiringCallSwift);
                     c.SpiritGreaterPower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MarshalDecisiveStrikeFeature); 
                     c.SpiritSupremePower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MarshalLegendaryMarshal); 
                     c.Stats = new StatType[] { StatType.AdditionalAttackBonus }.Concat(StatTypeHelper.Saves).Concat(StatTypeHelper.Skills).ToArray();
@@ -288,7 +292,6 @@ namespace MediumClass.Medium
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIcon(AbilityRefs.ShamanWanderingHexAbility.Reference.Get().Icon)
-                //.AddFacts(new() { ability })
                 .AddFacts(new() { a, c, g, h, m, t })
                 .Configure();
         }

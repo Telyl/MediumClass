@@ -32,7 +32,7 @@ namespace MediumClass.Medium.NewUnitParts
 		private static readonly ModLogger Logger = Logging.GetLogger(nameof(UnitPartMedium));
 		public void AddSpiritEntry(BlueprintCharacterClassReference spiritClass, BlueprintBuffReference spiritInfluencePenalty, BlueprintAbilityResourceReference influence, BlueprintFeatureReference feature,
 			EntityFact source, bool concentration, StatType[] stats, StatType[] penalty_stats, 
-			BlueprintFeatureReference LesserPower, BlueprintFeatureReference IntermediatePower, BlueprintFeatureReference GreaterPower, BlueprintFeatureReference SupremePower)
+			BlueprintFeatureReference LesserPower, BlueprintFeatureReference IntermediatePower, BlueprintFeatureReference GreaterPower, BlueprintFeatureReference SupremePower, BlueprintFeatureReference IntermediatePowerMove, BlueprintFeatureReference IntermediatePowerSwift)
         {
 			Logger.Log("Adding Spirit Entry");
 			SpiritBonuses = new SpiritStatEntry()
@@ -57,6 +57,8 @@ namespace MediumClass.Medium.NewUnitParts
 				SpiritPenalty = SpiritPenalties,
 				SpiritLesserPower = LesserPower,
 				SpiritIntermediatePower = IntermediatePower,
+				SpiritIntermediatePowerMove = IntermediatePowerMove,
+				SpiritIntermediatePowerSwift = IntermediatePowerSwift,
 				SpiritGreaterPower = GreaterPower,
 				SpiritSupremePower = SupremePower,
 				Source = source
@@ -148,6 +150,8 @@ namespace MediumClass.Medium.NewUnitParts
 			public BlueprintFeatureReference SpiritBonusFeature;
 			public BlueprintFeatureReference SpiritLesserPower;
 			public BlueprintFeatureReference SpiritIntermediatePower;
+			public BlueprintFeatureReference SpiritIntermediatePowerMove;
+			public BlueprintFeatureReference SpiritIntermediatePowerSwift;
 			public BlueprintFeatureReference SpiritGreaterPower;
 			public BlueprintFeatureReference SpiritSupremePower;
 			public SpiritStatEntry SpiritBonus;

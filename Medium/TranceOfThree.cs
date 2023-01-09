@@ -53,7 +53,7 @@ namespace MediumClass.Medium
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIcon(IconPrefix + ArchmageIconName)
-                //.AddFacts(new() { Guids.ArchmageIntermediate})
+                .AddFacts(new() { Guids.ArchmageIntermediate})
                 .Configure();
 
             BlueprintAbility archmageability = AbilityConfigurator.New(FeatName + "ArchmageAbility", Guids.MediumTranceOfThreeArchmageAbility)
@@ -134,7 +134,10 @@ namespace MediumClass.Medium
                 .SetDescription(Description)
                 .SetIcon(IconPrefix + MarshalIconName)
                 .AddFacts(new() { Guids.MarshalInspiringCallStandard })
-                //TODO: add something here that lets me add marshal spirit bonus!
+                .AddComponent<MediumTranceOfThreeComponent>(c =>
+                {
+                    c.BP = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MarshalSpiritBonus);
+                })
                 .Configure();
 
             BlueprintAbility marshalability = AbilityConfigurator.New(FeatName + "MarshalAbility", Guids.MediumTranceOfThreeMarshalAbility)
@@ -154,8 +157,10 @@ namespace MediumClass.Medium
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIcon(IconPrefix + TricksterIconName)
-                .AddFacts(new() { Guids.TricksterSurpriseStrike, Guids.TricksterSurpriseStrike, Guids.TricksterSurpriseStrike, Guids.TricksterSurpriseStrike, Guids.TricksterSurpriseStrike })
-                // TODO: Add something that adds enough trickster surprise strikes to character level...
+                .AddComponent<MediumTranceOfThreeComponent>(c =>
+                {
+                    c.BP = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.TricksterSurpriseStrike);
+                })
                 .Configure();
 
             BlueprintAbility tricksterability = AbilityConfigurator.New(FeatName + "TricksterAbility", Guids.MediumTranceOfThreeTricksterAbility)

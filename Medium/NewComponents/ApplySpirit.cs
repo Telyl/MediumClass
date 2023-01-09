@@ -228,11 +228,11 @@ namespace MediumClass.NewComponents
 			}
 			UnitPartMedium medium = base.Owner.Ensure<UnitPartMedium>();
 			int SpiritPowerRank = base.Owner.Progression.Features.GetRank(BlueprintTool.Get<BlueprintFeature>(Guids.SpiritPower)) - medium.ForgonePowers;
-			if (this.Class == BlueprintTool.Get<BlueprintCharacterClass>(Guids.Archmage) && SpiritPowerRank == 0)
+			if (this.Class == BlueprintTool.Get<BlueprintCharacterClass>(Guids.Archmage) && SpiritPowerRank > 0)
             {
 				base.Owner.Progression.Features.RemoveFact(BlueprintTool.Get<BlueprintFeature>(Guids.MediumSpellcasterFeatProhibitArchmage));
 			}
-			else if (this.Class == BlueprintTool.Get<BlueprintCharacterClass>(Guids.Hierophant) && SpiritPowerRank == 0)
+			else if (this.Class == BlueprintTool.Get<BlueprintCharacterClass>(Guids.Hierophant) && SpiritPowerRank > 0)
 			{
 				base.Owner.Progression.Features.RemoveFact(BlueprintTool.Get<BlueprintFeature>(Guids.MediumSpellcasterFeatProhibitHierophant));
 			}
@@ -296,6 +296,14 @@ namespace MediumClass.NewComponents
 						}
 						else if (SpiritIntermediatePower.Get() == blueprintFeature)
                         {
+							if (SpiritPowerRank <= 1) { continue; }
+						}
+						else if (SpiritIntermediatePowerMove.Get() == blueprintFeature)
+						{
+							if (SpiritPowerRank <= 1) { continue; }
+						}
+						else if (SpiritIntermediatePowerSwift.Get() == blueprintFeature)
+						{
 							if (SpiritPowerRank <= 1) { continue; }
 						}
 						else if (SpiritGreaterPower.Get() == blueprintFeature)
@@ -373,6 +381,8 @@ namespace MediumClass.NewComponents
 
 		public BlueprintFeatureReference SpiritLesserPower = new BlueprintFeatureReference();
 		public BlueprintFeatureReference SpiritIntermediatePower = new BlueprintFeatureReference();
+		public BlueprintFeatureReference SpiritIntermediatePowerMove = new BlueprintFeatureReference();
+		public BlueprintFeatureReference SpiritIntermediatePowerSwift = new BlueprintFeatureReference();
 		public BlueprintFeatureReference SpiritGreaterPower = new BlueprintFeatureReference();
 		public BlueprintFeatureReference SpiritSupremePower = new BlueprintFeatureReference();
 

@@ -2,9 +2,8 @@
 Additional features for Pathfinder: Wrath of the Righteous
 
 ## Still Needs Implementing
-* Icons!!
+* Some Icons
 * Medium
-	* [Weaker Spirit Channeling](https://www.d20pfsrd.com/alternative-rule-systems/occult-adventures/occult-classes/Medium/#TOC-Spirit-Su-)
 	* [Taboo - Stretch Goal](https://www.d20pfsrd.com/alternative-rule-systems/occult-adventures/occult-classes/Medium/#TOC-Taboo-Ex-)
 * Archmage
 	* COMPLETE - Legendary Archmage (Homebrew)
