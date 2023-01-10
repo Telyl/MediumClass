@@ -1,4 +1,5 @@
 ﻿using BlueprintCore.Blueprints.CustomConfigurators.Classes;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Blueprints.References;
 using MediumClass.Utilities;
 using MediumClass.Utils;
@@ -16,11 +17,18 @@ namespace MediumClass.Medium.Spirits.Hierophant
         public static void ConfigureEnabled()
         {
             Logger.Log("Generating Hierophant Seance Boon");
-            FeatureConfigurator.New(FeatName, Guids.HierophantSeanceBoon)
+
+            var buff = BuffConfigurator.New(FeatName + "Buff", Guids.HierophantSeanceBoonBuff)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIcon("assets/icons/spirithierophant.png")
                 .AddIncreaseSpellHealing(2)
+                .Configure();
+
+            FeatureConfigurator.New(FeatName, Guids.HierophantSeanceBoon)
+                .SetDisplayName(DisplayName)
+                .SetDescription(Description)
+                .AddFacts(new() { buff })
                 .Configure();
         }
     }

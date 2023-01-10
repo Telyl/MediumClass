@@ -67,7 +67,6 @@ namespace MediumClass.Medium.Spirits.Trickster
             FeatureConfigurator.New(FeatName, Guids.TricksterLegendaryTrickster)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .AddAbilityResources(amount: 1, resource: resource, restoreAmount: true)
                 .AddFacts(new() { polymorphability, d20ability })
                 .Configure();
         }

@@ -1,12 +1,19 @@
 ﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
+using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
 using BlueprintCore.Blueprints.CustomConfigurators;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
+using BlueprintCore.Utils;
 using BlueprintCore.Utils.Types;
+using Kingmaker.Blueprints;
+using Kingmaker.EntitySystem.Stats;
+using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.Mechanics;
 using MediumClass.Medium.NewActions;
+using MediumClass.Medium.NewComponents;
+using MediumClass.NewComponents;
 using MediumClass.Utilities;
 using MediumClass.Utils;
 using System;
@@ -35,70 +42,181 @@ namespace MediumClass.Medium
 
         public static void ConfigureEnabled()
         {
-            AbilityResourceConfigurator.New(FeatName + "Archmage", Guids.MediumInfluenceResourceArchmage).Configure();
-            AbilityResourceConfigurator.New(FeatName + "Champion", Guids.MediumInfluenceResourceChampion).Configure();
-            AbilityResourceConfigurator.New(FeatName + "Guardian", Guids.MediumInfluenceResourceGuardian).Configure();
-            AbilityResourceConfigurator.New(FeatName + "Hierophant", Guids.MediumInfluenceResourceHierophant).Configure();
-            AbilityResourceConfigurator.New(FeatName + "Marshal", Guids.MediumInfluenceResourceMarshal).Configure();
-            AbilityResourceConfigurator.New(FeatName + "Trickster", Guids.MediumInfluenceResourceTrickster).Configure();
+            AbilityResourceConfigurator.New(FeatName + "Archmage", Guids.MediumInfluenceResourceArchmage).SetMaxAmount(new BlueprintAbilityResource.Amount
+            {
+                BaseValue = 5,
+                IncreasedByLevel = false,
+                IncreasedByLevelStartPlusDivStep = false,
+                StartingLevel = 0,
+                StartingIncrease = 0,
+                LevelStep = 0,
+                PerStepIncrease = 0,
+                MinClassLevelIncrease = 0,
+                IncreasedByStat = false,
+                ResourceBonusStat = StatType.Charisma
+            }).Configure();
+            AbilityResourceConfigurator.New(FeatName + "Champion", Guids.MediumInfluenceResourceChampion).SetMaxAmount(new BlueprintAbilityResource.Amount
+            {
+                BaseValue = 5,
+                IncreasedByLevel = false,
+                IncreasedByLevelStartPlusDivStep = false,
+                StartingLevel = 0,
+                StartingIncrease = 0,
+                LevelStep = 0,
+                PerStepIncrease = 0,
+                MinClassLevelIncrease = 0,
+                IncreasedByStat = false,
+                ResourceBonusStat = StatType.Charisma
+            }).Configure();
+            AbilityResourceConfigurator.New(FeatName + "Guardian", Guids.MediumInfluenceResourceGuardian).SetMaxAmount(new BlueprintAbilityResource.Amount
+            {
+                BaseValue = 5,
+                IncreasedByLevel = false,
+                IncreasedByLevelStartPlusDivStep = false,
+                StartingLevel = 0,
+                StartingIncrease = 0,
+                LevelStep = 0,
+                PerStepIncrease = 0,
+                MinClassLevelIncrease = 0,
+                IncreasedByStat = false,
+                ResourceBonusStat = StatType.Charisma
+            }).Configure();
+            AbilityResourceConfigurator.New(FeatName + "Hierophant", Guids.MediumInfluenceResourceHierophant).SetMaxAmount(new BlueprintAbilityResource.Amount
+            {
+                BaseValue = 5,
+                IncreasedByLevel = false,
+                IncreasedByLevelStartPlusDivStep = false,
+                StartingLevel = 0,
+                StartingIncrease = 0,
+                LevelStep = 0,
+                PerStepIncrease = 0,
+                MinClassLevelIncrease = 0,
+                IncreasedByStat = false,
+                ResourceBonusStat = StatType.Charisma
+            }).Configure();
+            AbilityResourceConfigurator.New(FeatName + "Marshal", Guids.MediumInfluenceResourceMarshal).SetMaxAmount(new BlueprintAbilityResource.Amount
+            {
+                BaseValue = 5,
+                IncreasedByLevel = false,
+                IncreasedByLevelStartPlusDivStep = false,
+                StartingLevel = 0,
+                StartingIncrease = 0,
+                LevelStep = 0,
+                PerStepIncrease = 0,
+                MinClassLevelIncrease = 0,
+                IncreasedByStat = false,
+                ResourceBonusStat = StatType.Charisma
+            }).Configure();
+            AbilityResourceConfigurator.New(FeatName + "Trickster", Guids.MediumInfluenceResourceTrickster).SetMaxAmount(new BlueprintAbilityResource.Amount
+            {
+                BaseValue = 5,
+                IncreasedByLevel = false,
+                IncreasedByLevelStartPlusDivStep = false,
+                StartingLevel = 0,
+                StartingIncrease = 0,
+                LevelStep = 0,
+                PerStepIncrease = 0,
+                MinClassLevelIncrease = 0,
+                IncreasedByStat = false,
+                ResourceBonusStat = StatType.Charisma
+            }).Configure();
 
-            var buff = BuffConfigurator.New(FeatName + "Buff", Guids.AstralBeaconBuff)
+            var ab = BuffConfigurator.New(FeatName + "BuffArchmage", Guids.MediumChannelSpiritSecondarySpiritBuffArchmage)
+                .AddComponent<ApplySpirit>(c =>
+                {
+                    c.isSecondarySpirit = true;
+                    c.SecondarySpirit = BlueprintTool.GetRef<BlueprintCharacterClassReference>(Guids.Archmage);
+                })
+                .SetFlags(BlueprintBuff.Flags.RemoveOnRest)
                 .Configure();
 
-            var a = AbilityConfigurator.New(FeatName + "AbilityArchmage", Guids.AstralBeaconAbilityArchmage)
+            var cb = BuffConfigurator.New(FeatName + "BuffChampion", Guids.MediumChannelSpiritSecondarySpiritBuffChampion)
+                .AddComponent<ApplySpirit>(c =>
+                {
+                    c.isSecondarySpirit = true;
+                    c.SecondarySpirit = BlueprintTool.GetRef<BlueprintCharacterClassReference>(Guids.Champion);
+                })
+                .SetFlags(BlueprintBuff.Flags.RemoveOnRest)
+                .Configure();
+
+            var gb = BuffConfigurator.New(FeatName + "BuffGuardian", Guids.MediumChannelSpiritSecondarySpiritBuffGuardian)
+                .AddComponent<ApplySpirit>(c =>
+                {
+                    c.isSecondarySpirit = true;
+                    c.SecondarySpirit = BlueprintTool.GetRef<BlueprintCharacterClassReference>(Guids.Guardian);
+                })
+                .SetFlags(BlueprintBuff.Flags.RemoveOnRest)
+                .Configure();
+
+            var hb = BuffConfigurator.New(FeatName + "BuffHierophant", Guids.MediumChannelSpiritSecondarySpiritBuffHierophant)
+                .AddComponent<ApplySpirit>(c =>
+                {
+                    c.isSecondarySpirit = true;
+                    c.SecondarySpirit = BlueprintTool.GetRef<BlueprintCharacterClassReference>(Guids.Hierophant);
+                })
+                .SetFlags(BlueprintBuff.Flags.RemoveOnRest)
+                .Configure();
+
+            var mb = BuffConfigurator.New(FeatName + "BuffMarshal", Guids.MediumChannelSpiritSecondarySpiritBuffMarshal)
+                .AddComponent<ApplySpirit>(c =>
+                {
+                    c.isSecondarySpirit = true;
+                    c.SecondarySpirit = BlueprintTool.GetRef<BlueprintCharacterClassReference>(Guids.Marshal);
+                })
+                .SetFlags(BlueprintBuff.Flags.RemoveOnRest)
+                .Configure();
+
+            var tb = BuffConfigurator.New(FeatName + "BuffTrickster", Guids.MediumChannelSpiritSecondarySpiritBuffTrickster)
+                .AddComponent<ApplySpirit>(c =>
+                {
+                    c.isSecondarySpirit = true;
+                    c.SecondarySpirit = BlueprintTool.GetRef<BlueprintCharacterClassReference>(Guids.Trickster);
+                })
+                .SetFlags(BlueprintBuff.Flags.RemoveOnRest)
+                .Configure();
+
+
+
+
+            var a = ActivatableAbilityConfigurator.New(FeatName + "AbilityArchmage", Guids.AstralBeaconAbilityArchmage)
                 .SetIcon(IconPrefix + ArchmageIconName)
-                .AddAbilityResourceLogic(amount: 1, isSpendResource: true, requiredResource: Guids.MediumInfluenceResourceArchmage)
-                .AddAbilityEffectRunAction(
-                    actions: ActionsBuilder.New()
-                        .ApplyBuff(buff, ContextDuration.Fixed(1, DurationRate.Rounds),
-                                    asChild: false, isFromSpell: false, isNotDispelable: true))
+                .AddComponent<AbilityRequirementHasSpirit>()
+                .SetBuff(ab)
                 .Configure();
-            var c = AbilityConfigurator.New(FeatName + "AbilityChampion", Guids.AstralBeaconAbilityChampion)
+            var c = ActivatableAbilityConfigurator.New(FeatName + "AbilityChampion", Guids.AstralBeaconAbilityChampion)
                 .SetIcon(IconPrefix + ChampionIconName)
-                .AddAbilityResourceLogic(amount: 1, isSpendResource: true, requiredResource: Guids.MediumInfluenceResourceChampion)
-                .AddAbilityEffectRunAction(
-                    actions: ActionsBuilder.New()
-                        .ApplyBuff(buff, ContextDuration.Fixed(1, DurationRate.Rounds),
-                                    asChild: false, isFromSpell: false, isNotDispelable: true))
+                .AddComponent<AbilityRequirementHasSpirit>()
+                .SetBuff(cb)
                 .Configure();
-            var g = AbilityConfigurator.New(FeatName + "AbilityGuardian", Guids.AstralBeaconAbilityGuardian)
+            var g = ActivatableAbilityConfigurator.New(FeatName + "AbilityGuardian", Guids.AstralBeaconAbilityGuardian)
                 .SetIcon(IconPrefix + GuardianIconName)
-                .AddAbilityResourceLogic(amount: 1, isSpendResource: true, requiredResource: Guids.MediumInfluenceResourceGuardian)
-                .AddAbilityEffectRunAction(
-                    actions: ActionsBuilder.New()
-                        .ApplyBuff(buff, ContextDuration.Fixed(1, DurationRate.Rounds),
-                                    asChild: false, isFromSpell: false, isNotDispelable: true))
+                .AddComponent<AbilityRequirementHasSpirit>()
+                .SetBuff(gb)
                 .Configure();
-            var h = AbilityConfigurator.New(FeatName + "AbilityHierophant", Guids.AstralBeaconAbilityHierophant)
+            var h = ActivatableAbilityConfigurator.New(FeatName + "AbilityHierophant", Guids.AstralBeaconAbilityHierophant)
                 .SetIcon(IconPrefix + HierophantIconName)
-                .AddAbilityResourceLogic(amount: 1, isSpendResource: true, requiredResource: Guids.MediumInfluenceResourceHierophant)
-                .AddAbilityEffectRunAction(
-                    actions: ActionsBuilder.New()
-                        .ApplyBuff(buff, ContextDuration.Fixed(1, DurationRate.Rounds),
-                                    asChild: false, isFromSpell: false, isNotDispelable: true))
+                .AddComponent<AbilityRequirementHasSpirit>()
+                .SetBuff(hb)
                 .Configure();
-            var m = AbilityConfigurator.New(FeatName + "AbilityMarshal", Guids.AstralBeaconAbilityMarshal)
+            var m = ActivatableAbilityConfigurator.New(FeatName + "AbilityMarshal", Guids.AstralBeaconAbilityMarshal)
                 .SetIcon(IconPrefix + MarshalIconName)
-                .AddAbilityResourceLogic(amount: 1, isSpendResource: true, requiredResource: Guids.MediumInfluenceResourceMarshal)
-                .AddAbilityEffectRunAction(
-                    actions: ActionsBuilder.New()
-                        .ApplyBuff(buff, ContextDuration.Fixed(1, DurationRate.Rounds),
-                                    asChild: false, isFromSpell: false, isNotDispelable: true))
+                .AddComponent<AbilityRequirementHasSpirit>()
+                .SetBuff(mb)
                 .Configure();
-            var t = AbilityConfigurator.New(FeatName + "AbilityTrickster", Guids.AstralBeaconAbilityTrickster)
+            var t = ActivatableAbilityConfigurator.New(FeatName + "AbilityTrickster", Guids.AstralBeaconAbilityTrickster)
                 .SetIcon(IconPrefix + TricksterIconName)
-                .AddAbilityResourceLogic(amount: 1, isSpendResource: true, requiredResource: Guids.MediumInfluenceResourceTrickster)
-                .AddAbilityEffectRunAction(
-                    actions: ActionsBuilder.New()
-                        .ApplyBuff(buff, ContextDuration.Fixed(1, DurationRate.Rounds),
-                                    asChild: false, isFromSpell: false, isNotDispelable: true))
-                .Configure();
-
-            AbilityConfigurator.New(FeatName + "Ability", Guids.AstralBeaconAbility)
-                .AddAbilityVariants(new() { a,c,g,h,m,t })
+                .AddComponent<AbilityRequirementHasSpirit>()
+                .SetBuff(tb)
                 .Configure();
 
             FeatureConfigurator.New(FeatName, Guids.AstralBeacon)
+                .AddFacts(new() { a, c, g, h, m, t })
+                .AddAbilityResources(amount: 0, resource: Guids.MediumInfluenceResourceArchmage, useThisAsResource: false, restoreAmount: true)
+                .AddAbilityResources(amount: 0, resource: Guids.MediumInfluenceResourceChampion, useThisAsResource: false, restoreAmount: true)
+                .AddAbilityResources(amount: 0, resource: Guids.MediumInfluenceResourceGuardian, useThisAsResource: false, restoreAmount: true)
+                .AddAbilityResources(amount: 0, resource: Guids.MediumInfluenceResourceHierophant, useThisAsResource: false, restoreAmount: true)
+                .AddAbilityResources(amount: 0, resource: Guids.MediumInfluenceResourceMarshal, useThisAsResource: false, restoreAmount: true)
+                .AddAbilityResources(amount: 0, resource: Guids.MediumInfluenceResourceTrickster, useThisAsResource: false, restoreAmount: true)
                 .Configure();
         }
     }

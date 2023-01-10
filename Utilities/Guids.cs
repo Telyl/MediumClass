@@ -18,8 +18,10 @@ namespace MediumClass.Utilities
         internal const string ArchmageSpellbook = "b2e275c3-acfa-4b47-aeac-8163172474de";
         internal const string ArchmageSpellsPerDayTable = "0731b99d-5a6d-47a3-9712-5b7db0c70c8b";
         internal const string ArchmageSpellSlotsTable = "54f3019a-6b8f-40a0-a07a-efd3e372eb81";
-        internal const string ArchmageSpiritBonus = "2b9e0b07-2f97-4961-86a9-6a9443797b71";
+
         internal const string ArchmageSeanceBoon = "90cce36b-6889-4673-9bbd-54085b0ec8e8";
+        internal const string ArchmageSeanceBoonBuff = "57fbc259-c12a-4014-8db6-ae74dff86a2c";
+        internal const string ArchmageLesser = "7375e075-19c9-49eb-9671-68b2a808b9fe";
         internal const string ArchmageIntermediate = "f019b7c9-4b35-472f-b842-1352e7908f48";
         internal const string ArchmageIntermediateAbility = "27996019-2a52-450c-b33f-42d18f6d8922";
         internal const string ArchmageIntermediateBuff = "2da103fe-6f2d-4a1c-b16c-cd5a3b651bd5";
@@ -30,8 +32,9 @@ namespace MediumClass.Utilities
         internal const string Champion = "5f24b820-8644-4d52-aea7-7323b1b2849c";
         internal const string ChampionLesser = "74a5e3f4-5cc7-4449-b866-224eb4ac6cb7";
         internal const string ChampionProgression = "eb13263c-7117-4545-8db9-4fc913596978";
-        internal const string ChampionSpiritBonus = "008a7081-8ecd-4f97-8f59-0dcc3a2f41e8";
+
         internal const string ChampionSeanceBoon = "cad6901e-f6ce-41fc-b822-1105565fc770";
+        internal const string ChampionSeanceBoonBuff = "9d5dbf13-6b1f-462b-ba4f-d7e1b3ec0adb";
         internal const string ChampionSuddenAttack = "60412b6e-4247-4082-9105-5f0491398ba0";
         internal const string ChampionFleetCharge = "633aa194-4590-448b-85de-b197c4489a85";
         internal const string ChampionFleetChargeAbility = "38de709c-7281-4310-88d0-97c1d96cbdbf";
@@ -45,8 +48,9 @@ namespace MediumClass.Utilities
         internal const string Guardian = "ce5874c4-aef6-4b68-8344-38e2a9970373";
         internal const string GuardianLesser = "b17e10f8-2f72-46cc-b622-a65a72c1c299";
         internal const string GuardianProgression = "90dd3599-8162-43f3-9612-75b4b35bca2c";
-        internal const string GuardianSpiritBonus = "c2f636ff-652f-4891-819f-1362a22c90b6";
+
         internal const string GuardianSeanceBoon = "d5e04574-0761-4265-bbba-dcac35f50057";
+        internal const string GuardianSeanceBoonBuff = "a9c9b174-1254-4d36-b696-678e6c454b37";
         internal const string GuardianAbsorbBlow = "31873197-bad5-42ea-a3b2-a03e662b2fb2";
 
         internal const string GuardianGreater = "c31441fd-3736-421d-88cd-414d6e5fe8a5";
@@ -65,8 +69,11 @@ namespace MediumClass.Utilities
         internal const string HierophantSpellsPerDayTable = "fee2dcbd-6faf-4cdd-a83f-26ccda11e831";
         internal const string HierophantSpellSlotsTable = "654b0f7c-1e3d-406d-a0e9-f0d067348062";
         internal const string HierophantSpellSlotsTableLegendary = "5b9a0727-def6-4209-b0d0-c3dc8e515a1b";
-        internal const string HierophantSpiritBonus = "19fc8346-d18c-4356-8287-ada73d3d22c4";
+
+
         internal const string HierophantSeanceBoon = "73b487ab-14d4-4a64-979a-0e7eb7e396d7";
+        internal const string HierophantSeanceBoonBuff = "b777a619-9836-4f92-a71c-5bf40fa07fd0";
+
         internal const string HierophantEnergyFont = "ec07fe4e-9496-4f5e-941e-957754b2781d";
         internal const string HierophantEnergyFontResource = "ffb78a07-9d23-4bc8-be2d-e56400292b5a";
         internal const string HierophantEnergyFontPositiveHeal = "56815203-d324-42cf-b916-c5004c252f53";
@@ -83,7 +90,7 @@ namespace MediumClass.Utilities
         #region Marshal
         internal const string Marshal = "fad0e44f-3c96-4653-8179-71a695942668";
         internal const string MarshalProgression = "479074b1-73f3-4510-9fbe-d519ce7d6fb5";
-        internal const string MarshalSpiritBonus = "3f1a513b-edb3-4bda-9e33-2b922de9cccc";
+
         internal const string MarshalSeanceBoon = "86ef441d-ce6b-42ae-93a0-6bb628e33bb9";
         internal const string MarshalSeanceBoonAbility = "1364d5bf-4fb8-44e9-874a-a379d783e403";
         internal const string MarshalSeanceBoonResource = "9cfd03b0-3f76-4591-9be0-4ef8886eb510";
@@ -119,7 +126,7 @@ namespace MediumClass.Utilities
         #region Trickster
         internal const string Trickster = "1959f95e-1fb0-4e4d-8038-af34aeed6ac0";
         internal const string TricksterProgression = "c4d71969-54f2-4c1a-b22f-9adaac088ae7";
-        internal const string TricksterSpiritBonus = "2d2a2788-126b-4226-8955-dd1b2a26f73a";
+
         internal const string TricksterSeanceBoon = "3e0bb85f-c5e3-4b05-a850-4b14670000a8";
         internal const string TricksterSurpriseStrike = "58b988c3-4d54-41d0-801f-fcf0d3643d30";
         internal const string TricksterSurpriseStrikeImpromptu = "38204b3f-48d1-4bf9-902f-3fd9eaac94b3";
@@ -184,20 +191,23 @@ namespace MediumClass.Utilities
         internal const string MediumSpellsKnownTable = "751377a5-af18-43a6-9559-4faebaa9dd3f";
         internal const string MediumSpellList = "ff3e0346-59b6-4d21-ac57-dc0d9e893bdb";
         internal const string MediumSpiritBonus = "84c93605-a841-4814-b333-f10d8f198020";
+        internal const string MediumSpiritBonusBuff = "f6290a36-48ec-4521-8c1a-033a2ad55e85";
         internal const string MediumChannelSpirit = "b9611e74-b3d8-4013-b566-5cb852b5887d";
         internal const string MediumChannelSpiritAbility = "e6bccc02-a590-4197-9813-1cab39b4b754";
         internal const string MediumChannelSpiritAbilityArchmage = "3b3b1e6f-a2de-4f74-8aeb-ebc47a09a4b3";
-        internal const string MediumChannelSpiritAbilityArchmageBuff = "5a94d849-02e5-4415-9326-9f950d3b97e8";
         internal const string MediumChannelSpiritAbilityChampion = "44fcfe8f-20f3-4487-abfc-328a08fa462b";
-        internal const string MediumChannelSpiritAbilityChampionBuff = "d4faed73-da29-47dc-9e5f-57eccc96746e";
         internal const string MediumChannelSpiritAbilityGuardian = "16fe4899-d2ad-452c-852c-fc55dbcd3dc7";
-        internal const string MediumChannelSpiritAbilityGuardianBuff = "895362be-2696-44fa-b4f7-889a5639a4b5";
         internal const string MediumChannelSpiritAbilityHierophant = "e1f1f42c-3b59-4430-ba5e-0eb3f809d586";
-        internal const string MediumChannelSpiritAbilityHierophantBuff = "1c91ad43-7fa5-4aac-87dc-51c46eb290ae";
         internal const string MediumChannelSpiritAbilityMarshal = "1651148f-336c-4ea1-90b1-b7a843f81827";
-        internal const string MediumChannelSpiritAbilityMarshalBuff = "452415f5-53de-4470-b470-5eb475a5c157";
         internal const string MediumChannelSpiritAbilityTrickster = "f24575e8-30a6-48de-9e71-9745b1c7b935";
-        internal const string MediumChannelSpiritAbilityTricksterBuff = "ff1cb998-b9c1-4771-b8a5-101a9ab98c94";
+        internal const string MediumChannelSpiritPrimarySpiritBuff = "ff1cb998-b9c1-4771-b8a5-101a9ab98c94";
+        internal const string MediumChannelSpiritSecondarySpiritBuff = "9673667d-cf79-4b62-91e1-c7c95c8a7e4a";
+        internal const string MediumChannelSpiritSecondarySpiritBuffArchmage = "ebbee5d7-c633-4826-8c4c-4f7ca61e45c8";
+        internal const string MediumChannelSpiritSecondarySpiritBuffChampion = "53cd901b-55b9-4c18-84dc-38f31ff41739";
+        internal const string MediumChannelSpiritSecondarySpiritBuffGuardian = "31709f34-0109-4720-b47a-efdb1404e0d7";
+        internal const string MediumChannelSpiritSecondarySpiritBuffHierophant = "7d7bdfb8-d343-4bf0-a1f2-56d9524c94f5";
+        internal const string MediumChannelSpiritSecondarySpiritBuffMarshal = "220e25e4-2b48-4628-a914-f500bd1a5969";
+        internal const string MediumChannelSpiritSecondarySpiritBuffTrickster = "fbb54a33-079b-494f-a0d8-84cdc2455849";
         internal const string MediumSharedSeance = "ca90a9b4-2af6-4c0d-b706-b8f82057302f";
         internal const string MediumSharedSeanceBuff = "a9fb5ebb-77ed-49eb-9b5d-f945ea9b0603";
         internal const string MediumSharedSeanceAbility = "4255013c-64e7-4ae1-ad80-dd8892195983";

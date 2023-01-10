@@ -22,7 +22,6 @@ namespace MediumClass.Medium.Spirits.Marshal
         {
             Logger.Log("Generating Marshal Spirit");
             CharacterClassConfigurator.New(ClassName, Guids.Marshal).Configure();
-            SpiritBonus.ConfigureEnabled();
             SeanceBoon.ConfigureEnabled();
             InspiringCall.ConfigureEnabled();
             MarshalsOrders.ConfigureEnabled();
@@ -69,18 +68,10 @@ namespace MediumClass.Medium.Spirits.Marshal
         private static BlueprintProgression MarshalProgression()
         {
             var entries = LevelEntryBuilder.New()
-                .AddEntry(1,
-                    Guids.MarshalSeanceBoon,
-                    Guids.MarshalSpiritBonus,
-                    Guids.MarshalMarshalsOrders)
-                .AddEntry(4, Guids.MarshalSpiritBonus)
+                .AddEntry(1, Guids.MarshalSeanceBoon, Guids.MarshalMarshalsOrders)
                 .AddEntry(6, Guids.MarshalInspiringCallStandard)
-                .AddEntry(8, Guids.MarshalSpiritBonus)
                 .AddEntry(11, Guids.MarshalInspiringCallMove, Guids.MarshalDecisiveStrikeFeature)
-                .AddEntry(12, Guids.MarshalSpiritBonus)
-                .AddEntry(16, Guids.MarshalSpiritBonus)
-                .AddEntry(17, Guids.MarshalInspiringCallSwift, Guids.MarshalLegendaryMarshal)
-                .AddEntry(20, Guids.MarshalSpiritBonus);
+                .AddEntry(17, Guids.MarshalInspiringCallSwift, Guids.MarshalLegendaryMarshal);
 
             return ProgressionConfigurator.New(ClassName +"Progression", Guids.MarshalProgression)
                 .SetAllowNonContextActions(false)

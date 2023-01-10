@@ -31,7 +31,6 @@ namespace MediumClass.Medium.Spirits.Trickster
         {
             Logger.Log("Generating Trickster Spirit");
             CharacterClassConfigurator.New(ClassName, Guids.Trickster).Configure();
-            SpiritBonus.ConfigureEnabled();
             SeanceBoon.ConfigureEnabled();
             TrickstersEdge.ConfigureEnabled();
             SurpriseStrike.ConfigureEnabled();
@@ -79,18 +78,14 @@ namespace MediumClass.Medium.Spirits.Trickster
         {
             //FeatureRefs.SneakAttack.Reference.Get()
             var entries = LevelEntryBuilder.New()
-                .AddEntry(1, Guids.TricksterSpiritBonus, Guids.TricksterSeanceBoon, Guids.TricksterEdge)
-                .AddEntry(4, Guids.TricksterSpiritBonus)
+                .AddEntry(1, Guids.TricksterSeanceBoon, Guids.TricksterEdge)
                 .AddEntry(6, Guids.TricksterSurpriseStrike, Guids.TricksterSurpriseStrike)
-                .AddEntry(8, Guids.TricksterSpiritBonus)
                 .AddEntry(9, Guids.TricksterSurpriseStrike)
                 .AddEntry(11, Guids.TricksterTransferMagic)
-                .AddEntry(12, Guids.TricksterSpiritBonus, Guids.TricksterSurpriseStrike)
+                .AddEntry(12, Guids.TricksterSurpriseStrike)
                 .AddEntry(15, Guids.TricksterSurpriseStrike)
-                .AddEntry(16, Guids.TricksterSpiritBonus)
                 .AddEntry(17, Guids.TricksterLegendaryTrickster)
-                .AddEntry(18, Guids.TricksterSurpriseStrike)
-                .AddEntry(20, Guids.TricksterSpiritBonus);
+                .AddEntry(18, Guids.TricksterSurpriseStrike);
 
             return ProgressionConfigurator.New(ClassName +"Progression", Guids.TricksterProgression)
                 .SetAllowNonContextActions(false)

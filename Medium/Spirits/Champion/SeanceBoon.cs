@@ -1,4 +1,5 @@
 ﻿using BlueprintCore.Blueprints.CustomConfigurators.Classes;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Blueprints.References;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Spells;
@@ -25,11 +26,19 @@ namespace MediumClass.Medium.Spirits.Champion
         public static void ConfigureEnabled()
         {
             Logger.Log("Generating Champion Seance Boon");
-            FeatureConfigurator.New(FeatName, Guids.ChampionSeanceBoon)
+            
+            var buff = BuffConfigurator.New(FeatName + "Buff", Guids.ChampionSeanceBoonBuff)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIcon("assets/icons/spiritchampion.png")
                 .AddStatBonus(descriptor: ModifierDescriptor.UntypedStackable, stat: StatType.AdditionalDamage, value: 2)
+                .Configure();
+
+            FeatureConfigurator.New(FeatName, Guids.ChampionSeanceBoon)
+                .SetDisplayName(DisplayName)
+                .SetDescription(Description)
+                .SetIcon("assets/icons/spiritchampion.png")
+                .AddFacts(new() { buff })
                 .Configure();
         }
     }

@@ -91,7 +91,6 @@ namespace MediumClass.Medium.Spirits.Hierophant
             .AddSpellKnownTemporary(Guids.Medium, 3, true, AbilityRefs.InflictSeriousWounds.Reference.Get())
             .AddSpellKnownTemporary(Guids.Medium, 4, true, AbilityRefs.CureCriticalWounds.Reference.Get())
             .AddSpellKnownTemporary(Guids.Medium, 4, true, AbilityRefs.InflictCriticalWounds.Reference.Get())
-            .AddAbilityResources(amount: 0, resource: resource, restoreAmount: true, restoreOnLevelUp: false, useThisAsResource: false)
             .AddFacts(new() { posability, posharmability, negability, neghealability })
             .Configure();
 

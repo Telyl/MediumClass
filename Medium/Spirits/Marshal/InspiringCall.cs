@@ -64,7 +64,7 @@ namespace MediumClass.Medium.Spirits.Marshal
                 {
                     m_Type = AbilityRankType.Default,
                     m_BaseValueType = ContextRankBaseValueType.FeatureRank,
-                    m_Feature = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MarshalSpiritBonus),
+                    m_Feature = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MediumSpiritBonus),
                     m_Stat = StatType.Unknown,
                     m_Buff = null,
                     m_Progression = ContextRankProgression.AsIs,
@@ -99,7 +99,7 @@ namespace MediumClass.Medium.Spirits.Marshal
                 {
                     m_Type = AbilityRankType.Default,
                     m_BaseValueType = ContextRankBaseValueType.FeatureRank,
-                    m_Feature = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MarshalSpiritBonus),
+                    m_Feature = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MediumSpiritBonus),
                     m_Stat = StatType.Unknown,
                     m_Buff = null,
                     m_Progression = ContextRankProgression.AsIs,

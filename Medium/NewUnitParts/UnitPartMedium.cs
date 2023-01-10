@@ -12,6 +12,7 @@ using Kingmaker.UnitLogic;
 using Kingmaker.UnitLogic.Abilities;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
+using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.Utility;
 using MediumClass.Utilities;
@@ -34,12 +35,11 @@ namespace MediumClass.Medium.NewUnitParts
 			EntityFact source, bool concentration, StatType[] stats, StatType[] penalty_stats, 
 			BlueprintFeatureReference LesserPower, BlueprintFeatureReference IntermediatePower, BlueprintFeatureReference GreaterPower, BlueprintFeatureReference SupremePower, BlueprintFeatureReference IntermediatePowerMove, BlueprintFeatureReference IntermediatePowerSwift)
         {
-			Logger.Log("Adding Spirit Entry");
+			if(Spirits.ContainsKey(spiritClass)) { return; }
 			Spirits.Add(spiritClass, new SpiritEntry()
 			{
 				SpiritInfluencePenalty = spiritInfluencePenalty,
 				InfluenceResource = influence,
-				SpiritBonusFeature = feature,
 				SpiritSeanceBoon = boon,
 				SpiritLesserPower = LesserPower,
 				SpiritIntermediatePower = IntermediatePower,
@@ -50,7 +50,8 @@ namespace MediumClass.Medium.NewUnitParts
 				SpiritBonus = new SpiritStatEntry()
 				{
 					Stats = stats,
-					Concentration = concentration
+					Concentration = concentration,
+					SpiritBonusFeature = feature,
 				},
 				SpiritPenalty = new SpiritStatEntry()
 				{
@@ -143,12 +144,12 @@ namespace MediumClass.Medium.NewUnitParts
 		{
 			public StatType[] Stats;
 			public bool Concentration = false;
+			public BlueprintFeatureReference SpiritBonusFeature;
 		}
 		public class SpiritEntry
 		{
 			public BlueprintBuffReference SpiritInfluencePenalty;
 			public BlueprintAbilityResourceReference InfluenceResource;
-			public BlueprintFeatureReference SpiritBonusFeature;
 			public BlueprintFeatureReference SpiritSeanceBoon;
 			public BlueprintFeatureReference SpiritLesserPower;
 			public BlueprintFeatureReference SpiritIntermediatePower;

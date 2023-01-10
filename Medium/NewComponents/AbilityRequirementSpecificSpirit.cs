@@ -19,22 +19,21 @@ using static UnityModManagerNet.UnityModManager.ModEntry;
 namespace MediumClass.Medium.NewComponents
 {
     [TypeId("60be564b13e54e3cb0ca08e50bbcf2e3")]
-    public class AbilityRequirementHasSpirit : BlueprintComponent, IAbilityRestriction
+    public class AbilityRequirementSpecificSpirit : BlueprintComponent, IAbilityRestriction
     {
-        private static readonly ModLogger Logger = Logging.GetLogger(nameof(AbilityRequirementHasSpirit));
+        private static readonly ModLogger Logger = Logging.GetLogger(nameof(AbilityRequirementSpecificSpirit));
         public string GetAbilityRestrictionUIText()
         {
-            return !Not ? $"Requires a Spirit Channeled" : $"Not allowed with Spirit Channeled";
+            return $"Not allowed with current Spirit";
 
         }
 
         public bool IsAbilityRestrictionPassed(AbilityData ability)
         {
             UnitPartMedium unitPartMedium = ability.Caster.Unit.Ensure<UnitPartMedium>();
-            return (!Not && (unitPartMedium.Spirits.ContainsKey(unitPartMedium.PrimarySpirit)))
-                || (Not && !(unitPartMedium.Spirits.ContainsKey(unitPartMedium.PrimarySpirit)));
+            return (Spirit != unitPartMedium.PrimarySpirit);
         }
         [SerializeField]
-        public bool Not = false;
+        public BlueprintCharacterClassReference Spirit;
     }
 }

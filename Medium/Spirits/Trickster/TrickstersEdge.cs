@@ -147,7 +147,6 @@ namespace MediumClass.Medium.Spirits.Trickster
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .AddFacts(new() { TrickstersEdgeAbility })
-                .AddAbilityResources(amount: 1, restoreAmount: true, resource: TrickstersEdgeResource)
                 .Configure();
         }   
     }

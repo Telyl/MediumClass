@@ -28,6 +28,7 @@ namespace MediumClass.Medium
             SpiritMastery.ConfigureEnabled();
             MediumSpellcasterFeat.ConfigureEnabled();
             WeakerSpiritChannel.ConfigureEnabled();
+            AstralBeacon.ConfigureEnabled();
 
             var entries = LevelEntryBuilder.New()
                 .AddEntry(1, Guids.MediumSpiritBonus, Guids.MediumProficiencies, Guids.SpiritPower, Guids.SpiritSurge, Guids.MediumChannelSpirit, Guids.MediumInfluence, Guids.MediumSpellcasterFeat, Guids.MediumSpellcasterFeatProhibitArchmage, Guids.MediumSpellcasterFeatProhibitHierophant, Guids.WeakerSpiritChannel)
@@ -37,13 +38,13 @@ namespace MediumClass.Medium
                 .AddEntry(8, Guids.MediumSpiritBonus)
                 .AddEntry(9, Guids.MediumPropitation)
                 .AddEntry(10, Guids.SpiritSurge) 
-                .AddEntry(11, Guids.SpiritPower, Guids.ArchmageGreater)
+                .AddEntry(11, Guids.SpiritPower)
                 .AddEntry(12, Guids.MediumSpiritBonus)
                 .AddEntry(15, Guids.MediumTranceOfThree)
                 .AddEntry(16, Guids.MediumSpiritBonus)
-                .AddEntry(17, Guids.SpiritPower, Guids.HierophantSupreme)
+                .AddEntry(17, Guids.SpiritPower)
                 .AddEntry(19, Guids.MediumSpiritMastery)
-                .AddEntry(20, Guids.MediumSpiritBonus, Guids.SpiritSurge);
+                .AddEntry(20, Guids.MediumSpiritBonus, Guids.SpiritSurge, Guids.AstralBeacon);
 
             return ProgressionConfigurator.New(ProgressionName, Guids.MediumProgression)
                 .SetAllowNonContextActions(false)

@@ -1,4 +1,5 @@
 ﻿using BlueprintCore.Blueprints.CustomConfigurators.Classes;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Blueprints.References;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Spells;
@@ -23,7 +24,7 @@ namespace MediumClass.Medium.Spirits.Archmage
         public static void ConfigureEnabled()
         {
             Logger.Log("Generating Archmage Seance Boon");
-            FeatureConfigurator.New(FeatName, Guids.ArchmageSeanceBoon)
+            var buff = BuffConfigurator.New(FeatName + "Buff", Guids.ArchmageSeanceBoonBuff)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIcon("assets/icons/spiritarchmage.png")
@@ -35,6 +36,13 @@ namespace MediumClass.Medium.Spirits.Archmage
                 .AddDraconicBloodlineArcana(value: 2, spellDescriptor: SpellDescriptor.Force, spellsOnly: true, useContextBonus: true)
                 .AddDraconicBloodlineArcana(value: 2, spellDescriptor: SpellDescriptor.Sonic, spellsOnly: true, useContextBonus: true)
                 .AddDraconicBloodlineArcana(value: 2, spellDescriptor: SpellDescriptor.None, spellsOnly: true, useContextBonus: true)
+                .Configure();
+
+            FeatureConfigurator.New(FeatName, Guids.ArchmageSeanceBoon)
+                .SetDisplayName(DisplayName)
+                .SetDescription(Description)
+                .SetIcon("assets/icons/spiritarchmage.png")
+                .AddFacts(new() { buff })
                 .Configure();
         }
     }

@@ -56,7 +56,10 @@ namespace MediumClass.Medium
                 .SetDescription(Description)
                 .SetIcon(AbilityRefs.SpiderSwarmDamageAbility.Reference.Get().Icon)
                 .AddComponent<AbilityRequirementSpiritPowerRank>()
-                .AddComponent<AbilityRequirementHasNoSpirit>()
+                .AddComponent(new AbilityRequirementHasSpirit()
+                {
+                    Not = true
+                })
                 .AddAbilityEffectRunAction(
                     actions: ActionsBuilder.New()
                         .ApplyBuffPermanent(buff, asChild: false, isFromSpell: false, isNotDispelable: true))
@@ -66,7 +69,10 @@ namespace MediumClass.Medium
                 .SetDisplayName(DisplayName3)
                 .SetDescription(Description)
                 .AddComponent<AbilityRequirementSpiritPowerRank>()
-                .AddComponent<AbilityRequirementHasNoSpirit>()
+                .AddComponent(new AbilityRequirementHasSpirit()
+                {
+                    Not = true
+                })
                 .SetIcon(AbilityRefs.SpiderSwarmDamageAbility.Reference.Get().Icon)
                 .AddAbilityEffectRunAction(
                     actions: ActionsBuilder.New()
@@ -78,7 +84,10 @@ namespace MediumClass.Medium
                 .SetDescription(Description)
                 .SetIcon(AbilityRefs.SpiderSwarmDamageAbility.Reference.Get().Icon)
                 .AddComponent<AbilityRequirementSpiritPowerRank>()
-                .AddComponent<AbilityRequirementHasNoSpirit>()
+                .AddComponent(new AbilityRequirementHasSpirit()
+                {
+                    Not = true
+                })
                 .AddAbilityEffectRunAction(
                     actions: ActionsBuilder.New()
                         .ApplyBuffPermanent(buff, asChild: false, isFromSpell: false, isNotDispelable: true))
@@ -89,7 +98,10 @@ namespace MediumClass.Medium
                 .SetDescription(Description)
                 .SetIcon(AbilityRefs.SpiderSwarmDamageAbility.Reference.Get().Icon)
                 .AddComponent<AbilityRequirementSpiritPowerRank>()
-                .AddComponent<AbilityRequirementHasNoSpirit>()
+                .AddComponent(new AbilityRequirementHasSpirit()
+                {
+                    Not = true
+                })
                 .AddAbilityEffectRunAction(
                     actions: ActionsBuilder.New()
                         .ApplyBuffPermanent(buff,asChild: false, isFromSpell: false, isNotDispelable: true))
@@ -99,7 +111,10 @@ namespace MediumClass.Medium
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIcon(AbilityRefs.SpiderSwarmDamageAbility.Reference.Get().Icon)
-                .AddComponent<AbilityRequirementHasNoSpirit>()
+                .AddComponent(new AbilityRequirementHasSpirit()
+                {
+                    Not = true
+                })
                 .AddAbilityVariants(variants: new() { WeakerSpiritAbilitiesLesser, WeakerSpiritAbilitiesIntermediate, WeakerSpiritAbilitiesGreater, WeakerSpiritAbilitiesSupreme })
                 .Configure();
 

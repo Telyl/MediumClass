@@ -1,4 +1,5 @@
 ﻿using BlueprintCore.Blueprints.CustomConfigurators.Classes;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Blueprints.References;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
@@ -17,11 +18,18 @@ namespace MediumClass.Medium.Spirits.Guardian
 
         public static void ConfigureEnabled()
         {
-            FeatureConfigurator.New(FeatName, Guids.GuardianSeanceBoon)
+            var buff = BuffConfigurator.New(FeatName + "Buff", Guids.GuardianSeanceBoonBuff)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIcon("assets/icons/spiritguardian.png")
                 .AddStatBonus(descriptor: ModifierDescriptor.Other, stat: StatType.AdditionalCMD, value: 1)
+                .Configure();
+
+            FeatureConfigurator.New(FeatName, Guids.GuardianSeanceBoon)
+                .SetDisplayName(DisplayName)
+                .SetDescription(Description)
+                .SetIcon("assets/icons/spiritguardian.png")
+                .AddFacts(new() { buff })
                 .Configure();
         }
     }

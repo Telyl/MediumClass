@@ -31,7 +31,6 @@ namespace MediumClass.Medium.Spirits.Hierophant
         {
             Logger.Log("Generating Hierophant Spirit");
             CharacterClassConfigurator.New(ClassName, Guids.Hierophant).Configure();
-            SpiritBonus.ConfigureEnabled();
             SeanceBoon.ConfigureEnabled();
             EnergyFont.ConfigureEnabled();
             OverflowingGrace.ConfigureEnabled();
@@ -79,15 +78,10 @@ namespace MediumClass.Medium.Spirits.Hierophant
         private static BlueprintProgression HierophantProgression()
         {
             var entries = LevelEntryBuilder.New()
-                .AddEntry(1, Guids.HierophantSpiritBonus, Guids.HierophantSeanceBoon)
-                .AddEntry(4, Guids.HierophantSpiritBonus)
+                .AddEntry(1, Guids.HierophantSeanceBoon)
                 .AddEntry(6, Guids.HierophantEnergyFont)
-                .AddEntry(8, Guids.HierophantSpiritBonus)
-                .AddEntry(12, Guids.HierophantSpiritBonus)
                 .AddEntry(11, Guids.HierophantOverflowingGrace)
-                .AddEntry(16, Guids.HierophantSpiritBonus)
-                .AddEntry(17, Guids.HierophantSupreme)
-                .AddEntry(20, Guids.HierophantSpiritBonus);
+                .AddEntry(17, Guids.HierophantSupreme);
 
             return ProgressionConfigurator.New(ClassName +"Progression", Guids.HierophantProgression)
                 .SetAllowNonContextActions(false)

@@ -68,6 +68,9 @@ namespace MediumClass.Medium
                 .SetHideInCharacterSheetAndLevelUp()
                 .SetHideInUI()
                 .AddAbilityResources(amount: 0, resource: resource, restoreAmount: true, restoreOnLevelUp: false, useThisAsResource: false)
+                .AddAbilityResources(amount: 0, resource: Guids.HierophantEnergyFontResource, restoreAmount: true, restoreOnLevelUp: false, useThisAsResource: false)
+                .AddAbilityResources(amount: 1, resource: Guids.TricksterLegendaryTricksterResource, restoreAmount: true)
+                .AddAbilityResources(amount: 1, restoreAmount: true, resource: Guids.TricksterEdgeResource)
                 .Configure();
         }
         

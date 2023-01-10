@@ -31,7 +31,6 @@ namespace MediumClass.Medium.Spirits.Guardian
         {
             Logger.Log("Generating Guardian Spirit");
             CharacterClassConfigurator.New(ClassName, Guids.Guardian).Configure();
-            SpiritBonus.ConfigureEnabled();
             SeanceBoon.ConfigureEnabled();
             GuardianLesser.ConfigureEnabled();
             GuardianSmite.ConfigureEnabled();
@@ -77,17 +76,10 @@ namespace MediumClass.Medium.Spirits.Guardian
         private static BlueprintProgression GuardianProgression()
         {
             var entries = LevelEntryBuilder.New()
-                .AddEntry(1,
-                    Guids.GuardianLesser,
-                    Guids.GuardianSpiritBonus, Guids.GuardianSeanceBoon)
-                .AddEntry(4, Guids.GuardianSpiritBonus)
-                .AddEntry(6)
-                .AddEntry(8, Guids.GuardianSpiritBonus)
+                .AddEntry(1, Guids.GuardianLesser, Guids.GuardianSeanceBoon)
+                .AddEntry(6, Guids.GuardianAbsorbBlow)
                 .AddEntry(11, Guids.GuardianGreater)
-                .AddEntry(12, Guids.GuardianSpiritBonus)
-                .AddEntry(16, Guids.GuardianSpiritBonus)
-                .AddEntry(17, Guids.LegendaryGuardian)
-                .AddEntry(20, Guids.GuardianSpiritBonus);
+                .AddEntry(17, Guids.LegendaryGuardian);
 
             return ProgressionConfigurator.New(ClassName +"Progression", Guids.GuardianProgression)
                 .SetAllowNonContextActions(false)

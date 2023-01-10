@@ -25,7 +25,6 @@ namespace MediumClass.Medium.Spirits.Archmage
 
             Logger.Log("Generating Archmage Spirit.");
             CharacterClassConfigurator.New(ClassName, Guids.Archmage).Configure();
-            SpiritBonus.ConfigureEnabled();
             SeanceBoon.ConfigureEnabled();
             ArcaneSurge.ConfigureEnabled();
             WildArcana.ConfigureEnabled();
@@ -72,15 +71,10 @@ namespace MediumClass.Medium.Spirits.Archmage
         private static BlueprintProgression ArchmageProgression()
         {
             var entries = LevelEntryBuilder.New()
-                .AddEntry(1, Guids.ArchmageSpiritBonus, Guids.ArchmageSeanceBoon)
-                .AddEntry(4, Guids.ArchmageSpiritBonus)
+                .AddEntry(1, Guids.ArchmageSeanceBoon, Guids.ArchmageLesser)
                 .AddEntry(6, Guids.ArchmageIntermediate)
-                .AddEntry(8, Guids.ArchmageSpiritBonus)
-                .AddEntry(11)
-                .AddEntry(12, Guids.ArchmageSpiritBonus)
-                .AddEntry(16, Guids.ArchmageSpiritBonus)
-                .AddEntry(17)
-                .AddEntry(20, Guids.ArchmageSpiritBonus);
+                .AddEntry(11, Guids.ArchmageGreater)
+                .AddEntry(17);
 
             return ProgressionConfigurator.New(ClassName +"Progression", Guids.ArchmageProgression)
                 .SetAllowNonContextActions(false)
@@ -116,10 +110,10 @@ namespace MediumClass.Medium.Spirits.Archmage
                     new SpellsLevelEntry{ Count = new int[] { 0, 1, 1, 1, 1, 1 } },//14
                     new SpellsLevelEntry{ Count = new int[] { 0, 1, 1, 1, 1, 1 } },//15
                     new SpellsLevelEntry{ Count = new int[] { 0, 1, 1, 1, 1, 1, 1 } },//16
-                    new SpellsLevelEntry{ Count = new int[] { 0, 1, 1, 1, 1, 1, 1, 1, 1, 1 } },//17
-                    new SpellsLevelEntry{ Count = new int[] { 0, 1, 1, 1, 1, 1, 1, 1, 1, 1 } },//18
-                    new SpellsLevelEntry{ Count = new int[] { 0, 1, 1, 1, 1, 1, 1, 1, 1, 1 } },//19
-                    new SpellsLevelEntry{ Count = new int[] { 0, 1, 1, 1, 1, 1, 1, 1, 1, 1 } },//20
+                    new SpellsLevelEntry{ Count = new int[] { 0, 1, 1, 1, 1, 1, 1 } },//17
+                    new SpellsLevelEntry{ Count = new int[] { 0, 1, 1, 1, 1, 1, 1 } },//18
+                    new SpellsLevelEntry{ Count = new int[] { 0, 1, 1, 1, 1, 1, 1 } },//19
+                    new SpellsLevelEntry{ Count = new int[] { 0, 1, 1, 1, 1, 1, 1 } },//20
                     })
                 .Configure();
 

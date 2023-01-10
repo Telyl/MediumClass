@@ -136,7 +136,7 @@ namespace MediumClass.Medium
                 .AddFacts(new() { Guids.MarshalInspiringCallStandard })
                 .AddComponent<MediumTranceOfThreeComponent>(c =>
                 {
-                    c.BP = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MarshalSpiritBonus);
+                    c.BP = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MediumSpiritBonus);
                 })
                 .Configure();
 

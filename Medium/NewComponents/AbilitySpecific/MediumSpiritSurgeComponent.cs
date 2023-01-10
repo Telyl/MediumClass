@@ -38,7 +38,7 @@ namespace MediumClass.Medium.NewComponents.AbilitySpecific
             if(unitPartMedium.PrimarySpirit.Get() == BlueprintTool.Get<BlueprintCharacterClass>(Guids.Marshal))
             {
                 if (base.Context.SourceAbility != BlueprintTool.Get<BlueprintAbility>(Guids.MarshalLegendaryMarshalAbility))
-                    MarshalBonus = base.Owner.Progression.Features.GetRank(unitPartMedium.Spirits[unitPartMedium.PrimarySpirit].SpiritBonusFeature.Get());
+                    MarshalBonus = base.Owner.Progression.Features.GetRank(unitPartMedium.Spirits[unitPartMedium.PrimarySpirit].SpiritBonus.SpiritBonusFeature.Get());
             }
             foreach (StatType statType in Stats)
                 base.Context.MainTarget.Unit.Descriptor.Stats.GetStat(statType).AddModifier((GetBonus() + MarshalBonus), base.Runtime, ModifierDescriptor.UntypedStackable);

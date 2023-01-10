@@ -22,7 +22,6 @@ namespace MediumClass.Medium.Spirits.Champion
         {
             Logger.Log("Generating Champion Spirit");
             CharacterClassConfigurator.New(ClassName, Guids.Champion).Configure();
-            SpiritBonus.ConfigureEnabled();
             SeanceBoon.ConfigureEnabled();
             SuddenAttack.ConfigureEnabled();
             FleetCharge.ConfigureEnabled();
@@ -69,15 +68,10 @@ namespace MediumClass.Medium.Spirits.Champion
         private static BlueprintProgression ChampionProgression()
         {
             var entries = LevelEntryBuilder.New()
-                .AddEntry(1, Guids.ChampionSpiritBonus, Guids.ChampionSeanceBoon, Guids.ChampionLesser)
-                .AddEntry(4, Guids.ChampionSpiritBonus)
+                .AddEntry(1, Guids.ChampionSeanceBoon, Guids.ChampionLesser)
                 .AddEntry(6, Guids.ChampionSuddenAttack)
-                .AddEntry(8, Guids.ChampionSpiritBonus)
                 .AddEntry(11, Guids.ChampionFleetCharge)
-                .AddEntry(12, Guids.ChampionSpiritBonus)
-                .AddEntry(16, Guids.ChampionSpiritBonus)
-                .AddEntry(17, Guids.LegendaryChampion)
-                .AddEntry(20, Guids.ChampionSpiritBonus);
+                .AddEntry(17, Guids.LegendaryChampion);
 
             return ProgressionConfigurator.New(ClassName +"Progression", Guids.ChampionProgression)
                 .SetAllowNonContextActions(false)

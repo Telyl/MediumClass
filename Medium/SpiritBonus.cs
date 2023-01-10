@@ -1,10 +1,16 @@
-﻿using BlueprintCore.Blueprints.CustomConfigurators.Classes;
+﻿using BlueprintCore.Actions.Builder;
+using BlueprintCore.Actions.Builder.ContextEx;
+using BlueprintCore.Blueprints.CustomConfigurators.Classes;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
+using BlueprintCore.Utils;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
+using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Mechanics.Components;
+using MediumClass.Medium.NewComponents.AbilitySpecific;
 using MediumClass.Utilities;
 using MediumClass.Utils;
 using System;
@@ -29,15 +35,25 @@ namespace MediumClass.Medium
         public static void ConfigureEnabled()
         {
             Logger.Log("Generating Medium Spirit Bonus");
+
+            BlueprintBuff buff = BuffConfigurator.New(FeatName + "Buff", Guids.MediumSpiritBonusBuff)
+                .SetDisplayName(DisplayName)
+                .SetDescription(Description)
+                .SetIcon("assets/icons/tranceofthree.png")
+                .AddComponent<MediumContextStatBonusComponent>()
+                .Configure();
+
             BlueprintFeature SpiritBonus = FeatureConfigurator.New(FeatName, Guids.MediumSpiritBonus)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetHideInUI(false)
                 .SetHideNotAvailibleInUI(false)
                 .SetIsClassFeature(true)
-                .SetReapplyOnLevelUp(false)
                 .SetRanks(10)
                 .SetAllowNonContextActions(false)
+                .AddFactsChangeTrigger(checkedFacts: new() { BlueprintTool.GetRef<BlueprintUnitFactReference>(Guids.MediumChannelSpiritPrimarySpiritBuff) }, 
+                    onFactGainedActions: ActionsBuilder.New().ApplyBuffPermanent(buff),
+                    onFactLostActions: ActionsBuilder.New().RemoveBuff(buff))
                 .Configure();
 
             FeatureConfigurator.For(SpiritBonus)

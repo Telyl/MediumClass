@@ -42,20 +42,7 @@ namespace MediumClass.NewComponents
 				return this.m_Class;
 			}
 		}
-		public ReferenceArrayProxy<BlueprintAbility, BlueprintAbilityReference> SelectSpells
-		{
-			get
-			{
-				return this.m_SelectSpells;
-			}
-		}
-		public ReferenceArrayProxy<BlueprintAbility, BlueprintAbilityReference> MemorizeSpells
-		{
-			get
-			{
-				return this.m_MemorizeSpells;
-			}
-		}
+
 		public ReferenceArrayProxy<BlueprintFeature, BlueprintFeatureReference> Features
 		{
 			get
@@ -78,6 +65,17 @@ namespace MediumClass.NewComponents
 		// Token: 0x0600BDCC RID: 48588 RVA: 0x00317B60 File Offset: 0x00315D60
 		private void TryApplyClassLevels()
 		{
+			UnitPartMedium medium = base.Owner.Ensure<UnitPartMedium>();
+			if (isSecondarySpirit)
+            {
+				//this.m_Class = medium.SecondarySpirit;
+				this.m_Class = this.SecondarySpirit;
+			}
+			else
+            {
+				this.m_Class = medium.PrimarySpirit;
+			}
+
 			ClassData classData = base.Owner.Progression.GetClassData(this.Class);
 			int num = ((classData != null) ? classData.Level : 0);
 			int num2 = Math.Max(num, Math.Min(20, this.Level));
@@ -85,15 +83,6 @@ namespace MediumClass.NewComponents
 			base.Data.Class = this.Class;
 			base.Data.Levels = num2 - num;
 			//Game.Instance.AdvanceGameTime(new TimeSpan(1, 0, 0), false); // I don't care about advancing time. It's a game.
-			UnitPartMedium medium = base.Owner.Ensure<UnitPartMedium>();
-			if(isSecondarySpirit)
-            {
-				medium.SecondarySpirit = this.m_Class;
-            }
-			else
-            {
-				medium.PrimarySpirit = this.m_Class;
-			}
 			foreach (BlueprintFeature blueprintFeature in this.Features)
 			{
 				EntityFact entityFact = base.Owner.AddFact(blueprintFeature, null, null);
@@ -118,46 +107,6 @@ namespace MediumClass.NewComponents
 				foreach (BlueprintProgression blueprintProgression in base.Data.Progressions)
 				{
 					this.ApplyProgressionLevel(blueprintProgression, j);
-				}
-			}
-			Func<SpellListComponent, bool> bspelllistcomp = null;
-			foreach (BlueprintAbility blueprintAbility in this.SelectSpells)
-			{
-				SpellListComponent spellListComponent;
-				if (spellbook == null)
-				{
-					spellListComponent = null;
-				}
-				else
-				{
-					IEnumerable<SpellListComponent> components = blueprintAbility.GetComponents<SpellListComponent>();
-					Func<SpellListComponent, bool> func;
-					if ((func = bspelllistcomp) == null)
-					{
-						func = (bspelllistcomp = (SpellListComponent sl) => sl.SpellList == spellbook.Blueprint.SpellList);
-					}
-					spellListComponent = components.FirstOrDefault(func);
-				}
-				SpellListComponent spellListComponent2 = spellListComponent;
-				if (spellbook != null && spellListComponent2 != null)
-				{
-					spellbook.AddKnown(spellListComponent2.SpellLevel, blueprintAbility, true);
-					base.Data.Spells.Add(blueprintAbility);
-				}
-				else
-				{
-					Ability ability = (Ability)base.Owner.AddFact(blueprintAbility, null, null);
-					base.Data.Abilities.Add(ability.UniqueId);
-				}
-			}
-			if (spellbook != null)
-			{
-				spellbook.UpdateAllSlotsSize(true);
-				foreach (BlueprintAbility blueprintAbility2 in this.MemorizeSpells)
-				{
-					int minSpellLevel = spellbook.GetMinSpellLevel(blueprintAbility2);
-					AbilityData abilityData = new AbilityData(blueprintAbility2, spellbook, minSpellLevel);
-					spellbook.Memorize(abilityData, null);
 				}
 			}
 			
@@ -256,9 +205,13 @@ namespace MediumClass.NewComponents
 								if (SpiritPowerRank <= 3) { continue; }
 							}
 						}
-						if(isSecondarySpirit && medium.Spirits[medium.SecondarySpirit].SpiritLesserPower.Get() == blueprintFeature) {
+						if(isSecondarySpirit && medium.Spirits[this.SecondarySpirit].SpiritLesserPower.Get() == blueprintFeature) {
 							continue;
                         }
+						else if (isSecondarySpirit && medium.Spirits[this.SecondarySpirit].SpiritSeanceBoon.Get() == blueprintFeature)
+						{
+							continue;
+						}
 						EntityFact entityFact = base.Owner.AddFact(blueprintFeatureBase, null, null);
 						base.Data.Features.Add(entityFact.UniqueId);
 					}
@@ -272,12 +225,12 @@ namespace MediumClass.NewComponents
 		private void Revert()
 		{
 			Logger.Log($"Reverting. Removing Class Levels of Data.Class and Data.Levels {base.Data.Class} and {base.Data.Levels}");
+			UnitPartMedium unitPartMedium = base.Owner.Ensure<UnitPartMedium>();
 			base.Owner.Progression.RemoveClassLevels(base.Data.Class, base.Data.Levels);
 			foreach (string text in base.Data.Abilities)
 			{
 				base.Owner.Facts.Remove(base.Owner.Facts.FindById(text), true);
 			}
-
 			foreach (string text2 in base.Data.Features)
 			{
 				base.Owner.Facts.Remove(base.Owner.Facts.FindById(text2), true);
@@ -297,17 +250,20 @@ namespace MediumClass.NewComponents
 						base.Owner.Buffs.RemoveFact(buff);
 					}
 				}
-
-			UnitEntityData medium = base.Owner;
-			UnitPartMedium unitPartMedium = base.Owner.Ensure<UnitPartMedium>();
-			
 				foreach (UnitEntityData unitEntityData in Game.Instance.Player.ActiveCompanions)
 				{
 					unitEntityData.RemoveFact(unitPartMedium.Spirits[unitPartMedium.PrimarySpirit].SpiritSeanceBoon);
 				}
 				base.Owner.Progression.Features.AddFact(BlueprintTool.Get<BlueprintFeature>(Guids.MediumSpellcasterFeatProhibitArchmage), Context);
 				base.Owner.Progression.Features.AddFact(BlueprintTool.Get<BlueprintFeature>(Guids.MediumSpellcasterFeatProhibitHierophant), Context);
+				
+				unitPartMedium.PrimarySpirit = new BlueprintCharacterClassReference();
 			}
+			if(isSecondarySpirit)
+            {
+				unitPartMedium.SecondarySpirit = new BlueprintCharacterClassReference();
+			}
+			
 			base.ClearData();
 		}
 
@@ -319,18 +275,8 @@ namespace MediumClass.NewComponents
 		[SerializeField]
 		[ValidateNotNull]
 		public BlueprintCharacterClassReference m_Class;
-
 		public bool isSecondarySpirit = false;
-
-		// Token: 0x0400802E RID: 32814
-		[SerializeField]
-		[ValidateNoNullEntries]
-		public BlueprintAbilityReference[] m_SelectSpells = new BlueprintAbilityReference[0];
-
-		// Token: 0x0400802F RID: 32815
-		[SerializeField]
-		[ValidateNoNullEntries]
-		public BlueprintAbilityReference[] m_MemorizeSpells = new BlueprintAbilityReference[0];
+		public BlueprintCharacterClassReference SecondarySpirit;
 
 		// Token: 0x04008030 RID: 32816
 		[SerializeField]
