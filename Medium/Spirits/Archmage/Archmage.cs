@@ -71,7 +71,7 @@ namespace MediumClass.Medium.Spirits.Archmage
         private static BlueprintProgression ArchmageProgression()
         {
             var entries = LevelEntryBuilder.New()
-                .AddEntry(1, Guids.ArchmageSeanceBoon, Guids.ArchmageLesser)
+                .AddEntry(1)
                 .AddEntry(6, Guids.ArchmageIntermediate)
                 .AddEntry(11, Guids.ArchmageGreater)
                 .AddEntry(17);

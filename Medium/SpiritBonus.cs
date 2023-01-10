@@ -40,7 +40,7 @@ namespace MediumClass.Medium
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIcon("assets/icons/tranceofthree.png")
-                .AddComponent<MediumContextStatBonusComponent>()
+                .AddComponent<MediumContextSpiritBonusComponent>()
                 .Configure();
 
             BlueprintFeature SpiritBonus = FeatureConfigurator.New(FeatName, Guids.MediumSpiritBonus)

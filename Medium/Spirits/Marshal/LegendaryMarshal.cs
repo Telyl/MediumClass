@@ -46,7 +46,7 @@ namespace MediumClass.Medium.Spirits.Marshal
                 .SetSpellResistance(false)
                 .AddAbilityEffectRunAction(
                     actions: ActionsBuilder.New()
-                        .ApplyBuff(buff, ContextDuration.Fixed(1, rate: DurationRate.Minutes),
+                        .ApplyBuff(buff, ContextDuration.Fixed(5, rate: DurationRate.Rounds),
                                     asChild: false, isFromSpell: false, isNotDispelable: true))
                 .Configure();
 

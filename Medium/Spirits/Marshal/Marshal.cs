@@ -68,7 +68,7 @@ namespace MediumClass.Medium.Spirits.Marshal
         private static BlueprintProgression MarshalProgression()
         {
             var entries = LevelEntryBuilder.New()
-                .AddEntry(1, Guids.MarshalSeanceBoon, Guids.MarshalMarshalsOrders)
+                .AddEntry(1, Guids.MarshalMarshalsOrders)
                 .AddEntry(6, Guids.MarshalInspiringCallStandard)
                 .AddEntry(11, Guids.MarshalInspiringCallMove, Guids.MarshalDecisiveStrikeFeature)
                 .AddEntry(17, Guids.MarshalInspiringCallSwift, Guids.MarshalLegendaryMarshal);

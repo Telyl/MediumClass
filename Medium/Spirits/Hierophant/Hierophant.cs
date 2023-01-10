@@ -78,7 +78,7 @@ namespace MediumClass.Medium.Spirits.Hierophant
         private static BlueprintProgression HierophantProgression()
         {
             var entries = LevelEntryBuilder.New()
-                .AddEntry(1, Guids.HierophantSeanceBoon)
+                .AddEntry(1)
                 .AddEntry(6, Guids.HierophantEnergyFont)
                 .AddEntry(11, Guids.HierophantOverflowingGrace)
                 .AddEntry(17, Guids.HierophantSupreme);

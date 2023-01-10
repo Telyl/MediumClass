@@ -76,7 +76,7 @@ namespace MediumClass.Medium.Spirits.Guardian
         private static BlueprintProgression GuardianProgression()
         {
             var entries = LevelEntryBuilder.New()
-                .AddEntry(1, Guids.GuardianLesser, Guids.GuardianSeanceBoon)
+                .AddEntry(1, Guids.GuardianLesser)
                 .AddEntry(6, Guids.GuardianAbsorbBlow)
                 .AddEntry(11, Guids.GuardianGreater)
                 .AddEntry(17, Guids.LegendaryGuardian);

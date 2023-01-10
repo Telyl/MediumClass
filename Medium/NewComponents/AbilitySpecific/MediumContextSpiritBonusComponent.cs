@@ -23,9 +23,9 @@ namespace MediumClass.Medium.NewComponents.AbilitySpecific
 	[AllowedOn(typeof(BlueprintBuff), false)]
 	[AllowMultipleComponents]
 	[TypeId("995fb9e0-f2f5-4dc2-a281-b7959ea95cda")]
-	public class MediumContextStatBonusComponent : UnitFactComponentDelegate<AddContextStatBonus.ComponentData>
+	public class MediumContextSpiritBonusComponent : UnitFactComponentDelegate<AddContextStatBonus.ComponentData>
 	{
-		private static readonly ModLogger Logger = Logging.GetLogger(nameof(MediumContextStatBonusComponent));
+		private static readonly ModLogger Logger = Logging.GetLogger(nameof(MediumContextSpiritBonusComponent));
 		public override void OnTurnOn()
 		{
 			UnitPartMedium medium = base.Owner.Ensure<UnitPartMedium>();
@@ -34,7 +34,6 @@ namespace MediumClass.Medium.NewComponents.AbilitySpecific
 				return;
 			}
 			int ranks = base.Owner.Progression.Features.GetRank(medium.Spirits[medium.PrimarySpirit].SpiritBonus.SpiritBonusFeature);
-			Logger.Log($"Ranks: {ranks}");
 			foreach (StatType stat in medium.Spirits[medium.PrimarySpirit].SpiritBonus.Stats)
 			{
 				base.Owner.Stats.GetStat(stat).AddModifier(ranks, base.Runtime, ModifierDescriptor.UntypedStackable);

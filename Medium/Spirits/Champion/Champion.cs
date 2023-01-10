@@ -68,7 +68,7 @@ namespace MediumClass.Medium.Spirits.Champion
         private static BlueprintProgression ChampionProgression()
         {
             var entries = LevelEntryBuilder.New()
-                .AddEntry(1, Guids.ChampionSeanceBoon, Guids.ChampionLesser)
+                .AddEntry(1, Guids.ChampionLesser)
                 .AddEntry(6, Guids.ChampionSuddenAttack)
                 .AddEntry(11, Guids.ChampionFleetCharge)
                 .AddEntry(17, Guids.LegendaryChampion);

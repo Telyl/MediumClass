@@ -53,6 +53,7 @@ namespace MediumClass.Medium.Spirits.Trickster
             BlueprintBuff athleticsbuff = BuffConfigurator.New(FeatName + "AthleticsBuff", Guids.TricksterEdgeAthleticsBuff).Configure();
             BuffConfigurator.For(athleticsbuff)
                 .SetDisplayName(AthleticsDisplayName)
+                .SetDescription(Description)
                 .AddClassSkill(skill: StatType.SkillAthletics)
                 .AddComponent<AddTrickstersEdge>(c => { c.Skill = StatType.SkillAthletics; })
                 .SetIcon(FeatureRefs.SkillFocusPhysique.Reference.Get().Icon)
@@ -60,6 +61,7 @@ namespace MediumClass.Medium.Spirits.Trickster
 
             BlueprintBuff mobilitybuff = BuffConfigurator.New(FeatName + "MobilityBuff", Guids.TricksterEdgeMobilityBuff)
                 .SetDisplayName(MobilityDisplayName)
+                .SetDescription(Description)
                 .AddClassSkill(skill: StatType.SkillMobility)
                 .AddComponent<AddTrickstersEdge>(c => { c.Skill = StatType.SkillMobility; })
                 .SetIcon(FeatureRefs.SkillFocusAcrobatics.Reference.Get().Icon)
@@ -67,6 +69,7 @@ namespace MediumClass.Medium.Spirits.Trickster
 
             BlueprintBuff thieverybuff = BuffConfigurator.New(FeatName + "ThieveryBuff", Guids.TricksterEdgeThieveryBuff)
                 .SetDisplayName(ThieveryDisplayName)
+                .SetDescription(Description)
                 .AddClassSkill(skill: StatType.SkillThievery)
                 .AddComponent<AddTrickstersEdge>(c => { c.Skill = StatType.SkillThievery; })
                 .SetIcon(FeatureRefs.SkillFocusThievery.Reference.Get().Icon)
@@ -74,6 +77,7 @@ namespace MediumClass.Medium.Spirits.Trickster
 
             BlueprintBuff stealthbuff = BuffConfigurator.New(FeatName + "StealthBuff", Guids.TricksterEdgeStealthBuff)
                 .SetDisplayName(StealthDisplayName)
+                .SetDescription(Description)
                 .AddClassSkill(skill: StatType.SkillStealth)
                 .AddComponent<AddTrickstersEdge>(c => { c.Skill = StatType.SkillStealth; })
                 .SetIcon(FeatureRefs.SkillFocusStealth.Reference.Get().Icon)
@@ -81,6 +85,7 @@ namespace MediumClass.Medium.Spirits.Trickster
 
             BlueprintBuff religionbuff = BuffConfigurator.New(FeatName + "ReligionBuff", Guids.TricksterEdgeLoreReligionBuff)
                 .SetDisplayName(ReligionDisplayName)
+                .SetDescription(Description)
                 .AddClassSkill(skill: StatType.SkillLoreReligion)
                 .AddComponent<AddTrickstersEdge>(c => { c.Skill = StatType.SkillLoreReligion; })
                 .SetIcon(FeatureRefs.SkillFocusLoreReligion.Reference.Get().Icon)
@@ -88,6 +93,7 @@ namespace MediumClass.Medium.Spirits.Trickster
 
             BlueprintBuff naturebuff = BuffConfigurator.New(FeatName + "NatureBuff", Guids.TricksterEdgeLoreNatureBuff)
                 .SetDisplayName(NatureDisplayName)
+                .SetDescription(Description)
                 .AddClassSkill(skill: StatType.SkillLoreNature)
                 .AddComponent<AddTrickstersEdge>(c => { c.Skill = StatType.SkillLoreNature; })
                 .SetIcon(FeatureRefs.SkillFocusLoreNature.Reference.Get().Icon)
@@ -95,6 +101,7 @@ namespace MediumClass.Medium.Spirits.Trickster
 
             BlueprintBuff arcanabuff = BuffConfigurator.New(FeatName + "ArcanaBuff", Guids.TricksterEdgeKnowledgeArcanaBuff)
                 .SetDisplayName(ArcanaDisplayName)
+                .SetDescription(Description)
                 .AddClassSkill(skill: StatType.SkillKnowledgeArcana)
                 .AddComponent<AddTrickstersEdge>(c => { c.Skill = StatType.SkillKnowledgeArcana; })
                 .SetIcon(FeatureRefs.SkillFocusKnowledgeArcana.Reference.Get().Icon)
@@ -102,6 +109,7 @@ namespace MediumClass.Medium.Spirits.Trickster
 
             BlueprintBuff worldbuff = BuffConfigurator.New(FeatName + "WorldBuff", Guids.TricksterEdgeKnowledgeWorldBuff)
                 .SetDisplayName(WorldDisplayName)
+                .SetDescription(Description)
                 .AddClassSkill(skill: StatType.SkillKnowledgeWorld)
                 .AddComponent<AddTrickstersEdge>(c => { c.Skill = StatType.SkillKnowledgeWorld; })
                 .SetIcon(FeatureRefs.SkillFocusKnowledgeWorld.Reference.Get().Icon)
@@ -109,6 +117,7 @@ namespace MediumClass.Medium.Spirits.Trickster
 
             BlueprintBuff perceptionbuff = BuffConfigurator.New(FeatName + "PerceptionBuff", Guids.TricksterEdgePerceptionBuff)
                 .SetDisplayName(PerceptionDisplayName)
+                .SetDescription(Description)
                 .AddClassSkill(skill: StatType.SkillPerception)
                 .AddComponent<AddTrickstersEdge>(c => { c.Skill = StatType.SkillPerception; })
                 .SetIcon(FeatureRefs.SkillFocusPerception.Reference.Get().Icon)
@@ -117,6 +126,7 @@ namespace MediumClass.Medium.Spirits.Trickster
 
             BlueprintBuff persuasionbuff = BuffConfigurator.New(FeatName + "PersuasionBuff", Guids.TricksterEdgePersuasionBuff)
                 .SetDisplayName(PersuasionDisplayName)
+                .SetDescription(Description)
                 .AddClassSkill(skill: StatType.SkillPersuasion)
                 .AddComponent<AddTrickstersEdge>(c => { c.Skill = StatType.SkillPersuasion; })
                 .SetIcon(FeatureRefs.SkillFocusDiplomacy.Reference.Get().Icon)
@@ -125,6 +135,7 @@ namespace MediumClass.Medium.Spirits.Trickster
 
             BlueprintBuff umdbuff = BuffConfigurator.New(FeatName + "UMDBuff", Guids.TricksterEdgeUseMagicDeviceBuff)
                 .SetDisplayName(UMDDisplayName)
+                .SetDescription(Description)
                 .AddClassSkill(skill: StatType.SkillUseMagicDevice)
                 .AddComponent<AddTrickstersEdge>(c => { c.Skill = StatType.SkillUseMagicDevice; })
                 .SetIcon(FeatureRefs.SkillFocusUseMagicDevice.Reference.Get().Icon)

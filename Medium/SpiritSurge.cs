@@ -69,7 +69,7 @@ namespace MediumClass.Medium
                 .AddAbilityEffectRunAction(
                     actions: ActionsBuilder.New()
                         .Add<ContextActionSpiritInfluence>()
-                        .ApplyBuff(buff, ContextDuration.Fixed(1, DurationRate.Minutes),
+                        .ApplyBuff(buff, ContextDuration.Fixed(5, DurationRate.Rounds),
                                     asChild: false, isFromSpell: false, isNotDispelable: true))
                 .Configure();
 

@@ -50,6 +50,7 @@ namespace MediumClass.Medium.Spirits.Trickster
             BlueprintBuff athleticsbuff = BuffConfigurator.New(FeatName + "AthleticsBuff", Guids.TricksterSeanceBoonAthleticsBuff).Configure();
             BuffConfigurator.For(athleticsbuff)
                 .SetDisplayName(AthleticsDisplayName)
+                .SetDescription(Description)
                 .AddClassSkill(skill: StatType.SkillAthletics)
                 .AddRestTrigger(action: ActionsBuilder.New().RemoveBuff(athleticsbuff))
                 .AddComponent<AddTricksterSeance>(c =>
@@ -62,6 +63,7 @@ namespace MediumClass.Medium.Spirits.Trickster
             BlueprintBuff mobilitybuff = BuffConfigurator.New(FeatName + "MobilityBuff", Guids.TricksterSeanceBoonMobilityBuff).Configure();
             BuffConfigurator.For(mobilitybuff)
                 .SetDisplayName(MobilityDisplayName)
+                .SetDescription(Description)
                 .AddClassSkill(skill: StatType.SkillMobility)
                 .AddRestTrigger(action: ActionsBuilder.New().RemoveBuff(mobilitybuff))
                 .AddComponent<AddTricksterSeance>(c =>
@@ -74,6 +76,7 @@ namespace MediumClass.Medium.Spirits.Trickster
             BlueprintBuff thieverybuff = BuffConfigurator.New(FeatName + "ThieveryBuff", Guids.TricksterSeanceBoonThieveryBuff).Configure();
             BuffConfigurator.For(thieverybuff)
                 .SetDisplayName(ThieveryDisplayName)
+                .SetDescription(Description)
                 .AddClassSkill(skill: StatType.SkillThievery)
                 .AddRestTrigger(action: ActionsBuilder.New().RemoveBuff(thieverybuff))
                 .AddComponent<AddTricksterSeance>(c =>
@@ -86,6 +89,7 @@ namespace MediumClass.Medium.Spirits.Trickster
             BlueprintBuff stealthbuff = BuffConfigurator.New(FeatName + "StealthBuff", Guids.TricksterSeanceBoonStealthBuff).Configure();
             BuffConfigurator.For(stealthbuff)
                 .SetDisplayName(StealthDisplayName)
+                .SetDescription(Description)
                 .AddClassSkill(skill: StatType.SkillStealth)
                 .AddRestTrigger(action: ActionsBuilder.New().RemoveBuff(stealthbuff))
                 .AddComponent<AddTricksterSeance>(c =>
@@ -98,6 +102,7 @@ namespace MediumClass.Medium.Spirits.Trickster
             BlueprintBuff religionbuff = BuffConfigurator.New(FeatName + "ReligionBuff", Guids.TricksterSeanceBoonLoreReligionBuff).Configure();
             BuffConfigurator.For(religionbuff)
                 .SetDisplayName(ReligionDisplayName)
+                .SetDescription(Description)
                 .AddClassSkill(skill: StatType.SkillLoreReligion)
                 .AddRestTrigger(action: ActionsBuilder.New().RemoveBuff(religionbuff))
                 .AddComponent<AddTricksterSeance>(c =>
@@ -110,6 +115,7 @@ namespace MediumClass.Medium.Spirits.Trickster
             BlueprintBuff naturebuff = BuffConfigurator.New(FeatName + "NatureBuff", Guids.TricksterSeanceBoonLoreNatureBuff).Configure();
             BuffConfigurator.For(naturebuff)
                 .SetDisplayName(NatureDisplayName)
+                .SetDescription(Description)
                 .AddClassSkill(skill: StatType.SkillLoreNature)
                 .AddRestTrigger(action: ActionsBuilder.New().RemoveBuff(naturebuff))
                 .AddComponent<AddTricksterSeance>(c =>
@@ -122,6 +128,7 @@ namespace MediumClass.Medium.Spirits.Trickster
             BlueprintBuff arcanabuff = BuffConfigurator.New(FeatName + "ArcanaBuff", Guids.TricksterSeanceBoonKnowledgeArcanaBuff).Configure();
             BuffConfigurator.For(arcanabuff)
                 .SetDisplayName(ArcanaDisplayName)
+                .SetDescription(Description)
                 .AddClassSkill(skill: StatType.SkillKnowledgeArcana)
                 .AddRestTrigger(action: ActionsBuilder.New().RemoveBuff(arcanabuff))
                 .AddComponent<AddTricksterSeance>(c =>
@@ -134,6 +141,7 @@ namespace MediumClass.Medium.Spirits.Trickster
             BlueprintBuff worldbuff = BuffConfigurator.New(FeatName + "WorldBuff", Guids.TricksterSeanceBoonKnowledgeWorldBuff).Configure();
             BuffConfigurator.For(worldbuff)
                 .SetDisplayName(WorldDisplayName)
+                .SetDescription(Description)
                 .AddClassSkill(skill: StatType.SkillKnowledgeWorld)
                 .AddRestTrigger(action: ActionsBuilder.New().RemoveBuff(worldbuff))
                 .AddComponent<AddTricksterSeance>(c =>
@@ -146,6 +154,7 @@ namespace MediumClass.Medium.Spirits.Trickster
             BlueprintBuff perceptionbuff = BuffConfigurator.New(FeatName + "PerceptionBuff", Guids.TricksterSeanceBoonPerceptionBuff).Configure();
             BuffConfigurator.For(perceptionbuff)
                 .SetDisplayName(PerceptionDisplayName)
+                .SetDescription(Description)
                 .AddClassSkill(skill: StatType.SkillPerception)
                 .AddRestTrigger(action: ActionsBuilder.New().RemoveBuff(perceptionbuff))
                 .AddComponent<AddTricksterSeance>(c =>
@@ -159,6 +168,7 @@ namespace MediumClass.Medium.Spirits.Trickster
             BlueprintBuff persuasionbuff = BuffConfigurator.New(FeatName + "PersuasionBuff", Guids.TricksterSeanceBoonPersuasionBuff).Configure();
             BuffConfigurator.For(persuasionbuff)
                 .SetDisplayName(PersuasionDisplayName)
+                .SetDescription(Description)
                 .AddClassSkill(skill: StatType.SkillPersuasion)
                 .AddRestTrigger(action: ActionsBuilder.New().RemoveBuff(persuasionbuff))
                 .AddComponent<AddTricksterSeance>(c =>
@@ -172,6 +182,7 @@ namespace MediumClass.Medium.Spirits.Trickster
             BlueprintBuff umdbuff = BuffConfigurator.New(FeatName + "UMDBuff", Guids.TricksterSeanceBoonUseMagicDeviceBuff).Configure();
             BuffConfigurator.For(umdbuff)
                 .SetDisplayName(UMDDisplayName)
+                .SetDescription(Description)
                 .AddClassSkill(skill: StatType.SkillUseMagicDevice)
                 .AddRestTrigger(action: ActionsBuilder.New().RemoveBuff(umdbuff))
                 .AddComponent<AddTricksterSeance>(c =>

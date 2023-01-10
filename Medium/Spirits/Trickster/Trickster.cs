@@ -78,7 +78,7 @@ namespace MediumClass.Medium.Spirits.Trickster
         {
             //FeatureRefs.SneakAttack.Reference.Get()
             var entries = LevelEntryBuilder.New()
-                .AddEntry(1, Guids.TricksterSeanceBoon, Guids.TricksterEdge)
+                .AddEntry(1, Guids.TricksterEdge)
                 .AddEntry(6, Guids.TricksterSurpriseStrike, Guids.TricksterSurpriseStrike)
                 .AddEntry(9, Guids.TricksterSurpriseStrike)
                 .AddEntry(11, Guids.TricksterTransferMagic)
