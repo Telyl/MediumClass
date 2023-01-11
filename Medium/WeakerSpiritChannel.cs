@@ -46,7 +46,7 @@ namespace MediumClass.Medium
             BlueprintBuff buff = BuffConfigurator.New(FeatName + "Buff", Guids.WeakerSpiritChannelBuff)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.SpiderSwarmDamageAbility.Reference.Get().Icon)
+                .SetIcon("assets/icons/foregospirit.png")
                 .AddComponent<MediumWeakerSpiritComponent>()
                 .SetFlags(BlueprintBuff.Flags.RemoveOnRest)
                 .Configure();
@@ -54,7 +54,7 @@ namespace MediumClass.Medium
             BlueprintAbility WeakerSpiritAbilitiesSupreme = AbilityConfigurator.New(FeatName + "FourAbility", Guids.WeakerSpiritChannelFourAbility)
                 .SetDisplayName(DisplayName4)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.SpiderSwarmDamageAbility.Reference.Get().Icon)
+                .SetIcon("assets/icons/foregospirit4.png")
                 .AddComponent<AbilityRequirementSpiritPowerRank>()
                 .AddComponent(new AbilityRequirementHasSpirit()
                 {
@@ -73,7 +73,7 @@ namespace MediumClass.Medium
                 {
                     Not = true
                 })
-                .SetIcon(AbilityRefs.SpiderSwarmDamageAbility.Reference.Get().Icon)
+                .SetIcon("assets/icons/foregospirit3.png")
                 .AddAbilityEffectRunAction(
                     actions: ActionsBuilder.New()
                         .ApplyBuffPermanent(buff, asChild: false, isFromSpell: false, isNotDispelable: true))
@@ -82,7 +82,7 @@ namespace MediumClass.Medium
             BlueprintAbility WeakerSpiritAbilitiesIntermediate = AbilityConfigurator.New(FeatName + "TwoAbility", Guids.WeakerSpiritChannelTwoAbility)
                 .SetDisplayName(DisplayName2)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.SpiderSwarmDamageAbility.Reference.Get().Icon)
+                .SetIcon("assets/icons/foregospirit2.png")
                 .AddComponent<AbilityRequirementSpiritPowerRank>()
                 .AddComponent(new AbilityRequirementHasSpirit()
                 {
@@ -96,7 +96,7 @@ namespace MediumClass.Medium
             BlueprintAbility WeakerSpiritAbilitiesLesser = AbilityConfigurator.New(FeatName + "OneAbility", Guids.WeakerSpiritChannelOneAbility)
                 .SetDisplayName(DisplayName1)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.SpiderSwarmDamageAbility.Reference.Get().Icon)
+                .SetIcon("assets/icons/foregospirit1.png")
                 .AddComponent<AbilityRequirementSpiritPowerRank>()
                 .AddComponent(new AbilityRequirementHasSpirit()
                 {
@@ -110,7 +110,7 @@ namespace MediumClass.Medium
             BlueprintAbility WeakerSpiritAbilities = AbilityConfigurator.New(FeatName + "Abilities", Guids.WeakerSpiritChannelAbilities)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.SpiderSwarmDamageAbility.Reference.Get().Icon)
+                .SetIcon("assets/icons/foregospirit.png")
                 .AddComponent(new AbilityRequirementHasSpirit()
                 {
                     Not = true

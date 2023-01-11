@@ -10,8 +10,10 @@ using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Commands.Base;
 using Kingmaker.UnitLogic.Parts;
 using Kingmaker.Utility;
+using MediumClass.Utils;
 using UnityEngine;
 using UnityEngine.Serialization;
+using static UnityModManagerNet.UnityModManager.ModEntry;
 
 namespace MediumClass.Medium.NewComponents.AbilitySpecific
 {
@@ -20,15 +22,17 @@ namespace MediumClass.Medium.NewComponents.AbilitySpecific
 	[TypeId("dc0b7d8176400bd46af14e7ddbf790a3")]
 	public class DecisiveStrikeStandardComponent : UnitFactComponentDelegate, IInitiatorRulebookHandler<RuleCastSpell>, IRulebookHandler<RuleCastSpell>, ISubscriber, IInitiatorRulebookSubscriber
 	{
-		// Token: 0x0600BF1A RID: 48922 RVA: 0x0031D277 File Offset: 0x0031B477
+		private static readonly ModLogger Logger = Logging.GetLogger(nameof(DecisiveStrikeStandardComponent));
 		public override void OnTurnOn()
 		{
 			TargetWrapper ally = base.Context.MainTarget;
 			var abilitiesList = ally.Unit.Descriptor.Abilities;
 			foreach (var ability in abilitiesList)
             {
+				Logger.Log("This is acting up?");
 				if(ability.Blueprint.IsSpell && !ability.Blueprint.IsFullRoundAction)
                 {
+					Logger.Log("In If and changing stuff.");
 					base.Owner.Ensure<UnitPartAbilityModifiers>().AddEntry(new UnitPartAbilityModifiers.ActionEntry(base.Fact, UnitCommand.CommandType.Free, ability.Blueprint));
 				}
             }

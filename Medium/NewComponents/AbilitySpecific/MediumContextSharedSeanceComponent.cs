@@ -1,7 +1,9 @@
 ﻿using System;
+using Kingmaker;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.JsonSystem;
+using Kingmaker.EntitySystem.Entities;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
 using Kingmaker.QA;
@@ -31,9 +33,14 @@ namespace MediumClass.Medium.NewComponents.AbilitySpecific
 			UnitPartMedium medium = base.Owner.Ensure<UnitPartMedium>();
 			if (!medium.Spirits.ContainsKey(medium.PrimarySpirit))
 			{
+
 				return;
 			}
 			base.Owner.AddFact(medium.Spirits[medium.PrimarySpirit].SpiritSeanceBoon);
+			foreach (UnitEntityData unitEntityData in Game.Instance.Player.ActiveCompanions)
+			{
+				unitEntityData.AddFact(medium.Spirits[medium.PrimarySpirit].SpiritSeanceBoon.Get());
+			}
 			spirit = medium.PrimarySpirit;
 		}
 
@@ -42,6 +49,10 @@ namespace MediumClass.Medium.NewComponents.AbilitySpecific
 		{
 			UnitPartMedium medium = base.Owner.Ensure<UnitPartMedium>();
 			base.Owner.RemoveFact(medium.Spirits[spirit].SpiritSeanceBoon);
+			foreach (UnitEntityData unitEntityData in Game.Instance.Player.ActiveCompanions)
+			{
+				unitEntityData.RemoveFact(medium.Spirits[spirit].SpiritSeanceBoon);
+			}
 		}
 		private BlueprintCharacterClassReference spirit;
 	}

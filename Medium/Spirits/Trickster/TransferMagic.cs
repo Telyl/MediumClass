@@ -48,9 +48,8 @@ namespace MediumClass.Medium.Spirits.Trickster
                 .SetAnimation(Kingmaker.Visual.Animation.Kingmaker.Actions.UnitAnimationActionCastSpell.CastAnimationStyle.Touch)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
+                .AddAbilityEffectRunAction(actions: ActionsBuilder.New().Add<ContextActionTransferMagic>())
                 .SetIcon("assets/icons/transfermagic.png")
-                .AddAbilityResourceLogic(amount: 1, isSpendResource: true, requiredResource: Guids.MediumInfluenceResource)
-                .AddAbilityEffectRunAction(actions: ActionsBuilder.New().Add<ContextActionSpiritInfluence>().Add<ContextActionTransferMagic>())
                 .Configure();
 
             var ability = AbilityConfigurator.New(FeatName + "Ability", Guids.TricksterTransferMagicAbility)
@@ -63,15 +62,28 @@ namespace MediumClass.Medium.Spirits.Trickster
                 .SetCanTargetSelf(false)
                 .SetCanTargetPoint(false)
                 .SetCanTargetFriends()
+                .AddAbilityResourceLogic(amount: 1, isSpendResource: true, requiredResource: Guids.MediumInfluenceResource)
+                .AddAbilityEffectRunAction(actions: ActionsBuilder.New().Add<ContextActionSpiritInfluence>())
                 .AddAbilityEffectStickyTouch(touchDeliveryAbility: effect)
                 .SetAnimation(Kingmaker.Visual.Animation.Kingmaker.Actions.UnitAnimationActionCastSpell.CastAnimationStyle.Touch)
                 .Configure();
-
            
             FeatureConfigurator.New(FeatName, Guids.TricksterTransferMagic)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .AddFacts(new() { ability })
+                .Configure();
+
+            var secondability = AbilityConfigurator.New(FeatName + "AbilitySecondary", Guids.SecondaryTricksterTransferMagicAbility)
+                .CopyFrom(ability, c => c is not AbilityResourceLogic)
+                .AddAbilityResourceLogic(amount: 1, isSpendResource: true, requiredResource: Guids.MediumInfluenceResourceTrickster)
+                .Configure();
+
+            FeatureConfigurator.New(FeatName + "Secondary", Guids.SecondaryTricksterTransferMagic)
+                .SetDisplayName(DisplayName)
+                .SetDescription(Description)
+                .AddFacts(new() { secondability })
+                .AddRemoveFeatureOnApply(Guids.TricksterTransferMagic)
                 .Configure();
         }
     }

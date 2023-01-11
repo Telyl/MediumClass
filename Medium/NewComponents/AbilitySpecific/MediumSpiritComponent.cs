@@ -24,7 +24,7 @@ namespace MediumClass.Medium.NewComponents.AbilitySpecific
         public override void OnTurnOn()
         {
             Owner.Ensure<UnitPartMedium>().AddSpiritEntry(SpiritClass, SpiritInfluencePenalty, SpiritInfluence, SpiritBonusFeature, SpiritSeanceBoon, base.Fact, Concentration, Stats, Penalties, 
-                SpiritLesserPower, SpiritIntermediatePower, SpiritGreaterPower, SpiritSupremePower, SpiritIntermediatePowerMove, SpiritIntermediatePowerSwift);
+                SpiritLesserPower, SpiritIntermediatePower, SpiritOverwriteIntermediate, SpiritGreaterPower, SpiritOverwriteGreater, SpiritSupremePower, SpiritIntermediatePowerMove, SpiritIntermediatePowerSwift);
         }
 
         public override void OnTurnOff()
@@ -42,7 +42,9 @@ namespace MediumClass.Medium.NewComponents.AbilitySpecific
         public BlueprintFeatureReference SpiritIntermediatePower;
         public BlueprintFeatureReference SpiritIntermediatePowerMove = new BlueprintFeatureReference();
         public BlueprintFeatureReference SpiritIntermediatePowerSwift = new BlueprintFeatureReference();
+        public BlueprintFeatureReference SpiritOverwriteIntermediate = new BlueprintFeatureReference();
         public BlueprintFeatureReference SpiritGreaterPower;
+        public BlueprintFeatureReference SpiritOverwriteGreater = new BlueprintFeatureReference();
         public BlueprintFeatureReference SpiritSupremePower;
         public StatType[] Stats;
         public StatType[] Penalties;

@@ -32,7 +32,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using static UnityModManagerNet.UnityModManager.ModEntry;
 
-namespace MediumClass.Medium.NewComponents
+namespace MediumClass.Medium.NewUnitParts
 {
 	//I pulled this directly from SpellKenning implemented by Vek17 and switched it up. All thanks go to him and TabletopTweaks-Core.
 	[ComponentName("Spontaneous Spell Conversion")]
@@ -96,7 +96,6 @@ namespace MediumClass.Medium.NewComponents
 
 		public void HandleGetConversions(AbilityData ability, ref IEnumerable<AbilityData> conversions)
 		{
-			Logger.Log("I'm in HandleGetConversions.");
 			var conversionList = conversions.ToList();
 			if(!ability.Blueprint.IsSpell) { return; }
 			if(ability.Spellbook.Blueprint != this.Spellbook) { return; }

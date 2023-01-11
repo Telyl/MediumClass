@@ -70,7 +70,7 @@ namespace MediumClass.Medium
 
             
             var buff = BuffConfigurator.New(FeatName + "PrimarySpiritBuff", Guids.MediumChannelSpiritPrimarySpiritBuff)
-                .AddComponent<ApplySpirit>()
+                .AddComponent<ApplySpirits>()
                 .SetFlags(BlueprintBuff.Flags.RemoveOnRest)
                 .Configure();
 
@@ -198,9 +198,10 @@ namespace MediumClass.Medium
                     c.SpiritInfluencePenalty = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.MediumInfluenceDebuff);
                     c.SpiritInfluence = BlueprintTool.GetRef<BlueprintAbilityResourceReference>(Guids.MediumInfluenceResourceArchmage);
                     c.SpiritBonusFeature = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MediumSpiritBonus);
-                    c.SpiritSeanceBoon = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ArchmageSeanceBoon);
-                    c.SpiritLesserPower = new BlueprintFeatureReference();
+                    c.SpiritSeanceBoon = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ArchmageSeanceBoon); 
+                    c.SpiritLesserPower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MediumSpellcasterFeatProhibitArchmage);
                     c.SpiritIntermediatePower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ArchmageIntermediate);
+                    c.SpiritOverwriteIntermediate = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.SecondaryArchmageIntermediate);
                     c.SpiritGreaterPower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ArchmageGreater);
                     c.SpiritSupremePower = new BlueprintFeatureReference();
                     c.Concentration = true;
@@ -239,7 +240,7 @@ namespace MediumClass.Medium
                     c.SpiritInfluence = BlueprintTool.GetRef<BlueprintAbilityResourceReference>(Guids.MediumInfluenceResourceHierophant);
                     c.SpiritBonusFeature = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MediumSpiritBonus);
                     c.SpiritSeanceBoon = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.HierophantSeanceBoon);
-                    c.SpiritLesserPower = new BlueprintFeatureReference();
+                    c.SpiritLesserPower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MediumSpellcasterFeatProhibitHierophant);
                     c.SpiritIntermediatePower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.HierophantEnergyFont);
                     c.SpiritGreaterPower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.HierophantOverflowingGrace);
                     c.SpiritSupremePower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.HierophantSupreme);
@@ -257,6 +258,7 @@ namespace MediumClass.Medium
                     c.SpiritIntermediatePowerMove = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MarshalInspiringCallMove);
                     c.SpiritIntermediatePowerSwift = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MarshalInspiringCallSwift);
                     c.SpiritGreaterPower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MarshalDecisiveStrikeFeature);
+                    c.SpiritOverwriteGreater = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.SecondaryDecisiveStrikeFeature);
                     c.SpiritSupremePower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MarshalLegendaryMarshal);
                     c.Stats = new StatType[] { StatType.AdditionalAttackBonus }.Concat(StatTypeHelper.Saves).Concat(StatTypeHelper.Skills).ToArray();
                     c.Penalties = new StatType[] { StatType.SkillPerception, StatType.SkillLoreNature, StatType.SkillLoreReligion, StatType.SaveWill };
@@ -271,6 +273,7 @@ namespace MediumClass.Medium
                     c.SpiritLesserPower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.TricksterEdge);
                     c.SpiritIntermediatePower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.TricksterSurpriseStrike);
                     c.SpiritGreaterPower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.TricksterTransferMagic);
+                    c.SpiritOverwriteGreater = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.SecondaryTricksterTransferMagic);
                     c.SpiritSupremePower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.TricksterLegendaryTrickster);
                     c.Penalties = new StatType[] { StatType.AC, StatType.AdditionalCMB, StatType.AdditionalCMD };
                     c.Stats = new StatType[] { StatType.SkillAthletics, StatType.SkillKnowledgeArcana, StatType.SkillKnowledgeWorld, StatType.SkillLoreNature, StatType.SkillLoreReligion,

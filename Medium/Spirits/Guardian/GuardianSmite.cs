@@ -35,9 +35,10 @@ namespace MediumClass.Medium.Spirits.Guardian
             Logger.Log("Generating Guardian Greater Ability");
 
             var ability = AbilityConfigurator.New(FeatName + "Ability", Guids.GuardianGreaterAbility)
+                .CopyFrom(AbilityRefs.SmiteEvilAbility, c => c is not (ContextRankConfig or AbilityResourceLogic or AbilityCasterAlignment))
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .CopyFrom(AbilityRefs.SmiteEvilAbility, c => c is not (ContextRankConfig or AbilityResourceLogic or AbilityCasterAlignment))
+                .SetIcon("assets/icons/guardiansmite.png")
                 .AddAbilityResourceLogic(amount: 1, isSpendResource: true, requiredResource: Guids.MediumInfluenceResource)
                 .AddContextRankConfig(ContextRankConfigs.StatBonus(stat: StatType.Charisma, min: 0, max: 20))
                 .AddContextRankConfig(ContextRankConfigs.ClassLevel(new string[] { Guids.Medium }, type: AbilityRankType.DamageBonus, max: 20, min: 0))
@@ -47,6 +48,18 @@ namespace MediumClass.Medium.Spirits.Guardian
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .AddFacts(new() { ability })
+                .Configure();
+
+            var secondaryability = AbilityConfigurator.New(FeatName + "SecondaryAbility", Guids.SecondaryGuardianGreaterAbility)
+                .CopyFrom(ability, c => c is not AbilityResourceLogic)
+                .AddAbilityResourceLogic(amount: 1, isSpendResource: true, requiredResource: Guids.MediumInfluenceResourceGuardian)
+                .Configure();
+
+            FeatureConfigurator.New(FeatName + "Secondary", Guids.SecondaryGuardianGreater)
+                .SetDisplayName(DisplayName)
+                .SetDescription(Description)
+                .AddFacts(new() { secondaryability })
+                .AddRemoveFeatureOnApply(Guids.GuardianGreater)
                 .Configure();
         }
     }

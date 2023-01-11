@@ -38,7 +38,12 @@ namespace MediumClass.Medium.Spirits.Archmage
         {
             Logger.Log("Generating Archmage Greater Power");
 
-            var ArchmageKenning = FeatureConfigurator.New(FeatName, Guids.ArchmageGreater)
+            BlueprintBuff WildArcanaBuff = BuffConfigurator.New(FeatName + "Buff", Guids.ArchmageGreaterBuff)
+                .SetFlags(BlueprintBuff.Flags.HiddenInUi)
+                .AddComponent<CheckWildArcana>()
+                .Configure();
+
+            FeatureConfigurator.New(FeatName, Guids.ArchmageGreater)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .AddComponent<WildArcanaComponent>(c =>
@@ -48,6 +53,7 @@ namespace MediumClass.Medium.Spirits.Archmage
                     c.m_SpellLists = SpellTools.SpellList.WizardSpellList.ToReference<BlueprintSpellListReference>();
                     c.m_Resource = BlueprintTool.GetRef<BlueprintAbilityResourceReference>(Guids.MediumInfluenceResource);
                 })
+                .AddFacts(new() { Guids.ArchmageGreaterBuff })
                 .SetRanks(1)
                 .Configure();
         }

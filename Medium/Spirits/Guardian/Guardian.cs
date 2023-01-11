@@ -35,6 +35,7 @@ namespace MediumClass.Medium.Spirits.Guardian
             GuardianLesser.ConfigureEnabled();
             GuardianSmite.ConfigureEnabled();
             LegendaryGuardian.ConfigureEnabled();
+            AbsorbBlow.ConfigureEnabled();
             BlueprintProgression Progression = GuardianProgression();
 
             CharacterClassConfigurator.For(Guids.Guardian)

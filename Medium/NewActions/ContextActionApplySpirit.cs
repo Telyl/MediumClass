@@ -38,23 +38,13 @@ namespace MediumClass.Medium.NewActions
             UnitPartMedium unitPartMedium = maybeCaster.Get<UnitPartMedium>();
             if (unitPartMedium != null)
             {
-                if(isSecondarySpirit)
-                {
-                    unitPartMedium.SecondarySpirit = Spirit;
-                    BlueprintBuff buff = BlueprintTool.Get<BlueprintBuff>(Guids.MediumChannelSpiritSecondarySpiritBuff);
-                    maybeCaster.Buffs.AddBuff(buff, base.Context, new TimeSpan(0, 0, 6));
-                }
-                else
-                {
-                    unitPartMedium.PrimarySpirit = Spirit;
-                    BlueprintBuff buff = BlueprintTool.Get<BlueprintBuff>(Guids.MediumChannelSpiritPrimarySpiritBuff);
-                    maybeCaster.Buffs.AddBuff(buff, base.Context, null);
-                }
-                    
+                unitPartMedium.PrimarySpirit = Spirit;
+                BlueprintBuff buff = BlueprintTool.Get<BlueprintBuff>(Guids.MediumChannelSpiritPrimarySpiritBuff);
+                maybeCaster.Buffs.AddBuff(buff, base.Context, null);
             }
         }
 
         public BlueprintCharacterClassReference Spirit;
-        public bool isSecondarySpirit = false;
+ 
     }
 }

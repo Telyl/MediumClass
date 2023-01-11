@@ -9,6 +9,7 @@ using BlueprintCore.Utils.Types;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Spells;
+using Kingmaker.UnitLogic.Abilities.Components;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using MediumClass.Medium.NewActions;
 using MediumClass.Medium.NewComponents;
@@ -40,7 +41,9 @@ namespace MediumClass.Medium.Spirits.Archmage
                 .SetIcon("assets/icons/arcanesurge.png")
                 .AddAbilityUseTrigger(action: ActionsBuilder.New().RemoveSelf(),
                 spellbooks: new() { BlueprintTool.GetRef<BlueprintSpellbookReference>(Guids.ArchmageSpellbook),
-                    BlueprintTool.GetRef<BlueprintSpellbookReference>(Guids.MediumSpellbook) },
+                    BlueprintTool.GetRef<BlueprintSpellbookReference>(Guids.MediumSpellbook),
+                    BlueprintTool.GetRef<BlueprintSpellbookReference>(Guids.HierophantSpellbook)
+                },
                 fromSpellbook: true, afterCast: true, forMultipleSpells: false, checkAbilityType: false, minSpellLevel: false, exactSpellLevel: false, spellDescriptor: SpellDescriptor.None, range: Kingmaker.UnitLogic.Abilities.Blueprints.AbilityRange.Touch)
                 .AddIncreaseSpellSpellbookDC(1, descriptor: Kingmaker.Enums.ModifierDescriptor.UntypedStackable, spellbooks: new()
                 {
@@ -72,6 +75,19 @@ namespace MediumClass.Medium.Spirits.Archmage
                 .SetDescription(Description)
                 .AddFacts(new() { ability })
                 .Configure();
+
+            var secondaryability = AbilityConfigurator.New(FeatName + "SecondaryAbility", Guids.SecondaryArchmageIntermediateAbility)
+                .CopyFrom(ability, c => c is not AbilityResourceLogic)
+                .AddAbilityResourceLogic(amount: 1, isSpendResource: true, requiredResource: Guids.MediumInfluenceResourceArchmage)
+                .Configure();
+
+            FeatureConfigurator.New(FeatName + "Secondary", Guids.SecondaryArchmageIntermediate)
+                .SetDisplayName(DisplayName)
+                .SetDescription(Description)
+                .AddFacts(new() { secondaryability })
+                .AddRemoveFeatureOnApply(Guids.ArchmageIntermediate)
+                .Configure();
+
         }
     }
 }

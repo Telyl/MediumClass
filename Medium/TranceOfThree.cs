@@ -134,10 +134,6 @@ namespace MediumClass.Medium
                 .SetDescription(Description)
                 .SetIcon(IconPrefix + MarshalIconName)
                 .AddFacts(new() { Guids.MarshalInspiringCallStandard })
-                .AddComponent<MediumTranceOfThreeComponent>(c =>
-                {
-                    c.BP = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MediumSpiritBonus);
-                })
                 .Configure();
 
             BlueprintAbility marshalability = AbilityConfigurator.New(FeatName + "MarshalAbility", Guids.MediumTranceOfThreeMarshalAbility)

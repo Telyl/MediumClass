@@ -33,7 +33,8 @@ namespace MediumClass.Medium.NewUnitParts
 		private static readonly ModLogger Logger = Logging.GetLogger(nameof(UnitPartMedium));
 		public void AddSpiritEntry(BlueprintCharacterClassReference spiritClass, BlueprintBuffReference spiritInfluencePenalty, BlueprintAbilityResourceReference influence, BlueprintFeatureReference feature, BlueprintFeatureReference boon,
 			EntityFact source, bool concentration, StatType[] stats, StatType[] penalty_stats, 
-			BlueprintFeatureReference LesserPower, BlueprintFeatureReference IntermediatePower, BlueprintFeatureReference GreaterPower, BlueprintFeatureReference SupremePower, BlueprintFeatureReference IntermediatePowerMove, BlueprintFeatureReference IntermediatePowerSwift)
+			BlueprintFeatureReference LesserPower, BlueprintFeatureReference IntermediatePower, BlueprintFeatureReference OverwriteIntermediate, BlueprintFeatureReference GreaterPower, BlueprintFeatureReference OverwriteGreater, BlueprintFeatureReference SupremePower, 
+			BlueprintFeatureReference IntermediatePowerMove, BlueprintFeatureReference IntermediatePowerSwift)
         {
 			if(Spirits.ContainsKey(spiritClass)) { return; }
 			Spirits.Add(spiritClass, new SpiritEntry()
@@ -45,7 +46,9 @@ namespace MediumClass.Medium.NewUnitParts
 				SpiritIntermediatePower = IntermediatePower,
 				SpiritIntermediatePowerMove = IntermediatePowerMove,
 				SpiritIntermediatePowerSwift = IntermediatePowerSwift,
+				OverwriteIntermediatePower = OverwriteIntermediate,
 				SpiritGreaterPower = GreaterPower,
+				OverwriteGreaterPower = OverwriteGreater,
 				SpiritSupremePower = SupremePower,
 				SpiritBonus = new SpiritStatEntry()
 				{
@@ -123,21 +126,14 @@ namespace MediumClass.Medium.NewUnitParts
 
 		public bool IsInfluencePenalty(bool isSecondaryCheck = false)
         {
-			if(Spirits.ContainsKey(SecondarySpirit) && isSecondaryCheck)
-            {
-				if (base.Owner.Descriptor.Resources.GetResourceAmount(Spirits[SecondarySpirit].InfluenceResource.Get()) <= 2) { return true; }
-			}
-			else if (Spirits.ContainsKey(PrimarySpirit))
-			{
-				if (base.Owner.Descriptor.Resources.GetResourceAmount(BlueprintTool.Get<BlueprintAbilityResource>(Guids.MediumInfluenceResource)) <= 2) { return true; }
-			}
+
+			if (base.Owner.Descriptor.Resources.GetResourceAmount(BlueprintTool.Get<BlueprintAbilityResource>(Guids.MediumInfluenceResource)) <= 2) { return true; }
 			return false;
         }
 
 		public void HandleInfluencePenalty()
 		{
 			if (IsInfluencePenalty()) { base.Owner.Buffs.AddBuff(Spirits[PrimarySpirit].SpiritInfluencePenalty.Get(), base.Owner, new TimeSpan(24, 0, 0)); }
-			if (IsInfluencePenalty(true)) { base.Owner.Buffs.AddBuff(Spirits[SecondarySpirit].SpiritInfluencePenalty.Get(), base.Owner, new TimeSpan(24, 0, 0)); }
 		}
 
 		public class SpiritStatEntry
@@ -155,7 +151,9 @@ namespace MediumClass.Medium.NewUnitParts
 			public BlueprintFeatureReference SpiritIntermediatePower;
 			public BlueprintFeatureReference SpiritIntermediatePowerMove;
 			public BlueprintFeatureReference SpiritIntermediatePowerSwift;
+			public BlueprintFeatureReference OverwriteIntermediatePower;
 			public BlueprintFeatureReference SpiritGreaterPower;
+			public BlueprintFeatureReference OverwriteGreaterPower;
 			public BlueprintFeatureReference SpiritSupremePower;
 			public SpiritStatEntry SpiritBonus;
 			public SpiritStatEntry SpiritPenalty;

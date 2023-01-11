@@ -1,7 +1,11 @@
-﻿using Kingmaker.Blueprints;
+﻿using BlueprintCore.Utils;
+using Kingmaker.Blueprints;
+using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.UnitLogic;
 using Kingmaker.Utility;
+using MediumClass.Medium.NewUnitParts;
+using MediumClass.Utilities;
 using MediumClass.Utils;
 using TabletopTweaks.Core.NewUnitParts;
 using static UnityModManagerNet.UnityModManager.ModEntry;
@@ -14,6 +18,11 @@ namespace MediumClass.Medium.NewComponents.AbilitySpecific
         private static readonly ModLogger Logger = Logging.GetLogger(nameof(MediumSpiritSurgeComponent));
         public override void OnTurnOn()
         {
+            var medium = base.Owner.Ensure<UnitPartMedium>();
+            if(medium.PrimarySpirit.Get() != BlueprintTool.Get<BlueprintCharacterClass>(Guids.Archmage))
+            {
+                m_Resource = BlueprintTool.GetRef<BlueprintAbilityResourceReference>(Guids.MediumInfluenceResourceArchmage);
+            }
             base.Owner.Ensure<UnitPartArchmage>().AddSpellList(base.Fact, m_SpellLists, m_CharacterClass, m_Spellbook, m_Resource);
         }
         public override void OnTurnOff()

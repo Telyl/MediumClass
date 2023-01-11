@@ -49,7 +49,7 @@ namespace MediumClass.Medium.Spirits.Marshal
                 .SetType(Kingmaker.UnitLogic.Abilities.Blueprints.AbilityType.Supernatural)
                 .SetCanTargetEnemies(false)
                 .SetCanTargetFriends(true)
-                .SetCanTargetSelf(true)
+                .SetCanTargetSelf(false)
                 .SetNotOffensive(true)
                 .SetHasFastAnimation()
                 .SetAnimation(Kingmaker.Visual.Animation.Kingmaker.Actions.UnitAnimationActionCastSpell.CastAnimationStyle.Directional)
@@ -70,7 +70,7 @@ namespace MediumClass.Medium.Spirits.Marshal
                 .SetType(Kingmaker.UnitLogic.Abilities.Blueprints.AbilityType.Supernatural)
                 .SetCanTargetEnemies(false)
                 .SetCanTargetFriends(true)
-                .SetCanTargetSelf(true)
+                .SetCanTargetSelf(false)
                 .SetNotOffensive(true)
                 .SetHasFastAnimation()
                 .SetAnimation(Kingmaker.Visual.Animation.Kingmaker.Actions.UnitAnimationActionCastSpell.CastAnimationStyle.Directional)
@@ -95,6 +95,30 @@ namespace MediumClass.Medium.Spirits.Marshal
                 .SetDisplayName(DisplayNameFeat)
                 .SetDescription(DescriptionFeat)
                 .AddFacts(new() { ability })
+                .Configure();
+
+            var secondaryswiftability = AbilityConfigurator.New(FeatName + "SecondarySwiftAbility", Guids.SecondaryDecisiveStrikeSwiftAbility)
+                .CopyFrom(swiftability, c => c is not AbilityResourceLogic)
+                .AddAbilityResourceLogic(amount: 1, isSpendResource: true, requiredResource: Guids.MediumInfluenceResourceMarshal)
+                .Configure();
+
+            var secondarystandardability = AbilityConfigurator.New(FeatName + "SecondaryStandardAbility", Guids.SecondaryDecisiveStrikeStandardAbility)
+                .CopyFrom(standardability, c => c is not AbilityResourceLogic)
+                .AddAbilityResourceLogic(amount: 1, isSpendResource: true, requiredResource: Guids.MediumInfluenceResourceMarshal)
+                .Configure();
+
+            var secondaryability = AbilityConfigurator.New(FeatName + "SecondaryAbility", Guids.SecondaryDecisiveStrikeAbility)
+                .SetIcon("assets/icons/decisivestrike.png")
+                .SetDisplayName(DisplayName)
+                .SetDescription(Description)
+                .AddAbilityVariants(new() { secondarystandardability, secondaryswiftability })
+                .Configure();
+
+            FeatureConfigurator.New(FeatName + "Secondary", Guids.SecondaryDecisiveStrikeFeature)
+                .SetDisplayName(DisplayNameFeat)
+                .SetDescription(DescriptionFeat)
+                .AddFacts(new() { secondaryability })
+                .AddRemoveFeatureOnApply(Guids.MarshalDecisiveStrikeFeature)
                 .Configure();
         }
     }

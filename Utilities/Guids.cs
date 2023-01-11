@@ -25,7 +25,11 @@ namespace MediumClass.Utilities
         internal const string ArchmageIntermediate = "f019b7c9-4b35-472f-b842-1352e7908f48";
         internal const string ArchmageIntermediateAbility = "27996019-2a52-450c-b33f-42d18f6d8922";
         internal const string ArchmageIntermediateBuff = "2da103fe-6f2d-4a1c-b16c-cd5a3b651bd5";
+        internal const string SecondaryArchmageIntermediate = "61a3b7c0-ee37-49c2-bbb1-3e0aa4b04bd3";
+        internal const string SecondaryArchmageIntermediateAbility = "c268351f-395b-45c6-b113-5165fbca8624";
+
         internal const string ArchmageGreater = "b8c01230-86f2-495c-af02-7a20ad8904c3";
+        internal const string ArchmageGreaterBuff = "12e34ba3-1d60-437a-93fb-2b65a06c68ee";
         #endregion
 
         #region Champion
@@ -55,6 +59,8 @@ namespace MediumClass.Utilities
 
         internal const string GuardianGreater = "c31441fd-3736-421d-88cd-414d6e5fe8a5";
         internal const string GuardianGreaterAbility = "4f2e4c12-33f6-4d99-9d3b-9b4190bdf5b1";
+        internal const string SecondaryGuardianGreater = "3addc08b-23a9-4f5b-93c5-f5d265e39bd8";
+        internal const string SecondaryGuardianGreaterAbility = "fca62ba7-bb00-40b9-a512-68d1d9b99756";
 
         internal const string LegendaryGuardian = "b5176b72-a61c-4f18-a5c8-ff17836663d0";
         internal const string LegendaryGuardianAbility = "a181cb9b-d82e-44f4-b78d-8b6bb12537ac";
@@ -119,6 +125,11 @@ namespace MediumClass.Utilities
         internal const string MarshalDecisiveStrikeAbility = "4e306772-c4a9-4c06-9e28-156ccbe54d69";
         internal const string MarshalDecisiveStrikeFeature = "52557a8b-e597-4401-b2eb-3675c716ed43";
 
+        internal const string SecondaryDecisiveStrikeSwiftAbility = "10423155-e72a-435f-a86c-664ea65938fd";
+        internal const string SecondaryDecisiveStrikeStandardAbility = "6b989dd0-d96c-4687-bb60-6863e1f43800";
+        internal const string SecondaryDecisiveStrikeAbility = "11f5943a-1586-43a8-9115-e5abd1168bdf";
+        internal const string SecondaryDecisiveStrikeFeature = "6553f07b-19e0-4cde-a5ab-065cfe633bd1";
+
         internal const string MarshalLegendaryMarshal = "32dd0799-f2fd-40d4-9530-95510500ccdd";
         internal const string MarshalLegendaryMarshalAbility = "46d392d6-99aa-4a26-9e98-3c07e9304560";
         #endregion
@@ -156,6 +167,8 @@ namespace MediumClass.Utilities
         internal const string TricksterTransferMagic = "9826e7d3-4fdd-4334-9375-7ad4da567b29";
         internal const string TricksterTransferMagicEffect = "3ea9a03d-4dd4-4e56-b39d-31b8dbcb083e";
         internal const string TricksterTransferMagicAbility = "25966f3c-60de-4efd-b05d-bff180d094c0";
+        internal const string SecondaryTricksterTransferMagicAbility = "133cf3c7-6ce1-403f-aee8-ed488714c6a0";
+        internal const string SecondaryTricksterTransferMagic = "43cce1e9-66a8-4e45-9306-e9b96fa28fcd";
 
         internal const string TricksterSeanceBoonAbility = "b9a5cbd2-cd37-4dc7-aaee-d6a3f00e2fa8";
         internal const string TricksterSeanceBoonAthleticsBuff = "a606f24e-7f8f-47d8-bc40-3808494c1bf0";
