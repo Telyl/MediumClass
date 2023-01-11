@@ -28,6 +28,7 @@ namespace MediumClass.Medium.Spirits.Archmage
             SeanceBoon.ConfigureEnabled();
             ArcaneSurge.ConfigureEnabled();
             WildArcana.ConfigureEnabled();
+            LegendaryArchmage.ConfigureEnabled();
             BlueprintSpellbook Spellbook = ArchmageSpellbook();
             BlueprintProgression Progression = ArchmageProgression();
 

@@ -147,5 +147,15 @@
     "Key": "WeakerSpiritChannel4.Name",
     "ProcessTemplates": false,
     "enGB": "Forego Four Powers"
+  },
+  {
+    "Key": "AstralBeacon.Name",
+    "ProcessTemplates": false,
+    "enGB": "Astral Beacon"
+  },
+  {
+    "Key": "AstralBeacon.Description",
+    "enGB": "At 20th level, a medium is an open connection to the Astral Plane and a shining beacon for spirits. As part of his seance for his primary legend, he channel the spirits of all of the five legends he did not contact via his seance. This ability lasts for the duration of the day and grants access to the intermediate, greater, and supreme spirit powers of the five additional legends."
   }
+
 ]

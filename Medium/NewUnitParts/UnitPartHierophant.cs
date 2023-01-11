@@ -97,40 +97,147 @@ namespace MediumClass.Medium.NewComponents
 		public void HandleGetConversions(AbilityData ability, ref IEnumerable<AbilityData> conversions)
 		{
 			var conversionList = conversions.ToList();
-			if(!ability.Blueprint.IsSpell) { return; }
-			if(ability.Spellbook.Blueprint != this.Spellbook) { return; }
-			if(CharacterClass != BlueprintTool.Get<BlueprintCharacterClass>(Guids.Hierophant)) { return; }
-			if(base.Owner.Progression.GetClassLevel(BlueprintTool.Get<BlueprintCharacterClass>(Guids.Medium)) < 17) { return; }
-			foreach (var abilityData in SpellTools.SpellList.ClericSpellList.GetSpells(ability.SpellLevel))
+			if (ability.Blueprint == BlueprintTool.Get<BlueprintAbility>(Guids.HierophantSupremeAbility1))
 			{
-				if(ability.SpellLevel == 0) { break; }
-				AbilityVariants variantComponent = abilityData.GetComponent<AbilityVariants>();
-				if (variantComponent != null)
+				for (int i = 1; i <= 2; i++)
 				{
-					foreach (var variant in variantComponent.Variants.AsEnumerable())
+					foreach (var abilityData in SpellTools.SpellList.ClericSpellList.GetSpells(i))
 					{
-						AbilityData.AddAbilityUnique(ref conversionList, new SpiritAbilityData(ability, variant)
+						AbilityVariants variantComponent = abilityData.GetComponent<AbilityVariants>();
+						if (variantComponent != null)
 						{
-							OverridenResourceLogic = new InfluenceResourceOverride()
+							foreach (var variant in variantComponent.Variants.AsEnumerable())
 							{
-								m_Spirit = this.CharacterClass.ToReference<BlueprintCharacterClassReference>(),
-								m_RequiredResource = this.Resource.ToReference<BlueprintAbilityResourceReference>(),
-								cost = 1
+								AbilityData.AddAbilityUnique(ref conversionList, new SpiritAbilityData(ability, variant)
+								{
+									OverridenResourceLogic = new InfluenceResourceOverride()
+									{
+										m_RequiredResource = this.Resource.ToReference<BlueprintAbilityResourceReference>(),
+										cost = 1
+									}
+								});
 							}
-						});
+						}
+						else
+						{
+							AbilityData.AddAbilityUnique(ref conversionList, new SpiritAbilityData(ability, abilityData)
+							{
+								OverridenResourceLogic = new InfluenceResourceOverride()
+								{
+									m_RequiredResource = this.Resource.ToReference<BlueprintAbilityResourceReference>(),
+									cost = 1
+								}
+							});
+						}
 					}
 				}
-                else
-                {
-					AbilityData.AddAbilityUnique(ref conversionList, new SpiritAbilityData(ability, abilityData)
+			}
+
+			if (ability.Blueprint == BlueprintTool.Get<BlueprintAbility>(Guids.HierophantSupremeAbility2))
+			{
+				for (int i = 3; i <= 4; i++)
+				{
+					foreach (var abilityData in SpellTools.SpellList.ClericSpellList.GetSpells(i))
 					{
-						OverridenResourceLogic = new InfluenceResourceOverride()
+						AbilityVariants variantComponent = abilityData.GetComponent<AbilityVariants>();
+						if (variantComponent != null)
 						{
-							m_Spirit = this.CharacterClass.ToReference<BlueprintCharacterClassReference>(),
-							m_RequiredResource = this.Resource.ToReference<BlueprintAbilityResourceReference>(),
-							cost = 1
+							foreach (var variant in variantComponent.Variants.AsEnumerable())
+							{
+								AbilityData.AddAbilityUnique(ref conversionList, new SpiritAbilityData(ability, variant)
+								{
+									OverridenResourceLogic = new InfluenceResourceOverride()
+									{
+										m_RequiredResource = this.Resource.ToReference<BlueprintAbilityResourceReference>(),
+										cost = 1
+									}
+								});
+							}
 						}
-					});
+						else
+						{
+							AbilityData.AddAbilityUnique(ref conversionList, new SpiritAbilityData(ability, abilityData)
+							{
+								OverridenResourceLogic = new InfluenceResourceOverride()
+								{
+									m_RequiredResource = this.Resource.ToReference<BlueprintAbilityResourceReference>(),
+									cost = 1
+								}
+							});
+						}
+					}
+				}
+			}
+
+			if (ability.Blueprint == BlueprintTool.Get<BlueprintAbility>(Guids.HierophantSupremeAbility3))
+			{
+				for (int i = 5; i <= 6; i++)
+				{
+					foreach (var abilityData in SpellTools.SpellList.ClericSpellList.GetSpells(i))
+					{
+						AbilityVariants variantComponent = abilityData.GetComponent<AbilityVariants>();
+						if (variantComponent != null)
+						{
+							foreach (var variant in variantComponent.Variants.AsEnumerable())
+							{
+								AbilityData.AddAbilityUnique(ref conversionList, new SpiritAbilityData(ability, variant)
+								{
+									OverridenResourceLogic = new InfluenceResourceOverride()
+									{
+										m_RequiredResource = this.Resource.ToReference<BlueprintAbilityResourceReference>(),
+										cost = 1
+									}
+								});
+							}
+						}
+						else
+						{
+							AbilityData.AddAbilityUnique(ref conversionList, new SpiritAbilityData(ability, abilityData)
+							{
+								OverridenResourceLogic = new InfluenceResourceOverride()
+								{
+									m_RequiredResource = this.Resource.ToReference<BlueprintAbilityResourceReference>(),
+									cost = 1
+								}
+							});
+						}
+					}
+				}
+			}
+
+			if (ability.Blueprint == BlueprintTool.Get<BlueprintAbility>(Guids.HierophantSupremeAbility4))
+			{
+				for (int i = 7; i <= 8; i++)
+				{
+					foreach (var abilityData in SpellTools.SpellList.ClericSpellList.GetSpells(i))
+					{
+						AbilityVariants variantComponent = abilityData.GetComponent<AbilityVariants>();
+						if (variantComponent != null)
+						{
+							foreach (var variant in variantComponent.Variants.AsEnumerable())
+							{
+								AbilityData.AddAbilityUnique(ref conversionList, new SpiritAbilityData(ability, variant)
+								{
+									OverridenResourceLogic = new InfluenceResourceOverride()
+									{
+										m_RequiredResource = this.Resource.ToReference<BlueprintAbilityResourceReference>(),
+										cost = 1
+									}
+								});
+							}
+						}
+						else
+						{
+							AbilityData.AddAbilityUnique(ref conversionList, new SpiritAbilityData(ability, abilityData)
+							{
+								OverridenResourceLogic = new InfluenceResourceOverride()
+								{
+									m_RequiredResource = this.Resource.ToReference<BlueprintAbilityResourceReference>(),
+									cost = 1
+								}
+							});
+						}
+					}
 				}
 			}
 			conversions = conversionList;

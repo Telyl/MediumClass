@@ -43,6 +43,8 @@ namespace MediumClass.Medium.Spirits.Champion
             FeatureConfigurator.New(FeatName, Guids.LegendaryChampion)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
+                .AddFacts(new() { FeatureRefs.ArmorTraining.Reference.Get(), FeatureRefs.ArmorTraining.Reference.Get(), 
+                    FeatureRefs.WeaponTrainingHammers.Reference.Get(), FeatureRefs.WeaponTrainingAxes.Reference.Get(), FeatureRefs.WeaponTrainingBows.Reference.Get() })
                 .Configure();
         }
     }

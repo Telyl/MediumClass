@@ -1,5 +1,6 @@
 ﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
+using BlueprintCore.Blueprints.CustomConfigurators;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
@@ -27,46 +28,44 @@ using static UnityModManagerNet.UnityModManager.ModEntry;
 
 namespace MediumClass.Medium.Spirits.Archmage
 {
-    class WildArcana
+    class LegendaryArchmage
     {
-        private static readonly string FeatName = "ArchmageGreater";
-        private static readonly string DisplayName = "ArchmageGreater.Name";
-        private static readonly string Description = "ArchmageGreater.Description";
-        private static readonly ModLogger Logger = Logging.GetLogger(nameof(WildArcana));
+        private static readonly string FeatName = "LegendaryArchmage";
+        private static readonly string DisplayName = "LegendaryArchmage.Name";
+        private static readonly string Description = "LegendaryArchmage.Description";
+        private static readonly ModLogger Logger = Logging.GetLogger(nameof(LegendaryArchmage));
 
         public static void ConfigureEnabled()
         {
-            Logger.Log("Generating Archmage Greater Power");
+            Logger.Log("Generating Archmage Supreme Power");
 
-            AbilityConfigurator.New(FeatName + "Ability3", Guids.ArchmageGreaterAbility3)
+            AbilityConfigurator.New(FeatName + "Ability9", Guids.ArchmageSupremeAbility9)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon("assets/icons/wildarcana3.png")
+                .SetIcon("assets/icons/legendaryarchmage9.png")
                 .Configure();
 
-            AbilityConfigurator.New(FeatName + "Ability2", Guids.ArchmageGreaterAbility2)
+            AbilityConfigurator.New(FeatName + "Ability8", Guids.ArchmageSupremeAbility8)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon("assets/icons/wildarcana2.png")
+                .SetIcon("assets/icons/legendaryarchmage8.png")
                 .Configure();
 
-            AbilityConfigurator.New(FeatName + "Ability1", Guids.ArchmageGreaterAbility1)
+            AbilityConfigurator.New(FeatName + "Ability7", Guids.ArchmageSupremeAbility7)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon("assets/icons/wildarcana1.png")
+                .SetIcon("assets/icons/legendaryarchmage7.png")
                 .Configure();
 
-            FeatureConfigurator.New(FeatName, Guids.ArchmageGreater)
+            AbilityResourceConfigurator.New(FeatName + "Resource", Guids.ArchmageSupremeResource)
+                .SetMaxAmount(ResourceAmountBuilder.New(1).Build())
+                .Configure();
+
+            FeatureConfigurator.New(FeatName, Guids.ArchmageSupreme)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .AddComponent<WildArcanaComponent>(c =>
-                {
-                    c.m_CharacterClass = BlueprintTool.GetRef<BlueprintCharacterClassReference>(Guids.Archmage);
-                    c.m_Spellbook = BlueprintTool.GetRef<BlueprintSpellbookReference>(Guids.ArchmageSpellbook);
-                    c.m_SpellLists = SpellTools.SpellList.WizardSpellList.ToReference<BlueprintSpellListReference>();
-                    c.m_Resource = BlueprintTool.GetRef<BlueprintAbilityResourceReference>(Guids.MediumInfluenceResource);
-                })
-                .AddFacts(new() { Guids.ArchmageGreaterAbility1, Guids.ArchmageGreaterAbility2, Guids.ArchmageGreaterAbility3 })
+                .AddFacts(new() { Guids.ArchmageSupremeAbility7, Guids.ArchmageSupremeAbility8, Guids.ArchmageSupremeAbility9 })
+                .AddAbilityResources(amount: 0, resource: Guids.ArchmageSupremeResource, restoreAmount: true, false, false)
                 .SetRanks(1)
                 .Configure();
         }

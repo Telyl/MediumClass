@@ -43,5 +43,15 @@
   {
     "Key": "ChampionFleetCharge.Description",
     "enGB": ": You can take a swift action and a full-round action to move up to your speed and then make a full attack. This special action doesnÅft combine with sudden attack, but works as normal with effects such as haste and two-weapon fighting. As soon as you begin moving, you are considered to have begun the full-round action, even if circumstances prevent you from attacking at the end of your movement."
+  },
+  {
+    "Key": "LegendaryChampion.Name",
+    "ProcessTemplates": false,
+    "enGB": "Legendary Champion"
+  },
+  {
+    "Key": "LegendaryChampion.Description",
+    "enGB": "The champion spirit gives you some of his strength, granting you armor and weapon training feats."
   }
+
 ]

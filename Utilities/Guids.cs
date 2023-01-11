@@ -29,7 +29,15 @@ namespace MediumClass.Utilities
         internal const string SecondaryArchmageIntermediateAbility = "c268351f-395b-45c6-b113-5165fbca8624";
 
         internal const string ArchmageGreater = "b8c01230-86f2-495c-af02-7a20ad8904c3";
-        internal const string ArchmageGreaterBuff = "12e34ba3-1d60-437a-93fb-2b65a06c68ee";
+        internal const string ArchmageGreaterAbility1 = "12e34ba3-1d60-437a-93fb-2b65a06c68ee";
+        internal const string ArchmageGreaterAbility2 = "c395c98a-50a5-4405-8255-2adf775cf689";
+        internal const string ArchmageGreaterAbility3 = "b03c7ebb-4c0d-409c-b9aa-76b0fdcbbccf";
+
+        internal const string ArchmageSupreme = "1e9adc80-2300-4e17-bd00-c7912c651561";
+        internal const string ArchmageSupremeResource = "0b903f30-7a11-4a75-af09-05044a3441e4";
+        internal const string ArchmageSupremeAbility7 = "e5c5f7a9-4a8b-41c3-9b68-f5fff7ff47ff";
+        internal const string ArchmageSupremeAbility8 = "64d3ded5-8268-47fe-8355-0c331c405160";
+        internal const string ArchmageSupremeAbility9 = "f1e61568-df76-4657-98a2-54803ff2fa59";
         #endregion
 
         #region Champion
@@ -91,6 +99,10 @@ namespace MediumClass.Utilities
         internal const string HierophantOverflowingGraceProfane = "14c42dea-aa24-445b-bcd7-86e4c2059318";
         internal const string HierophantSupreme = "5538fb43-9291-4d4d-a6a4-ce567dab268e";
         internal const string HierophantSupremeResource = "afac358c-9d4b-4b5a-a3a2-4403f2457f73";
+        internal const string HierophantSupremeAbility1 = "b762d72a-f101-4eec-b8f6-cab9b8d69534";
+        internal const string HierophantSupremeAbility2 = "b80ab52f-17fa-4c4c-874c-e7aa28b5903c";
+        internal const string HierophantSupremeAbility3 = "7e1a9a2b-a4fd-4487-87cc-a49de74f942b";
+        internal const string HierophantSupremeAbility4 = "54aecd71-0160-4cfb-836f-555b0ab6ba7b";
         #endregion
 
         #region Marshal

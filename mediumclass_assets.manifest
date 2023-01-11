@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3455688716
+CRC: 1290654963
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: a5105504d270b5df32b834a9e446774b
+    Hash: 8f76b7c65926c91b8e4ffc9fe221d300
   TypeTreeHash:
     serializedVersion: 2
     Hash: c90fc19e2679e5295d10bd00f33cb4c3
@@ -25,6 +25,8 @@ Assets:
 - Assets/Icons/ForegoSpirit2.png
 - Assets/Icons/MarshalsOrder.png
 - Assets/Icons/ForegoSpirit1.png
+- Assets/Icons/LegendaryArchmage7.png
+- Assets/Icons/LegendaryHierophant1.png
 - Assets/Icons/MarshalInspiringCall.png
 - Assets/Icons/SpiritTricksterTrickFate.png
 - Assets/Icons/SpiritGuardian2.png
@@ -32,6 +34,7 @@ Assets:
 - Assets/Icons/SpiritTrickster2.png
 - Assets/Icons/DecisiveStrikeStandard.png
 - Assets/Icons/SpiritMarshal2.png
+- Assets/Icons/WildArcana1.png
 - Assets/Icons/TrickstersEdge.png
 - Assets/Icons/GuardianSmite.png
 - Assets/Icons/SpiritChampion2.png
@@ -40,15 +43,18 @@ Assets:
 - Assets/Icons/LegendaryHierophant.png
 - Assets/Icons/DecisiveStrike.png
 - Assets/Icons/SpiritTrickster.png
-- Assets/Icons/LegendaryArchmage.png
 - Assets/Icons/FleetCharge.png
 - Assets/Icons/ForegoSpirit.png
 - Assets/Icons/SpiritGuardian.png
 - Assets/Icons/ArcaneSurge.png
+- Assets/Icons/LegendaryArchmage9.png
+- Assets/Icons/WildArcana3.png
 - Assets/Icons/InspiringCallSaves.png
 - Assets/Icons/InspiringCallAttack.png
 - Assets/Icons/TranceOfThree.png
 - Assets/Icons/SpiritMarshal.png
+- Assets/Icons/LegendaryArchmage8.png
+- Assets/Icons/WildArcana2.png
 - Assets/Icons/ForegoSpirit3.png
 - Assets/Icons/SpiritArchmage.png
 Dependencies: []

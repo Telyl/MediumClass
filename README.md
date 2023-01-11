@@ -6,14 +6,14 @@ Additional features for Pathfinder: Wrath of the Righteous
 * Medium
 	* [Taboo - Stretch Goal](https://www.d20pfsrd.com/alternative-rule-systems/occult-adventures/occult-classes/Medium/#TOC-Taboo-Ex-)
 * Archmage
-	* COMPLETE - Legendary Archmage (Homebrew)
+	* COMPLETE
 * Champion
 	* Adds all exotic weapons instead of allowing a choice.
-	* [Legendary Champion (Supreme, Su)](https://www.d20pfsrd.com/alternative-rule-systems/occult-adventures/occult-classes/medium/spirits/spirits-paizo-inc/#Champion)
+	* COMPLETE - Legendary Champion (Homebrew) until I can get a Martial Flexibility feat.
 * Guardian
 	* COMPLETE - Legendary Guardian (Homebrew) & Greater (Homebrew)
 * Hierophant
-	* COMPLETE - Legendary Hierophant (Partial Homebrew)
+	* COMPLETE
 * Marshal
 	* COMPLETE
 * Trickster

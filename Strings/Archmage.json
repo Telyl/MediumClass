@@ -42,6 +42,15 @@
   },
   {
     "Key": "ArchmageGreater.Description",
-    "enGB": "You can allow the archmage spirit to gain 1 point of influence over you in order to cast any sorcerer/wizard spell of a level you can cast. You must expend a spell slot of the appropriate level."
+    "enGB": "You can allow the archmage spirit to gain 1 point of influence over you in order to cast any sorcerer/wizard spell of a level you can cast."
+  },
+  {
+    "Key": "ArchmageSupreme.Name",
+    "ProcessTemplates": false,
+    "enGB": "Legendary Archmage"
+  },
+  {
+    "Key": "ArchmageSupreme.Description",
+    "enGB": "Once per day, you can cast any 7th, 8th, or 9th level wizard spell for free. This does not accrue influence. "
   }
 ]

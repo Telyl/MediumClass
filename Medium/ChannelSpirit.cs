@@ -203,7 +203,7 @@ namespace MediumClass.Medium
                     c.SpiritIntermediatePower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ArchmageIntermediate);
                     c.SpiritOverwriteIntermediate = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.SecondaryArchmageIntermediate);
                     c.SpiritGreaterPower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ArchmageGreater);
-                    c.SpiritSupremePower = new BlueprintFeatureReference();
+                    c.SpiritSupremePower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ArchmageSupreme);
                     c.Concentration = true;
                     c.Stats = new StatType[] { StatType.SkillKnowledgeArcana, StatType.SkillKnowledgeWorld };
                     c.Penalties = new StatType[] { StatType.AdditionalAttackBonus, StatType.AdditionalDamage, StatType.SaveFortitude, StatType.SkillAthletics };
@@ -230,6 +230,7 @@ namespace MediumClass.Medium
                     c.SpiritLesserPower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.GuardianLesser);
                     c.SpiritIntermediatePower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.GuardianAbsorbBlow);
                     c.SpiritGreaterPower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.GuardianGreater);
+                    c.SpiritOverwriteGreater = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.SecondaryGuardianGreater);
                     c.SpiritSupremePower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.LegendaryGuardian);
                     c.Stats = new StatType[] { StatType.AC, StatType.SaveReflex, StatType.SaveFortitude };
                     c.Penalties = new StatType[] { StatType.AdditionalDamage };

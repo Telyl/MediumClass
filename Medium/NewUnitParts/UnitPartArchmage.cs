@@ -97,41 +97,235 @@ namespace MediumClass.Medium.NewUnitParts
 		public void HandleGetConversions(AbilityData ability, ref IEnumerable<AbilityData> conversions)
 		{
 			var conversionList = conversions.ToList();
-			if(!ability.Blueprint.IsSpell) { return; }
-			if(ability.Spellbook.Blueprint != this.Spellbook) { return; }
-			if(CharacterClass != BlueprintTool.Get<BlueprintCharacterClass>(Guids.Archmage)) { return; }
-			if(base.Owner.Progression.GetClassLevel(BlueprintTool.Get<BlueprintCharacterClass>(Guids.Medium)) < 11) { return; }
-			foreach (var abilityData in SpellTools.SpellList.WizardSpellList.GetSpells(ability.SpellLevel))
+            #region 1&2 spells
+            if (ability.Blueprint == BlueprintTool.Get<BlueprintAbility>(Guids.ArchmageGreaterAbility1))
 			{
-				if(ability.SpellLevel == 0) { break; }
-				if(ability.SpellLevel >= 7) { break; }
-				AbilityVariants variantComponent = abilityData.GetComponent<AbilityVariants>();
-				if (variantComponent != null)
+				for (int i = 1; i <= 2; i++)
 				{
-					foreach(var variant in variantComponent.Variants.AsEnumerable())
-                    {
-						AbilityData.AddAbilityUnique(ref conversionList, new SpiritAbilityData(ability, variant)
+					foreach (var abilityData in SpellTools.SpellList.WizardSpellList.GetSpells(i))
+					{
+						AbilityVariants variantComponent = abilityData.GetComponent<AbilityVariants>();
+						if (variantComponent != null)
 						{
-							OverridenResourceLogic = new InfluenceResourceOverride()
+							foreach (var variant in variantComponent.Variants.AsEnumerable())
 							{
-								m_Spirit = this.CharacterClass.ToReference<BlueprintCharacterClassReference>(),
-								m_RequiredResource = this.Resource.ToReference<BlueprintAbilityResourceReference>(),
-								cost = 1
+								AbilityData.AddAbilityUnique(ref conversionList, new SpiritAbilityData(ability, variant)
+								{
+									OverridenResourceLogic = new InfluenceResourceOverride()
+									{
+										m_RequiredResource = this.Resource.ToReference<BlueprintAbilityResourceReference>(),
+										cost = 1
+									}
+								});
 							}
-						});
+						}
+						else
+						{
+							AbilityData.AddAbilityUnique(ref conversionList, new SpiritAbilityData(ability, abilityData)
+							{
+								OverridenResourceLogic = new InfluenceResourceOverride()
+								{
+									m_RequiredResource = this.Resource.ToReference<BlueprintAbilityResourceReference>(),
+									cost = 1
+								}
+							});
+						}
 					}
 				}
-                else
-                {
-					AbilityData.AddAbilityUnique(ref conversionList, new SpiritAbilityData(ability, abilityData)
+			}
+            #endregion
+            #region 3&4 spells
+            if (ability.Blueprint == BlueprintTool.Get<BlueprintAbility>(Guids.ArchmageGreaterAbility2))
+			{
+
+				for (int i = 3; i <= 4; i++)
+				{
+					foreach (var abilityData in SpellTools.SpellList.WizardSpellList.GetSpells(i))
 					{
-						OverridenResourceLogic = new InfluenceResourceOverride()
+						AbilityVariants variantComponent = abilityData.GetComponent<AbilityVariants>();
+						if (variantComponent != null)
 						{
-							m_Spirit = this.CharacterClass.ToReference<BlueprintCharacterClassReference>(),
-							m_RequiredResource = this.Resource.ToReference<BlueprintAbilityResourceReference>(),
-							cost = 1
+							foreach (var variant in variantComponent.Variants.AsEnumerable())
+							{
+								AbilityData.AddAbilityUnique(ref conversionList, new SpiritAbilityData(ability, variant)
+								{
+									OverridenResourceLogic = new InfluenceResourceOverride()
+									{
+										m_RequiredResource = this.Resource.ToReference<BlueprintAbilityResourceReference>(),
+										cost = 1
+									}
+								});
+							}
 						}
-					});
+						else
+						{
+							AbilityData.AddAbilityUnique(ref conversionList, new SpiritAbilityData(ability, abilityData)
+							{
+								OverridenResourceLogic = new InfluenceResourceOverride()
+								{
+									m_RequiredResource = this.Resource.ToReference<BlueprintAbilityResourceReference>(),
+									cost = 1
+								}
+							});
+						}
+					}
+				}
+			}
+            #endregion
+            #region 5&6 spells
+            int j = 0;
+			if (base.Owner.Progression.GetClassLevel(BlueprintTool.Get<BlueprintCharacterClass>(Guids.Medium)) >= 13)
+			{
+				j = 5;
+			}
+			else if(base.Owner.Progression.GetClassLevel(BlueprintTool.Get<BlueprintCharacterClass>(Guids.Medium)) >= 16)
+			{
+				j = 6;
+            }
+
+			if (ability.Blueprint == BlueprintTool.Get<BlueprintAbility>(Guids.ArchmageGreaterAbility3) && j != 0)
+			{
+
+				for (int i = 5; i <= j; i++)
+				{
+					foreach (var abilityData in SpellTools.SpellList.WizardSpellList.GetSpells(i))
+					{
+						AbilityVariants variantComponent = abilityData.GetComponent<AbilityVariants>();
+						if (variantComponent != null)
+						{
+							foreach (var variant in variantComponent.Variants.AsEnumerable())
+							{
+								AbilityData.AddAbilityUnique(ref conversionList, new SpiritAbilityData(ability, variant)
+								{
+									OverridenResourceLogic = new InfluenceResourceOverride()
+									{
+										m_RequiredResource = this.Resource.ToReference<BlueprintAbilityResourceReference>(),
+										cost = 1
+									}
+								});
+							}
+						}
+						else
+						{
+							AbilityData.AddAbilityUnique(ref conversionList, new SpiritAbilityData(ability, abilityData)
+							{
+								OverridenResourceLogic = new InfluenceResourceOverride()
+								{
+									m_RequiredResource = this.Resource.ToReference<BlueprintAbilityResourceReference>(),
+									cost = 1
+								}
+							});
+						}
+					}
+				}
+			}
+            #endregion
+            if (ability.Blueprint == BlueprintTool.Get<BlueprintAbility>(Guids.ArchmageSupremeAbility7))
+			{
+
+				for (int i = 7; i <= 7; i++)
+				{
+					foreach (var abilityData in SpellTools.SpellList.WizardSpellList.GetSpells(i))
+					{
+						AbilityVariants variantComponent = abilityData.GetComponent<AbilityVariants>();
+						if (variantComponent != null)
+						{
+							foreach (var variant in variantComponent.Variants.AsEnumerable())
+							{
+								AbilityData.AddAbilityUnique(ref conversionList, new SpiritAbilityData(ability, variant)
+								{
+									OverridenResourceLogic = new InfluenceResourceOverride()
+									{
+										m_RequiredResource = BlueprintTool.GetRef<BlueprintAbilityResourceReference>(Guids.ArchmageSupremeResource),
+										cost = 1
+									}
+								});
+							}
+						}
+						else
+						{
+							AbilityData.AddAbilityUnique(ref conversionList, new SpiritAbilityData(ability, abilityData)
+							{
+								OverridenResourceLogic = new InfluenceResourceOverride()
+								{
+									m_RequiredResource = BlueprintTool.GetRef<BlueprintAbilityResourceReference>(Guids.ArchmageSupremeResource),
+									cost = 1
+								}
+							});
+						}
+					}
+				}
+			}
+			if (ability.Blueprint == BlueprintTool.Get<BlueprintAbility>(Guids.ArchmageSupremeAbility8))
+			{
+
+				for (int i = 8; i <= 8; i++)
+				{
+					foreach (var abilityData in SpellTools.SpellList.WizardSpellList.GetSpells(i))
+					{
+						AbilityVariants variantComponent = abilityData.GetComponent<AbilityVariants>();
+						if (variantComponent != null)
+						{
+							foreach (var variant in variantComponent.Variants.AsEnumerable())
+							{
+								AbilityData.AddAbilityUnique(ref conversionList, new SpiritAbilityData(ability, variant)
+								{
+									OverridenResourceLogic = new InfluenceResourceOverride()
+									{
+										m_RequiredResource = BlueprintTool.GetRef<BlueprintAbilityResourceReference>(Guids.ArchmageSupremeResource),
+										cost = 1
+									}
+								});
+							}
+						}
+						else
+						{
+							AbilityData.AddAbilityUnique(ref conversionList, new SpiritAbilityData(ability, abilityData)
+							{
+								OverridenResourceLogic = new InfluenceResourceOverride()
+								{
+									m_RequiredResource = BlueprintTool.GetRef<BlueprintAbilityResourceReference>(Guids.ArchmageSupremeResource),
+									cost = 1
+								}
+							});
+						}
+					}
+				}
+			}
+			if (ability.Blueprint == BlueprintTool.Get<BlueprintAbility>(Guids.ArchmageSupremeAbility9))
+			{
+
+				for (int i = 9; i <= 9; i++)
+				{
+					foreach (var abilityData in SpellTools.SpellList.WizardSpellList.GetSpells(i))
+					{
+						AbilityVariants variantComponent = abilityData.GetComponent<AbilityVariants>();
+						if (variantComponent != null)
+						{
+							foreach (var variant in variantComponent.Variants.AsEnumerable())
+							{
+								AbilityData.AddAbilityUnique(ref conversionList, new SpiritAbilityData(ability, variant)
+								{
+									OverridenResourceLogic = new InfluenceResourceOverride()
+									{
+										m_RequiredResource = BlueprintTool.GetRef<BlueprintAbilityResourceReference>(Guids.ArchmageSupremeResource),
+										cost = 1
+									}
+								});
+							}
+						}
+						else
+						{
+							AbilityData.AddAbilityUnique(ref conversionList, new SpiritAbilityData(ability, abilityData)
+							{
+								OverridenResourceLogic = new InfluenceResourceOverride()
+								{
+									m_RequiredResource = BlueprintTool.GetRef<BlueprintAbilityResourceReference>(Guids.ArchmageSupremeResource),
+									cost = 1
+								}
+							});
+						}
+					}
 				}
 			}
 			conversions = conversionList;
