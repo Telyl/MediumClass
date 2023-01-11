@@ -48,10 +48,13 @@ namespace MediumClass.Medium.NewComponents.AbilitySpecific
 		public override void OnTurnOff()
 		{
 			UnitPartMedium medium = base.Owner.Ensure<UnitPartMedium>();
-			base.Owner.RemoveFact(medium.Spirits[spirit].SpiritSeanceBoon);
 			foreach (UnitEntityData unitEntityData in Game.Instance.Player.ActiveCompanions)
 			{
-				unitEntityData.RemoveFact(medium.Spirits[spirit].SpiritSeanceBoon);
+				foreach(var spirit in medium.Spirits.Keys)
+                {
+					base.Owner.RemoveFact(medium.Spirits[spirit].SpiritSeanceBoon);
+					unitEntityData.RemoveFact(medium.Spirits[spirit].SpiritSeanceBoon);
+				}
 			}
 		}
 		private BlueprintCharacterClassReference spirit;

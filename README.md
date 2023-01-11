@@ -1,17 +1,21 @@
-# WrathMods-AddedFeats
-Additional features for Pathfinder: Wrath of the Righteous
+# WrathMods-Medium Class
+Additional Occult Class (Medium) for Pathfinder: Wrath of the Righteous
+https://www.d20pfsrd.com/alternative-rule-systems/occult-adventures/occult-classes/medium/
 
 ## Still Needs Implementing
 * Some Icons
-* Medium
-	* [Taboo - Stretch Goal](https://www.d20pfsrd.com/alternative-rule-systems/occult-adventures/occult-classes/Medium/#TOC-Taboo-Ex-)
+* Legendary Champion (Homebrew) until I can get a Martial Flexibility feat.
+
+## Spirit Implementation
+If not mentioned, it is basically a 1:1 translation from Tabletop.
 * Archmage
 	* COMPLETE
 * Champion
-	* Adds all exotic weapons instead of allowing a choice.
-	* COMPLETE - Legendary Champion (Homebrew) until I can get a Martial Flexibility feat.
+	* Lesser Spirit Power((Homebrew) - Adds all exotic weapons instead of allowing a choice.
+	* Legendary Champion ((Homebrew) - Adds weapon and armor training feats.
 * Guardian
-	* COMPLETE - Legendary Guardian (Homebrew) & Greater (Homebrew)
+	* Legendary Guardian (Homebrew) - Adds Paladin Smite
+	* Greater Spirit Power(Homebrew) - Adds Azata ability of Charisma to HP on character death.
 * Hierophant
 	* COMPLETE
 * Marshal
@@ -24,7 +28,6 @@ Requires the following mods to function:
 ModMenu-1.3.0 - https://github.com/WittleWolfie/ModMenu
 TableTopTweaks-Core
 ```
-
 
 Note: Creative liberty has been taken with some of the feats as a direct 1:1 translation was not feasible.
 

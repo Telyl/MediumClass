@@ -68,7 +68,17 @@ namespace MediumClass.NewComponents
 			if ((SpiritPowerRank >= 1))
 				base.Owner.AddFact(medium.Spirits[medium.PrimarySpirit].SpiritLesserPower.Get());
 			if ((SpiritPowerRank >= 2))
+            {
+				if (medium.PrimarySpirit.Get() == BlueprintTool.Get<BlueprintCharacterClass>(Guids.Trickster))
+				{
+					int val = base.Owner.Progression.GetClassLevel(BlueprintTool.Get<BlueprintCharacterClass>(Guids.Medium)) % 3;
+					for (int i = 1; i < val; i++)
+					{
+						base.Owner.AddFact(medium.Spirits[medium.PrimarySpirit].SpiritIntermediatePower);
+					}
+				}
 				base.Owner.AddFact(medium.Spirits[medium.PrimarySpirit].SpiritIntermediatePower.Get());
+			}
 			if ((SpiritPowerRank >= 2))
 				base.Owner.AddFact(medium.Spirits[medium.PrimarySpirit].SpiritIntermediatePowerMove.Get());
 			if ((SpiritPowerRank >= 2))
@@ -98,6 +108,14 @@ namespace MediumClass.NewComponents
 
 		private void ApplySecondarySpirits(BlueprintCharacterClassReference spirit)
 		{
+			if(spirit.Get() == BlueprintTool.Get<BlueprintCharacterClass>(Guids.Trickster))
+            {
+				int val = base.Owner.Progression.GetClassLevel(BlueprintTool.Get<BlueprintCharacterClass>(Guids.Medium)) % 3;
+				for(int i=1; i < val; i++)
+                {
+					base.Owner.AddFact(medium.Spirits[spirit].SpiritIntermediatePower);
+				}
+			}
 			base.Owner.AddFact(medium.Spirits[spirit].SpiritIntermediatePower);
 			base.Owner.AddFact(medium.Spirits[spirit].SpiritIntermediatePowerMove);
 			base.Owner.AddFact(medium.Spirits[spirit].SpiritIntermediatePowerSwift);
