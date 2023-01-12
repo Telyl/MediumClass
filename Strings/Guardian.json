@@ -1,4 +1,4 @@
-[
+﻿[
   {
     "Key": "Guardian.Name",
     "ProcessTemplates": false,
@@ -6,7 +6,7 @@
   },
   {
     "Key": "Guardian.Description",
-    "enGB": "A guardian spirit is an exemplar of protection and defense.\nSpirit Bonus: When you channel a guardian, your spirit bonus applies to AC and on Constitution checks, Fortitude saves, and Reflex saves.\nSeance Boon: You gain a +1 bonus to CMD.\nInfluence Penalty: You are incredibly cautious and guarded in all things, and your caution sometimes gets in the way. When attacking, you always fight defensively, and when casting a spell, you always cast defensively. Because of your focus on defense, you take a penalty on damage rolls equal to your spirit bonus."
+    "enGB": "A guardian spirit is an exemplar of protection and defense.\nSpirit Bonus: When you channel a guardian, your spirit bonus applies to AC and on Constitution checks, Fortitude saves, and Reflex saves.\nSeance Boon: You gain a +1 bonus to CMD.\nInfluence Penalty: You are incredibly cautious and guarded in all things, and your caution sometimes gets in the way. When attacking, you always fight defensively, and when casting a spell, you always cast defensively. Because of your focus on defense, you take a penalty on damage rolls equal to your spirit bonus.\nGuardian’s Shield (Lesser, Su): You gain proficiency in heavy armors and shields (including tower shields).\nAbsorb Blow (Intermediate, Su): You gain DR/— and resistance to acid, cold, electricity, fire, and sonic equal to 1/2 your medium level. Add Bestow Grace to your medium spells known as a 2nd-level spell.\nGuardian Smite (Greater, Su): The medium allows the guardian to gain one influence over him to use Smite Evil as per the Paladin class feature.\nLegendary Guardian (Supreme, Su): Medium's Charisma inspires her allies so much that even when their hit points drop below 0 they continue to fight, even though they are still considered dead (or unconscious) for all effects and can be cured by Breath of Life or similar Spells as per spell description. After the encounter or upon receiving a number of attacks equal to Medium's Charisma modifier allies in this state fall dead (or unconscious). If all of the Medium's allies die that way, she becomes fully drained and dies.'"
   },
   {
     "Key": "GuardianSpiritBonus.Name",

@@ -276,7 +276,7 @@ namespace MediumClass.Medium
                     c.SpiritGreaterPower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.TricksterTransferMagic);
                     c.SpiritOverwriteGreater = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.SecondaryTricksterTransferMagic);
                     c.SpiritSupremePower = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.TricksterLegendaryTrickster);
-                    c.Penalties = new StatType[] { StatType.AC, StatType.AdditionalCMB, StatType.AdditionalCMD };
+                    c.Penalties = new StatType[] { StatType.AC, StatType.AdditionalCMB, StatType.AdditionalCMD, StatType.SaveWill, StatType.SaveFortitude };
                     c.Stats = new StatType[] { StatType.SkillAthletics, StatType.SkillKnowledgeArcana, StatType.SkillKnowledgeWorld, StatType.SkillLoreNature, StatType.SkillLoreReligion,
                         StatType.SkillMobility, StatType.SkillPerception, StatType.SkillPersuasion, StatType.SkillStealth, StatType.SkillThievery, StatType.SkillUseMagicDevice, StatType.SaveReflex, StatType.Initiative };
                 })
