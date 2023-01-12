@@ -1,5 +1,7 @@
-﻿using Kingmaker.Blueprints;
+﻿using BlueprintCore.Utils;
+using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
+using Kingmaker.Blueprints.Facts;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.UnitLogic;
 using Kingmaker.UnitLogic.Abilities;
@@ -7,6 +9,7 @@ using Kingmaker.UnitLogic.Abilities.Components.Base;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using MediumClass.Medium.NewUnitParts;
 using MediumClass.Medium.Spirits;
+using MediumClass.Utilities;
 using MediumClass.Utils;
 using System;
 using System.Collections.Generic;
@@ -30,11 +33,10 @@ namespace MediumClass.Medium.NewComponents
 
         public bool IsAbilityRestrictionPassed(AbilityData ability)
         {
-            UnitPartMedium unitPartMedium = ability.Caster.Unit.Ensure<UnitPartMedium>();
-            return (!Not && (unitPartMedium.Spirits.ContainsKey(unitPartMedium.PrimarySpirit)))
-                || (Not && !(unitPartMedium.Spirits.ContainsKey(unitPartMedium.PrimarySpirit)));
+            return ((ability.Caster.HasFact(BlueprintTool.Get<BlueprintUnitFact>(Guids.MediumChannelSpiritPrimarySpiritBuff)) && !Not) ||
+                (!ability.Caster.HasFact(BlueprintTool.Get<BlueprintUnitFact>(Guids.MediumChannelSpiritPrimarySpiritBuff)) && Not));
         }
-        [SerializeField]
+        //[SerializeField]
         public bool Not = false;
     }
 }

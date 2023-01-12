@@ -26,7 +26,7 @@ namespace MediumClass.Medium.NewActions
             return string.Format("Sets the primary or secondary spirit.");
         }
 
-        public override void RunAction()
+        public override void RunAction() 
         {
             UnitEntityData maybeCaster = base.Context.MaybeCaster;
             if (maybeCaster == null)
