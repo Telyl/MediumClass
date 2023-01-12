@@ -28,7 +28,6 @@ namespace MediumClass.Medium.NewActions
 
         public override void RunAction()
         {
-            Logger.Log("In RunAction of ApplySpirit");
             UnitEntityData maybeCaster = base.Context.MaybeCaster;
             if (maybeCaster == null)
             {

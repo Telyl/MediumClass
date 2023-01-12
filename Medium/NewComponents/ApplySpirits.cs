@@ -71,7 +71,7 @@ namespace MediumClass.NewComponents
             {
 				if (medium.PrimarySpirit.Get() == BlueprintTool.Get<BlueprintCharacterClass>(Guids.Trickster))
 				{
-					int val = base.Owner.Progression.GetClassLevel(BlueprintTool.Get<BlueprintCharacterClass>(Guids.Medium)) % 3;
+					int val = base.Owner.Progression.GetClassLevel(BlueprintTool.Get<BlueprintCharacterClass>(Guids.Medium)) / 3;
 					for (int i = 1; i < val; i++)
 					{
 						base.Owner.AddFact(medium.Spirits[medium.PrimarySpirit].SpiritIntermediatePower);
