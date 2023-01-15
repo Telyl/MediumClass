@@ -71,6 +71,7 @@ namespace MediumClass.Medium
                 StatType.SkillPerception,
                 StatType.SkillUseMagicDevice)
                 .AddToRecommendedAttributes(StatType.Charisma)
+                .AddPrerequisiteIsPet(false,Kingmaker.Blueprints.Classes.Prerequisites.Prerequisite.GroupType.All,true,true)
                 .Configure();
 
             BlueprintCharacterClassReference classref = mediumclass.ToReference<BlueprintCharacterClassReference>();

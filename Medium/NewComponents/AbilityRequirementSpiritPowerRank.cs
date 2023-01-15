@@ -29,7 +29,7 @@ namespace MediumClass.Medium.NewComponents
         {
             return $"You have Marshal's Order available.";
         }
-
+         
         public bool IsAbilityRestrictionPassed(AbilityData ability)
         {
             int rank = ability.Caster.Progression.Features.GetRank(BlueprintTool.Get<BlueprintFeature>(Guids.SpiritPower));
