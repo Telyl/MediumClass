@@ -27,6 +27,7 @@ namespace MediumClass.Medium.NewComponents.AbilitySpecific
         private static readonly ModLogger Logger = Logging.GetLogger(nameof(MediumSpiritSurgeComponent));
         public override void OnTurnOn()
         {
+            Logger.Log("I am in OnTurnOn of SpiritSurgeComponent");
             UnitPartMedium unitPartMedium = base.Context.MaybeCaster.Get<UnitPartMedium>();
             if(unitPartMedium == null) { return; }
 
@@ -35,10 +36,11 @@ namespace MediumClass.Medium.NewComponents.AbilitySpecific
             CharacterLevel = base.Context.MaybeCaster.Progression.GetClassLevel(BlueprintTool.Get<BlueprintCharacterClass>(Guids.Medium));
             MarshalBonus = 0;
 
-            if(unitPartMedium.PrimarySpirit.Get() == BlueprintTool.Get<BlueprintCharacterClass>(Guids.Marshal))
+            Logger.Log("Right before If statement of SpiritSurgeComponent");
+            if (unitPartMedium.PrimarySpirit.Get() == BlueprintTool.Get<BlueprintCharacterClass>(Guids.Marshal))
             {
                 if (base.Context.SourceAbility != BlueprintTool.Get<BlueprintAbility>(Guids.MarshalLegendaryMarshalAbility))
-                    MarshalBonus = base.Owner.Progression.Features.GetRank(unitPartMedium.Spirits[unitPartMedium.PrimarySpirit].SpiritBonus.SpiritBonusFeature.Get());
+                    MarshalBonus = base.Owner.Progression.Features.GetRank(unitPartMedium.Spirits[unitPartMedium.PrimarySpirit].SpiritBonus.SpiritBonusFeature.Get()) + + unitPartMedium.Spirits[unitPartMedium.PrimarySpirit].SpiritFocus;
             }
             foreach (StatType statType in Stats)
                 base.Context.MainTarget.Unit.Descriptor.Stats.GetStat(statType).AddModifier((GetBonus() + MarshalBonus), base.Runtime, ModifierDescriptor.UntypedStackable);
@@ -48,6 +50,7 @@ namespace MediumClass.Medium.NewComponents.AbilitySpecific
                 resource.Amount += 1;
                 unitPartMedium.FreeSurgeAmount -= 1;
             }
+            
         }
 
         public override void OnTurnOff()

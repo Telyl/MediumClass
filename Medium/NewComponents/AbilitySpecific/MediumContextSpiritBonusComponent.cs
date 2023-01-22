@@ -33,7 +33,7 @@ namespace MediumClass.Medium.NewComponents.AbilitySpecific
 			{
 				return;
 			}
-			int ranks = base.Owner.Progression.Features.GetRank(medium.Spirits[medium.PrimarySpirit].SpiritBonus.SpiritBonusFeature);
+			int ranks = base.Owner.Progression.Features.GetRank(medium.Spirits[medium.PrimarySpirit].SpiritBonus.SpiritBonusFeature) + medium.Spirits[medium.PrimarySpirit].SpiritFocus;
 			foreach (StatType stat in medium.Spirits[medium.PrimarySpirit].SpiritBonus.Stats)
 			{
 				base.Owner.Stats.GetStat(stat).AddModifier(ranks, base.Runtime, ModifierDescriptor.UntypedStackable);

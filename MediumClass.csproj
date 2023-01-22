@@ -22,12 +22,20 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="ContextActionFeintSkillCheck.cs" />
+    <Compile Remove="Feint.cs" />
+    <Compile Remove="GreaterFeint.cs" />
+    <Compile Remove="ImprovedFeint.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Strings\Trickster.json" />
     <None Remove="Strings\Archmage.json" />
     <None Remove="Strings\Champion.json" />
     <None Remove="Strings\Guardian.json" />
     <None Remove="Strings\Marshal.json" />
     <None Remove="Strings\Medium.json" />
+    <None Remove="Strings\Feats.json" />
     <None Remove="Strings\Settings.json" />
     <None Remove="Strings\Hierophant.json" />
   </ItemGroup>
@@ -40,6 +48,7 @@
     <EmbeddedResource Include="Strings\Marshal.json" />
     <EmbeddedResource Include="Strings\Medium.json" />
     <EmbeddedResource Include="Strings\Hierophant.json" />
+    <EmbeddedResource Include="Strings\Feats.json" />
     <EmbeddedResource Include="Strings\Settings.json" />
   </ItemGroup>
 
@@ -127,13 +136,12 @@
     <None Update="Strings\Settings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Strings\Feats.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Info.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Strings\" />
   </ItemGroup>
 
   <!-- Generates Assembly-CSharp_public.dll -->

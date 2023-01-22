@@ -34,7 +34,7 @@ namespace MediumClass.Medium.NewComponents.AbilitySpecific
             {
                 if(!unitPartMedium.Spirits.ContainsKey(unitPartMedium.SecondarySpirit)) { return; }
                 Penalties = unitPartMedium.Spirits[unitPartMedium.SecondarySpirit].SpiritPenalty.Stats;
-                SpiritBonus = base.Context.MaybeCaster.Progression.Features.GetRank(unitPartMedium.Spirits[unitPartMedium.SecondarySpirit].SpiritBonus.SpiritBonusFeature);
+                SpiritBonus = base.Context.MaybeCaster.Progression.Features.GetRank(unitPartMedium.Spirits[unitPartMedium.SecondarySpirit].SpiritBonus.SpiritBonusFeature) + unitPartMedium.Spirits[unitPartMedium.SecondarySpirit].SpiritFocus;
                 if (unitPartMedium.SecondarySpirit.Get() == BlueprintTool.Get<BlueprintCharacterClass>(Guids.Marshal))
                 {
                     fightDefensively = true;
@@ -45,7 +45,7 @@ namespace MediumClass.Medium.NewComponents.AbilitySpecific
             {
                 if (!unitPartMedium.Spirits.ContainsKey(unitPartMedium.PrimarySpirit)) { return; }
                 Penalties = unitPartMedium.Spirits[unitPartMedium.PrimarySpirit].SpiritPenalty.Stats;
-                SpiritBonus = base.Context.MaybeCaster.Progression.Features.GetRank(unitPartMedium.Spirits[unitPartMedium.PrimarySpirit].SpiritBonus.SpiritBonusFeature);
+                SpiritBonus = base.Context.MaybeCaster.Progression.Features.GetRank(unitPartMedium.Spirits[unitPartMedium.PrimarySpirit].SpiritBonus.SpiritBonusFeature) + unitPartMedium.Spirits[unitPartMedium.PrimarySpirit].SpiritFocus;
                 if (unitPartMedium.PrimarySpirit.Get() == BlueprintTool.Get<BlueprintCharacterClass>(Guids.Marshal))
                 {
                     fightDefensively = true;

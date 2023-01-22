@@ -2,7 +2,7 @@
   "Id": "Medium Class",
   "DisplayName": "Medium Class",
   "Author": "Telyl",
-  "Version": "0.1.2",
+  "Version": "0.1.3",
   "ManagerVersion": "0.23.0",
   "Requirements": [ "TabletopTweaks-Core-0.5.5", "ModMenu-1.3.0" ],
   "AssemblyName": "MediumClass.dll",

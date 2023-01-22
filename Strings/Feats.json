@@ -1,0 +1,29 @@
+﻿[
+  {
+    "Key": "Feint.Name",
+    "ProcessTemplates": false,
+    "enGB": "Feint"
+  },
+  {
+    "Key": "Feint.Description",
+    "enGB": "Feinting is a standard action. To feint, make a Bluff skill check. The DC of this check is equal to 10 + your opponent's base attack bonus + your opponent's Wisdom modifier. If your opponent is trained in Sense Motive, the DC is instead equal to 10 + your opponent's Sense Motive bonus, if higher. If successful, the next melee attack you make against the target does not allow him to use his Dexterity bonus to AC (if any). This attack must be made on or before your next turn.\nWhen feintin against a nonhumanoid you take a -4 penalty. Against a creature of animal Intelligence (1 or 2), you take a –8 penalty. Against a creature lacking an Intelligence score, it's impossible. Feinting in combat does not provoke attacks of opportunity."
+  },
+  {
+    "Key": "DesnaDivineFightingTechnique.Name",
+    "ProcessTemplates": false,
+    "enGB": "Way of the Shooting Star"
+  },
+  {
+    "Key": "DesnaDivineFightingTechnique.Description",
+    "enGB": "You can add your Charisma bonus to attack rolls and damage rolls when wielding a starknife. If you do so, you don't modify attack rolls and damage rolls with your starknife with your Strength modifier, your Dexterity modifier (if you have Weapon Finesse), or any other ability score (if you have an ability that allows you to modify attack rolls and damage rolls with that ability score)."
+  },
+  {
+    "Key": "BackgroundMedium.Name",
+    "ProcessTemplates": false,
+    "enGB": "Favored Class - Medium"
+  },
+  {
+    "Key": "BackgroundMedium.Description",
+    "enGB": "You've been plagued by spirits for as long as you can remember. Because of this, you have a deeper connection with the Medium spirits that can be channeled. Increase the medium's spirit bonus by 1/6 for every level you take in the medium class."
+  }
+]

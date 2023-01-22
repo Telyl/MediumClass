@@ -283,6 +283,29 @@ namespace MediumClass.Utilities
         internal const string AstralBeaconBuff = "744affbb-fbac-4687-b6b8-56124828a0d7";
         #endregion
 
+        #region Features
+        internal const string Feint = "83c146e8-593e-4a60-8217-e7f450ed8f5e";
+        internal const string FeintAbility = "47c9016b-e698-42e9-b946-0c5480192cca";
+        internal const string FeintBuff = "6f34fdc2-53db-4ece-b847-3504ae2f9b3e";
+
+        internal const string SpiritFocusSelection = "d6cba44a-2d4c-42d2-9634-8b69cb1cb34d";
+        internal const string SpiritFocusArchmage = "83e4fcbd-5167-49c0-b9c6-9cd47882a03c";
+        internal const string SpiritFocusChampion = "c6aded28-cc74-4700-bd07-8ce92b9ac9fd";
+        internal const string SpiritFocusGuardian = "dcc2305f-d768-48dd-bdbf-a5bcb347f223";
+        internal const string SpiritFocusHierophant = "664529ab-fe6a-4c7c-b6d2-1d357f746a13";
+        internal const string SpiritFocusMarshal = "c4122dd9-a388-409d-b185-15fa9202f6f0";
+        internal const string SpiritFocusTrickster = "9a7471e7-2666-4721-ad89-e2a211f22384";
+
+        internal const string DesnaDivineFightingTechnique = "1da560cd-f770-4e2e-8b26-51cdcd4df04b";
+        internal const string BackgroundMedium = "ec0b4ec5-2de4-4da7-8ab1-ee1df8272075";
+        #endregion
+
+        #region Spirtualist
+        #region Phantom
+        internal const string PhantomUnit = "bc78a072-3d0c-4620-ae8a-68e481fc3b7d";
+        #endregion
+
+        #endregion
         internal static readonly (string guid, string displayName)[] Spirits =
           new (string, string)[]
           {

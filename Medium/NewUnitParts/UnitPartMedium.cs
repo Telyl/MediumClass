@@ -136,6 +136,44 @@ namespace MediumClass.Medium.NewUnitParts
 			if (IsInfluencePenalty()) { base.Owner.Buffs.AddBuff(Spirits[PrimarySpirit].SpiritInfluencePenalty.Get(), base.Owner, new TimeSpan(24, 0, 0)); }
 		}
 
+		public void AddSpiritFocus(BlueprintCharacterClassReference spirit)
+        {
+			Spirits[spirit].SpiritFocus = 1;
+		}
+
+		public void RemoveSpiritFocus(BlueprintCharacterClassReference spirit)
+        {
+			Spirits[spirit].SpiritFocus = 0;
+        }
+
+		public override void OnPostLoad()
+		{
+			foreach (var buff in this.Owner.Buffs)
+			{
+                switch (buff.Name)
+                {
+					case "Archmage":
+						this.PrimarySpirit = BlueprintTool.GetRef<BlueprintCharacterClassReference>(Guids.Archmage);
+						break;
+					case "Champion":
+						this.PrimarySpirit = BlueprintTool.GetRef<BlueprintCharacterClassReference>(Guids.Champion);
+						break;
+					case "Guardian":
+						this.PrimarySpirit = BlueprintTool.GetRef<BlueprintCharacterClassReference>(Guids.Guardian);
+						break;
+					case "Hierophant":
+						this.PrimarySpirit = BlueprintTool.GetRef<BlueprintCharacterClassReference>(Guids.Hierophant);
+						break;
+					case "Marshal":
+						this.PrimarySpirit = BlueprintTool.GetRef<BlueprintCharacterClassReference>(Guids.Marshal);
+						break;
+					case "Trickster":
+						this.PrimarySpirit = BlueprintTool.GetRef<BlueprintCharacterClassReference>(Guids.Trickster);
+						break;
+				}
+			}
+		}
+
 		public class SpiritStatEntry
 		{
 			public StatType[] Stats;
@@ -157,6 +195,7 @@ namespace MediumClass.Medium.NewUnitParts
 			public BlueprintFeatureReference SpiritSupremePower;
 			public SpiritStatEntry SpiritBonus;
 			public SpiritStatEntry SpiritPenalty;
+			public int SpiritFocus = 0;
 			public EntityFact Source;
 		}
 		public BlueprintCharacterClassReference PrimarySpirit = new BlueprintCharacterClassReference();

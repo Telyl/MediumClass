@@ -54,8 +54,6 @@ namespace MediumClass.Medium
             var buff = BuffConfigurator.New(FeatName + "Buff", Guids.SpiritSurgeBuff)
             .SetIcon("assets/icons/spiritsurge.png")
             .AddComponent<MediumSpiritSurgeComponent>()
-            .AddContextRankConfig(
-                    ContextRankConfigs.FeatureRank(Guids.SpiritSurge, max: 20, min: 1))
             .Configure();
 
             var ability = AbilityConfigurator.New(FeatName + "Ability", Guids.SpiritSurgeAbility)

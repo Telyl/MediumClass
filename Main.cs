@@ -6,6 +6,8 @@ using UnityModManagerNet;
 using static UnityModManagerNet.UnityModManager.ModEntry;
 using Kingmaker.PubSubSystem;
 using MediumClass.Utils;
+using MediumClass.Features;
+using MediumClass.Features.MediumSpecific;
 
 namespace MediumClass
 {
@@ -105,6 +107,7 @@ namespace MediumClass
                       "MediumClass.Strings.Marshal.json",
                       "MediumClass.Strings.Medium.json",
                       "MediumClass.Strings.Settings.json",
+                      "MediumClass.Strings.Feats.json",
                       "MediumClass.Strings.Trickster.json");
 
                     // Then settings
@@ -134,8 +137,11 @@ namespace MediumClass
                 Logger.Log("Configuring class features.");
             }
             private static void ConfigureFeats()
-            {
+            {   
                 Logger.Log("Configuring features.");
+                //Feint.Feint.ConfigureEnabled();
+                DesnaDivineFightingTechnique.ConfigureEnabled();
+                BackgroundMedium.ConfigureEnabled();
             }
             private static void ConfigureSpells()
             {
